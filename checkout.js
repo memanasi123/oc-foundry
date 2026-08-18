@@ -16,6 +16,7 @@ function renderCharacter() {
   }
 
   document.getElementById("checkout-name").textContent = savedCharacter.name;
+
   document.getElementById("checkout-archetype").textContent =
     `${savedCharacter.archetype} · ${savedCharacter.age}`;
 
@@ -35,6 +36,7 @@ renderCharacter();
 
 button.addEventListener("click", async () => {
   const savedCharacter = getCharacter();
+
   if (!savedCharacter) return;
 
   button.textContent = "Redirecting… ✨";
@@ -43,7 +45,9 @@ button.addEventListener("click", async () => {
   try {
     const res = await fetch(`${BACKEND_URL}/create-checkout-session`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify({
         name: savedCharacter.name
       })
@@ -54,13 +58,14 @@ button.addEventListener("click", async () => {
     if (data.url) {
       window.location.href = data.url;
     } else {
-      throw new Error("No checkout URL returned");
+      throw new Error("No checkout URL returned from server");
     }
 
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
 
-    button.textContent = "Something broke 💔 Try again";
+    button.textContent = "Something went wrong 💔 Try again";
+
     setTimeout(() => {
       button.disabled = false;
       button.textContent = "Continue to secure payment →";
