@@ -1,5 +1,7 @@
 const button = document.getElementById("pay-button");
 
+const BACKEND_URL = "https://oc-foundry-server-9417a5emn-oc-foundry.vercel.app";
+
 function getCharacter() {
   return JSON.parse(localStorage.getItem("ocFoundryCharacter") || "null");
 }
@@ -16,6 +18,7 @@ function renderCharacter() {
   document.getElementById("checkout-name").textContent = savedCharacter.name;
   document.getElementById("checkout-archetype").textContent =
     `${savedCharacter.archetype} · ${savedCharacter.age}`;
+
   document.getElementById("checkout-hook").textContent = savedCharacter.hook;
 
   document
@@ -30,18 +33,37 @@ function renderCharacter() {
 
 renderCharacter();
 
-button.addEventListener("click", () => {
+button.addEventListener("click", async () => {
   const savedCharacter = getCharacter();
   if (!savedCharacter) return;
 
-  button.textContent = "Preparing checkout… ✨";
+  button.textContent = "Redirecting… ✨";
   button.disabled = true;
 
-  setTimeout(() => {
-    button.textContent = "Payment provider not connected yet 💳";
+  try {
+    const res = await fetch(`${BACKEND_URL}/create-checkout-session`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: savedCharacter.name
+      })
+    });
+
+    const data = await res.json();
+
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      throw new Error("No checkout URL returned");
+    }
+
+  } catch (err) {
+    console.error(err);
+
+    button.textContent = "Something broke 💔 Try again";
     setTimeout(() => {
       button.disabled = false;
-      button.textContent = "Try again";
-    }, 1500);
-  }, 1000);
+      button.textContent = "Continue to secure payment →";
+    }, 2000);
+  }
 });
