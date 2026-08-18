@@ -43,7 +43,7 @@ button.addEventListener("click", async () => {
   button.disabled = true;
 
   try {
-    const res = await fetch(`${BACKEND_URL}/create-checkout-session`, {
+    const res = await fetch(`${BACKEND_URL}/api/create-checkout-session`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
