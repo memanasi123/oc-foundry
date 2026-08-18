@@ -1,6 +1,6 @@
 const button = document.getElementById("pay-button");
 
-const BACKEND_URL = "https://oc-foundry-server-9417a5emn-oc-foundry.vercel.app";
+const BACKEND_URL = "https://oc-foundry-server.vercel.app";
 
 function getCharacter() {
   return JSON.parse(localStorage.getItem("ocFoundryCharacter") || "null");
