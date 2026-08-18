@@ -1,0 +1,93 @@
+const data = {
+  fantasy: {
+    names: ["Elowen Voss", "Mira Ashvale", "Sable Thorne", "Nym Calder", "Iria Moonwell"],
+    archetypes: ["Moonlit Cartographer", "Runaway Court Healer", "Relic Keeper", "Garden Witch", "Storm Courier"],
+    worlds: ["a city built inside the ribs of a sleeping giant", "a floating archipelago where rain is collected like gold", "a kingdom slowly being swallowed by an enchanted forest"],
+    visuals: ["A lean, practical silhouette: windswept silver braid tied with bits of sea glass, a moss-green waxed travelling coat with an oversized collar, and scuffed knee boots. Their storm lantern is the focal prop—a brass cage holding a miniature thundercloud that flickers across their face. Build the palette around lichen green, rain-grey, oxidized brass, and one sharp bolt of electric blue.", "Soft black curls spill from a weathered violet hood embroidered with protective runes. Their layered robes have a ceremonial shape but are repaired at the elbows and hem, hinting at a life on the road. A tiny ash-grey dragon sleeps in the hood’s fold; use it as a soft counterpoint to the character’s severe rings and ink-black satchel.", "A copper bob frames a face marked by one luminous rain-sensitive eye. Their patched star-chart cloak has a sweeping triangular silhouette, its fabric panels mismatched from years of travel. Add a belt of folding instruments, damp paper maps, and a pair of gloves stained blue at the fingertips."],
+    hooks: ["They map places that only exist when no one is looking. Their latest chart has begun redrawing the route to their childhood home.", "They can heal anyone’s wound—except the shimmering cut that returns to their own wrist every dawn.", "They are returning a stolen crown to the person it was never meant for, while its former owner follows one town behind."]
+  },
+  modern: {
+    names: ["June Bellamy", "Ari Sato", "Wren Park", "Milo Reyes", "Tessa Bloom"],
+    archetypes: ["After-hours Florist", "Vintage Film Restorer", "Rooftop Radio Host", "Night-shift Baker", "Museum Intern"],
+    worlds: ["a rain-soft city where every apartment window has a story", "a small coastal town preparing for its last summer festival", "a neighborhood where lost things keep turning up at one corner shop"],
+    visuals: ["Give them an energetic, slightly uneven silhouette: a choppy cherry-red bob, oversized denim jacket covered in enamel pins, striped knit peeking through, and paint-stained high-top sneakers. Their tote bag should look overfilled with sketchbooks and receipts. The key visual is a clean bright red against faded indigo, concrete grey, and milk-tea cream.", "Their soft curly hair is clipped back with a mismatched barrette; a butter-yellow cardigan hangs over a worn white tee and wide-leg trousers. Stack a charm bracelet with tiny old keys, each with a different patina. The design should feel gentle and lived-in, with a coffee cup or bundle of flowers as a natural hand prop.", "A lavender buzzcut creates a strong graphic profile above a tailored thrift-store suit in warm brown plaid. A compact camera covered in tiny stickers hangs at their chest, and mismatched socks show above polished loafers. Keep the styling precise but not pristine: a loose thread, a bent lapel pin, a roll of film in one pocket."],
+    hooks: ["They leave anonymous notes in library books, then someone starts replying in handwriting they recognize from nowhere.", "They know every secret in the building, except why their own apartment door keeps appearing in photographs from 1987.", "They only take photographs of people on the day their life changes—and today their camera has started taking photos of them."]
+  },
+  scifi: {
+    names: ["Sol Anther", "Iona Vale", "Kade-7", "Navi Orin", "Rumi Kest"],
+    archetypes: ["Memory Salvager", "Orbital Botanist", "Rogue Synthesist", "Starship Archivist", "Signal Diver"],
+    worlds: ["a gentle colony orbiting a planet with two dawns", "a space station held together by community gardens and duct tape", "the last little city on a world of endless artificial ocean"],
+    visuals: ["Their cropped hair catches light in oil-slick iridescence above a cloud-white flight suit with a high asymmetric collar. One translucent mechanical hand reveals delicate gold circuitry beneath the shell; let it be elegant rather than weapon-like. Add worn mission patches and a small floating tool drone, balancing sterile future materials with personal wear.", "Long teal braids are threaded with data beads and gathered over one shoulder. A patched utility skirt layers over fitted thermal leggings, with chunky magnetic boots and a softly glowing projector companion always at heel. Use printed circuit motifs, faded orange repair tape, and plant-green accents to make the spacefaring look handmade.", "Shaved sides sharpen the outline of their peach-tinted visor and oversized headset. A constellation of freckles shifts faintly across their cheeks, mapping something only they can see. Their dark technical jacket should be cut with angular panels and reflective piping, then softened by a threadbare scarf from home."],
+    hooks: ["They recover deleted memories for a living, but their own are encrypted behind a lock that uses their mother’s voice.", "They receive messages from a star that officially died a century ago; each transmission describes something they have not done yet.", "They built a companion robot that has started writing them love letters—and signing them with a name from a missing crew manifest."]
+  },
+  horror: {
+    names: ["Evelyn Crow", "Nora Vane", "Cass Mercer", "Ivy Hollow", "Rowan Pike"],
+    archetypes: ["Night Archive Keeper", "Reluctant Medium", "Moth-Eaten Detective", "Candlemaker’s Heir", "Graveyard Groundskeeper"],
+    worlds: ["a town where every house keeps one room locked", "a cliffside estate above a sea that never reflects the moon", "a late-night train that only stops for the missing"],
+    visuals: ["A long, shadowed silhouette in a high-collared wool coat, its cuffs embroidered with tiny protective symbols. Dark hair is pinned back with a tarnished silver comb; a weak lantern and a bundle of keys act as essential props. Keep the palette in smoke-grey, dried rose, candle-wax ivory, and blackened brass.", "Their cropped hair is stark against an oversized mourning veil and a practical shirt with rolled sleeves. A string of tiny bells hangs from one wrist, while their leather satchel holds labelled vials and a folded photograph. Give the costume real working wear: ash at the hem, rain-darkened fabric, a repaired seam."],
+    hooks: ["They catalogue the names of ghosts who cannot remember dying, but last night they found their own name in the ledger.", "Every candle they make burns blue in the presence of a lie—and the whole town is beginning to glow."]
+  },
+  historical: {
+    names: ["Ada Whitlock", "Felix Marlowe", "Mina Laurent", "Theo Bell", "Celia Hart"],
+    archetypes: ["Railway Sketch Artist", "Secret Society Courier", "Apothecary Apprentice", "Museum Restorer", "Ballroom Spy"],
+    worlds: ["a gaslit capital on the eve of a royal exhibition", "a canal city where every bridge has a toll collector with a secret", "a remote manor preparing for a house party that must not happen"],
+    visuals: ["A neat turn-of-the-century silhouette built from a fitted waistcoat, high-neck blouse, and wool skirt designed for movement. Their ink-stained gloves and cracked leather portfolio reveal a working artist rather than a perfect period doll. Use antique navy, parchment, oxblood, and weathered gold.", "A long tailored coat swings over practical boots, with a pocket watch and a folded codebook tucked into the inner lining. Their hair is styled beautifully but one strand is always loose, suggesting they have just escaped a formal room in a hurry."],
+    hooks: ["They restore damaged portraits for a museum, until a newly cleaned canvas begins adding them to the family scene.", "They are delivering a letter that could stop a war, but it is addressed in their own handwriting and dated fifty years ahead."]
+  },
+  postapoc: {
+    names: ["Rin Ash", "Juno Vale", "Kit Solace", "Mara Flint", "Dax Rowan"],
+    archetypes: ["Rooftop Forager", "Radio Runner", "Seed Vault Guardian", "Wasteland Mechanic", "Floodline Scout"],
+    worlds: ["a drowned city connected by rooftop gardens and zip lines", "a sun-bleached highway settlement built from old train cars", "a reclaimed shopping mall where the survivors run a tiny republic"],
+    visuals: ["A compact, layered silhouette made for climbing: cropped utility jacket, patched cargo trousers, climbing rope looped at the hip, and boots with hand-cut soles. Their respirator hangs loose at the neck, and a tiny green shoot grows from an unlikely pocket. Make the materials sun-faded, repaired, and tactile.", "Their oversized hood, scavenged shoulder pad, and reinforced gloves create an asymmetrical silhouette. A weathered radio is strapped across the chest with cloth tape, its antenna decorated with bright fabric knots—one defiant spot of color in a dust, rust, and faded-teal palette."],
+    hooks: ["They can tune any radio to hear the last message a place ever broadcast, and their own shelter has started speaking back.", "They guard the final packet of viable seeds, but the map to the safe soil is tattooed on someone who has disappeared."]
+  }
+};
+
+const shared = {
+  personality: ["Observant and warm with a stubborn streak: they notice when someone is uncomfortable before anyone else does, then make a joke to give them an exit. Their kindness is genuine, but they dislike being seen while they are hurting.", "Curious, loyal, and impulsive in exactly that order. They collect impossible questions, make decisions a beat too fast, and would cross a burning bridge for a person they chose as family.", "Gentle and private, but fiercely determined once a promise is made. They look easily distracted in a crowd; in truth, they are cataloguing every useful detail in the room.", "Clever and sentimental, with a guard up that drops at inconvenient moments. Their humour is dry, their memory is exact, and their compassion usually arrives disguised as practical help."],
+  strength: ["A hand-assembled compass with one empty setting. It spins toward whatever the owner most needs—not what they ask for. It should look precious, over-repaired, and always be visible somewhere on their person.", "A single tell that changes under pressure: their freckles flare, their glove’s circuitry hums, or a ribbon at their wrist lifts as if caught in a private wind. Use it as a visual meter for emotion.", "A battered messenger bag or tool belt full of highly specific objects: folded maps, a pressed flower, spare wire, a tiny knife, and a note they refuse to throw away. It makes the design feel ready for a story.", "One deliberately polished element amid otherwise worn clothing: a spotless boot, a perfect signet ring, or a carefully mended collar. It hints at the life they are trying to preserve."],
+  fear: ["Their instinct to protect people can become controlling when the stakes rise. The visual tension is between their open, inviting styling and the way they always keep one hand near the exit.", "They are terrified of becoming essential to someone, then failing them. Leave one piece of their kit incomplete—a snapped clasp, unfinished map, or uncharged device—to quietly echo that fear.", "They have a private suspicion that they helped cause the disaster they are trying to solve. Their posture should be capable and forward-moving, but their gaze never fully relaxes.", "Tenderness feels dangerous to them because it makes abandonment possible. Give the design one fragile object they handle with remarkable care, even in a fight."],
+  palettes: [["#E9A5A2", "#F6D7AC", "#8DB9AA", "#5B617C"], ["#C7B5E2", "#F2B8B5", "#F5E6B3", "#68765E"], ["#E3A0B8", "#B9D7D3", "#F5C89A", "#7E7099"]]
+};
+
+const moods = {
+  soft: { visual: ["a soft, sun-faded palette and one beloved object always close by", "gentle layers in warm pastels, with a detail made by hand"], hook: ["They keep a small promise to a stranger, even though no one else remembers it.", "They are collecting tiny beautiful things to make someone feel less alone."], palette: ["#E9A5A2", "#F6D7AC", "#B9D2BF", "#7E7099"] },
+  dark: { visual: ["inky shadows, tarnished silver accents, and a secret tucked into every sleeve", "a midnight palette softened by one unnervingly bright detail"], hook: ["They were given a warning about the future, but it was written in their own handwriting.", "Something beneath their home knows their name and has begun to call it."], palette: ["#815F82", "#40364F", "#D58A87", "#26243A"] },
+  cute: { visual: ["a cheerful color pop, playful accessories, and a pocket full of lucky charms", "sweet candy tones with one unexpectedly tough-looking detail"], hook: ["They are determined to win a contest nobody else thinks is important.", "Their tiny sidekick has a bigger plan than they do."], palette: ["#F3A8B6", "#F7D17B", "#A8D5CA", "#8877B0"] },
+  heroic: { visual: ["a clear, iconic silhouette with a bold accent color and an object that reads at a glance", "a practical outfit with one ceremonial element that catches the light"], hook: ["They are the only person willing to take the first step into a place everyone else fears.", "They carry a symbol people have started believing in more than they believe in them."], palette: ["#E98675", "#F3CF74", "#6EA0AE", "#3D4668"] },
+  mysterious: { visual: ["an obscured face, layered textures, and a prop that looks important but cannot be easily identified", "a restrained palette cut by one unnatural point of light"], hook: ["They have a secret that seems to be protecting them as much as they are protecting it.", "Someone is leaving clues for them, but each clue appears before the event it describes."], palette: ["#6F617D", "#B39FB8", "#D6C6A5", "#364154"] },
+  whimsical: { visual: ["playful mismatched layers, handmade details, and a companion object with its own small personality", "a joyful shape language with unexpected pockets, buttons, and lucky tokens"], hook: ["They have been appointed keeper of an impossible little creature with very strong opinions.", "Every time they solve a problem, a new door appears somewhere nearby."], palette: ["#EEA6A7", "#F2D489", "#8EC6B1", "#8174AB"] }
+};
+
+let selectedWorld = "any"; let selectedMood = "any"; let count = 0;
+let currentSet = null;
+let currentCharacter = null;
+const pick = list => list[Math.floor(Math.random() * list.length)];
+
+function chooseWorld() { return selectedWorld === "any" ? pick(Object.keys(data)) : selectedWorld; }
+function makeCharacter() {
+  const worldKey = chooseWorld(); const set = data[worldKey]; const mood = moods[selectedMood]; const palette = mood ? mood.palette : pick(shared.palettes); currentSet = set; count += 1;
+  document.getElementById("character-name").textContent = pick(set.names);
+  document.getElementById("archetype").textContent = pick(set.archetypes);
+  document.getElementById("age").textContent = `${pick(["19", "22", "25", "27", "31"])} years old`;
+  document.getElementById("hook").textContent = mood ? pick([...set.hooks, ...mood.hook]) : pick(set.hooks);
+  document.getElementById("visual-vibe").textContent = mood ? `${pick(set.visuals)}; ${pick(mood.visual)}.` : pick(set.visuals);
+  document.getElementById("personality").textContent = pick(shared.personality);
+  document.getElementById("strength").textContent = pick(shared.strength);
+  document.getElementById("fear").textContent = pick(shared.fear);
+  document.getElementById("world-hook").textContent = `Key art moment: place them in ${pick(set.worlds)}, paused mid-action as their signature prop catches the light. Frame the environment with enough small story clues—weather, discarded objects, distant silhouettes—to suggest the conflict without explaining it.`;
+  document.getElementById("sheet-number").textContent = `NO. ${String(count).padStart(3, "0")}`;
+  const paletteEl = document.getElementById("palette"); paletteEl.innerHTML = palette.map(color => `<span style="background:${color}"></span>`).join("");
+  document.getElementById("portrait-panel").style.background = `linear-gradient(145deg, ${palette[0]}, ${palette[3]})`;
+  currentCharacter = { name: document.getElementById("character-name").textContent, archetype: document.getElementById("archetype").textContent, age: document.getElementById("age").textContent, hook: document.getElementById("hook").textContent, visual: document.getElementById("visual-vibe").textContent, personality: document.getElementById("personality").textContent, detail: document.getElementById("strength").textContent, tension: document.getElementById("fear").textContent, scene: document.getElementById("world-hook").textContent, palette };
+  document.getElementById("empty-state").hidden = true; document.getElementById("result-content").hidden = false;
+  document.getElementById("character-sheet").classList.remove("empty");
+  document.getElementById("generator").scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+document.querySelectorAll("#world-filters .filter").forEach(button => button.addEventListener("click", () => { selectedWorld = button.dataset.world; document.querySelectorAll("#world-filters .filter").forEach(b => b.classList.toggle("active", b === button)); }));
+document.querySelectorAll("#mood-filters .filter").forEach(button => button.addEventListener("click", () => { selectedMood = button.dataset.mood; document.querySelectorAll("#mood-filters .filter").forEach(b => b.classList.toggle("active", b === button)); }));
+document.getElementById("generate").addEventListener("click", makeCharacter);
+document.getElementById("regenerate").addEventListener("click", makeCharacter);
+document.getElementById("name-reroll").addEventListener("click", () => { if (currentSet) { const name = pick(currentSet.names); document.getElementById("character-name").textContent = name; if (currentCharacter) currentCharacter.name = name; } });
+document.getElementById("download").addEventListener("click", () => { if (currentCharacter) localStorage.setItem("ocFoundryCharacter", JSON.stringify(currentCharacter)); });
