@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://memanasi123.github.io/oc-foundry/sitemap.xml
