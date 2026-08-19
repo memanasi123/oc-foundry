@@ -81,6 +81,8 @@ function makeCharacter() {
   document.getElementById("portrait-panel").style.background = `linear-gradient(145deg, ${palette[0]}, ${palette[3]})`;
   currentCharacter = { name: document.getElementById("character-name").textContent, archetype: document.getElementById("archetype").textContent, age: document.getElementById("age").textContent, hook: document.getElementById("hook").textContent, visual: document.getElementById("visual-vibe").textContent, personality: document.getElementById("personality").textContent, detail: document.getElementById("strength").textContent, tension: document.getElementById("fear").textContent, scene: document.getElementById("world-hook").textContent, palette };
   document.getElementById("empty-state").hidden = true; document.getElementById("result-content").hidden = false;
+    document.getElementById("unlock-tease").hidden = false;
+  document.getElementById("tease-name").textContent = currentCharacter.name.split(" ")[0];
   document.getElementById("character-sheet").classList.remove("empty");
   document.getElementById("generator").scrollIntoView({ behavior: "smooth", block: "center" });
 }
