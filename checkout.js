@@ -48,8 +48,14 @@ button.addEventListener("click", async () => {
       headers: {
         "Content-Type": "application/json"
       },
+      // 👇 THIS IS THE ONLY PART WE ARE CHANGING 👇
       body: JSON.stringify({
-        name: savedCharacter.name
+        items: [
+          {
+            price: 'price_1U63XSBMLlQjaKDGM5aa3DWA',
+            quantity: 1
+          }
+        ]
       })
     });
 
