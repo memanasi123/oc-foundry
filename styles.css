@@ -651,3 +651,492 @@
     width: 100%;
   }
 }
+/* ============================================
+   BOLD WORLD THEMING
+   Character's palette exposed as CSS variables
+   Each world layers its own signature aesthetic
+   ============================================ */
+
+/* ============================================
+   PALETTE-DRIVEN BOLD STYLING (all worlds)
+   Uses --char-color-1 through --char-color-4
+   ============================================ */
+
+.bible-content .bible-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.bible-content .bible-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg,
+    var(--char-color-1, var(--coral)),
+    var(--char-color-2, var(--peach)),
+    var(--char-color-3, var(--sage)),
+    var(--char-color-4, var(--lavender))
+  );
+}
+
+.bible-content h3 {
+  color: var(--char-color-4, var(--lavender)) !important;
+}
+
+.bible-content h4,
+.bible-content h5 {
+  color: var(--char-color-4, var(--lavender)) !important;
+}
+
+.bible-content .rel-role,
+.bible-content .bible-label,
+.bible-content .quiz-grid h5,
+.bible-content .symbol-grid h5,
+.bible-content .wardrobe-grid h5,
+.bible-content .drawing-prompts li::before,
+.bible-content .symbol-main strong {
+  color: var(--char-color-1, var(--coral)) !important;
+}
+
+.bible-content .voice-lines blockquote {
+  border-left-color: var(--char-color-4, var(--lavender)) !important;
+  background: color-mix(in srgb, var(--char-color-4, #9380c5) 8%, transparent) !important;
+}
+
+.bible-content .rel-card {
+  background: color-mix(in srgb, var(--char-color-2, #F6D7AC) 12%, #fff) !important;
+  border-color: color-mix(in srgb, var(--char-color-1, #E9A5A2) 30%, transparent) !important;
+}
+
+/* ============================================
+   FANTASY — starry, filigree, enchanted
+   ============================================ */
+
+.world-fantasy {
+  background: linear-gradient(135deg, #fdf8f0 0%, #f4eaf5 45%, #fbe8e3 100%) !important;
+}
+
+.world-fantasy .bible-section {
+  border-color: color-mix(in srgb, var(--char-color-4, #9380c5) 25%, var(--line));
+}
+
+.world-fantasy .bible-section::before {
+  height: 6px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--char-color-1) 20%,
+    var(--char-color-4) 50%,
+    var(--char-color-1) 80%,
+    transparent 100%
+  );
+}
+
+.world-fantasy .bible-section::after {
+  content: "✦";
+  position: absolute;
+  top: 14px;
+  right: 20px;
+  font-size: 14px;
+  color: var(--char-color-1);
+  opacity: 0.5;
+}
+
+.world-fantasy .bible-cover {
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--char-color-1) 35%, #fff) 0%,
+    color-mix(in srgb, var(--char-color-2) 30%, #fff) 50%,
+    color-mix(in srgb, var(--char-color-4) 25%, #fff) 100%
+  ) !important;
+  border: 2px solid color-mix(in srgb, var(--char-color-4) 40%, transparent) !important;
+}
+
+.world-fantasy .bible-cover::after {
+  content: "✦ ✦ ✦";
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--char-color-4);
+  letter-spacing: 12px;
+  opacity: 0.4;
+  font-size: 14px;
+}
+
+.world-fantasy .bible-header h1 em {
+  color: var(--char-color-4);
+}
+
+/* ============================================
+   MODERN — clean grid, editorial, warm minimal
+   ============================================ */
+
+.world-modern {
+  background: linear-gradient(135deg, #fefdfb 0%, #f7f3ef 100%) !important;
+}
+
+.world-modern .bible-section {
+  border-radius: 8px;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.world-modern .bible-section::before {
+  height: 2px;
+  background: var(--char-color-4) !important;
+}
+
+.world-modern .bible-section::after {
+  content: "";
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--char-color-1);
+  opacity: 0.6;
+}
+
+.world-modern .bible-cover {
+  background: linear-gradient(135deg,
+    #fff 0%,
+    color-mix(in srgb, var(--char-color-2) 20%, #fff) 100%
+  ) !important;
+  border-radius: 8px;
+}
+
+.world-modern .bible-cover::before {
+  height: 2px !important;
+}
+
+.world-modern .voice-lines blockquote {
+  border-left-width: 2px !important;
+  border-radius: 0 !important;
+}
+
+/* ============================================
+   SCI-FI — technical, bracketed, elegant future
+   ============================================ */
+
+.world-scifi {
+  background: linear-gradient(135deg, #f0f4f8 0%, #eaeef7 50%, #f4f0f8 100%) !important;
+}
+
+.world-scifi .bible-section {
+  border-radius: 4px;
+  border: 1px solid color-mix(in srgb, var(--char-color-4) 25%, var(--line));
+  background: #fdfdfd;
+}
+
+.world-scifi .bible-section::before {
+  height: 3px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--char-color-4) 0px,
+    var(--char-color-4) 12px,
+    transparent 12px,
+    transparent 16px
+  ) !important;
+}
+
+.world-scifi .bible-section::after {
+  content: "[ · · ]";
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  color: var(--char-color-1);
+  font: 500 10px "DM Mono", monospace;
+  letter-spacing: 2px;
+  opacity: 0.6;
+}
+
+.world-scifi h3 {
+  font-family: "DM Mono", monospace !important;
+  font-size: 15px !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase;
+}
+
+.world-scifi .bible-cover {
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--char-color-3) 20%, #f0f4f8) 0%,
+    color-mix(in srgb, var(--char-color-4) 25%, #eaeef7) 100%
+  ) !important;
+  border: 1px dashed color-mix(in srgb, var(--char-color-4) 50%, transparent) !important;
+}
+
+.world-scifi .bible-cover::after {
+  content: "[ TRANSMISSION COMPLETE ]";
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--char-color-4);
+  font: 500 10px "DM Mono", monospace;
+  letter-spacing: 2px;
+  opacity: 0.5;
+}
+
+.world-scifi .voice-lines blockquote {
+  border-radius: 2px !important;
+}
+
+/* ============================================
+   HORROR — candlelit, gothic, moody
+   ============================================ */
+
+.world-horror {
+  background: linear-gradient(135deg, #2a2530 0%, #1f1a26 50%, #2a222f 100%) !important;
+  color: #e8dfe6;
+}
+
+.world-horror .bible-header h1 {
+  color: #ede4e8 !important;
+}
+
+.world-horror .bible-header h1 em {
+  color: var(--char-color-1) !important;
+}
+
+.world-horror .bible-sub,
+.world-horror .bible-header .eyebrow {
+  color: #bbafb5 !important;
+}
+
+.world-horror .bible-brand {
+  color: #e8dfe6 !important;
+}
+
+.world-horror .bible-section {
+  background: #f4eef1 !important;
+  border: 1px solid color-mix(in srgb, var(--char-color-1) 30%, #4a3d47);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+}
+
+.world-horror .bible-section::before {
+  height: 5px;
+  background: linear-gradient(90deg,
+    #2a2530 0%,
+    var(--char-color-1) 50%,
+    #2a2530 100%
+  ) !important;
+}
+
+.world-horror .bible-section::after {
+  content: "†";
+  position: absolute;
+  top: 14px;
+  right: 20px;
+  color: var(--char-color-1);
+  font-size: 18px;
+  opacity: 0.5;
+}
+
+.world-horror .bible-cover {
+  background: linear-gradient(135deg, #2a2530 0%, #3a2f3a 50%, #2f2530 100%) !important;
+  color: #ede4e8 !important;
+  border: 2px solid color-mix(in srgb, var(--char-color-1) 40%, #4a3d47) !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4), inset 0 0 60px rgba(0, 0, 0, 0.3);
+}
+
+.world-horror .bible-cover h2 {
+  color: #f4eef1 !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+}
+
+.world-horror .bible-cover .cover-meta,
+.world-horror .bible-cover .cover-hook {
+  color: #d4c4cd !important;
+}
+
+.world-horror .bible-cover .bible-label {
+  color: var(--char-color-1) !important;
+}
+
+.world-horror .bible-cover::after {
+  content: "❦";
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--char-color-1);
+  font-size: 20px;
+  opacity: 0.4;
+}
+
+.world-horror .cover-palette span {
+  border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.world-horror .ghost-button {
+  border-color: var(--char-color-1);
+  color: var(--char-color-1);
+}
+
+.world-horror .ghost-button:hover {
+  background: var(--char-color-1);
+  color: #2a2530;
+}
+
+.world-horror .bible-footer {
+  color: #bbafb5 !important;
+}
+
+.world-horror .bible-footer p {
+  color: var(--char-color-1) !important;
+}
+
+/* ============================================
+   HISTORICAL — parchment, filigree, antique
+   ============================================ */
+
+.world-historical {
+  background: linear-gradient(135deg, #f9f2e4 0%, #f4ead4 50%, #eee0c5 100%) !important;
+}
+
+.world-historical .bible-section {
+  background: #fdf9ef;
+  border: 1px solid #d9c9a5;
+  box-shadow: 0 4px 12px rgba(139, 108, 60, 0.08);
+}
+
+.world-historical .bible-section::before {
+  height: 3px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--char-color-4) 60%, #8b6c3c) 15%,
+    color-mix(in srgb, var(--char-color-1) 60%, #8b6c3c) 50%,
+    color-mix(in srgb, var(--char-color-4) 60%, #8b6c3c) 85%,
+    transparent 100%
+  ) !important;
+}
+
+.world-historical .bible-section::after {
+  content: "❦";
+  position: absolute;
+  top: 14px;
+  right: 20px;
+  color: color-mix(in srgb, var(--char-color-4) 70%, #8b6c3c);
+  font-size: 16px;
+  opacity: 0.6;
+}
+
+.world-historical h3 {
+  font-style: italic;
+}
+
+.world-historical .bible-cover {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(139, 108, 60, 0.06), transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(139, 108, 60, 0.08), transparent 50%),
+    linear-gradient(135deg, #fdf9ef 0%, #f4ead4 100%) !important;
+  border: 2px solid color-mix(in srgb, var(--char-color-4) 40%, #d9c9a5) !important;
+}
+
+.world-historical .bible-cover::after {
+  content: "· ❦ ·";
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: color-mix(in srgb, var(--char-color-4) 70%, #8b6c3c);
+  letter-spacing: 6px;
+  opacity: 0.5;
+  font-size: 14px;
+}
+
+.world-historical .voice-lines blockquote {
+  font-family: Fraunces, serif !important;
+  border-left-color: color-mix(in srgb, var(--char-color-4) 70%, #8b6c3c) !important;
+}
+
+/* ============================================
+   POST-APOCALYPTIC — weathered, torn, defiant
+   ============================================ */
+
+.world-postapoc {
+  background: linear-gradient(135deg, #ede6dd 0%, #ddd0be 50%, #e6dcc9 100%) !important;
+}
+
+.world-postapoc .bible-section {
+  background: #f8f3ea;
+  border: 1px solid #b5a58a;
+  box-shadow: 3px 3px 0 rgba(107, 89, 65, 0.15);
+  border-radius: 4px;
+}
+
+.world-postapoc .bible-section::before {
+  height: 4px;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--char-color-1) 0px,
+    var(--char-color-1) 6px,
+    #6b5941 6px,
+    #6b5941 8px,
+    var(--char-color-4) 8px,
+    var(--char-color-4) 14px,
+    transparent 14px,
+    transparent 18px
+  ) !important;
+}
+
+.world-postapoc .bible-section::after {
+  content: "▲";
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  color: var(--char-color-1);
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.world-postapoc h3 {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 20px !important;
+}
+
+.world-postapoc .bible-cover {
+  background:
+    linear-gradient(135deg,
+      color-mix(in srgb, var(--char-color-2) 25%, #ede6dd) 0%,
+      color-mix(in srgb, var(--char-color-1) 20%, #ddd0be) 100%
+    ) !important;
+  border: 2px dashed color-mix(in srgb, var(--char-color-1) 50%, #6b5941) !important;
+  box-shadow: 4px 4px 0 rgba(107, 89, 65, 0.2);
+}
+
+.world-postapoc .bible-cover::after {
+  content: "— — SURVIVING — —";
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--char-color-1);
+  font: 500 10px "DM Mono", monospace;
+  letter-spacing: 2px;
+  opacity: 0.6;
+}
+
+.world-postapoc .rel-card {
+  border-style: dashed !important;
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 720px) {
+  .world-fantasy .bible-section::after,
+  .world-modern .bible-section::after,
+  .world-scifi .bible-section::after,
+  .world-horror .bible-section::after,
+  .world-historical .bible-section::after,
+  .world-postapoc .bible-section::after {
+    top: 12px;
+    right: 14px;
+    font-size: 12px;
+  }
+}
