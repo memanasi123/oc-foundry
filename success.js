@@ -184,73 +184,33 @@ document.getElementById("email-form").addEventListener("submit", (e) => {
   status.style.color = "var(--lavender)";
 });
 
-// DOWNLOAD PDF BUTTON
-document.getElementById("download-pdf").addEventListener("click", async () => {
-  const button = document.getElementById("download-pdf");
-  const originalText = button.innerHTML;
+// DOWNLOAD PDF BUTTON - uses browser's built-in print-to-PDF
+document.getElementById("download-pdf").addEventListener("click", () => {
+  // Show helpful modal before opening print dialog
+  const overlay = document.createElement("div");
+  overlay.id = "print-instructions";
+  overlay.innerHTML = `
+    <div class="print-modal">
+      <button class="close-modal" id="close-print-modal">×</button>
+      <h2>Save your character bible ✨</h2>
+      <p>In the print dialog that opens, please:</p>
+      <ol>
+        <li>Set <strong>Destination</strong> to <strong>"Save as PDF"</strong></li>
+        <li>Under <strong>More settings</strong>, tick <strong>"Background graphics"</strong> ← very important!</li>
+        <li>Click <strong>Save</strong></li>
+      </ol>
+      <button class="print-cta" id="open-print-dialog">Open print dialog →</button>
+      <p class="print-note">Your bible will save as a beautiful PDF to your Downloads folder.</p>
+    </div>
+  `;
+  document.body.appendChild(overlay);
 
-  // Show loading state
-  button.disabled = true;
-  button.innerHTML = 'Generating PDF... ✨';
+  document.getElementById("close-print-modal").addEventListener("click", () => {
+    overlay.remove();
+  });
 
-  try {
-    const bible = currentBible;
-    if (!bible) {
-      alert("No character bible loaded!");
-      button.disabled = false;
-      button.innerHTML = originalText;
-      return;
-    }
-
-    // Get the bible content element
-    const element = document.getElementById("bible-content");
-
-    // Clean filename from character name
-    const safeName = bible.name.replace(/[^a-z0-9]/gi, '-');
-    const filename = `${safeName}-Character-Bible.pdf`;
-
-    // PDF generation options
-    const options = {
-      margin: [10, 10, 10, 10],
-      filename: filename,
-      image: { type: 'jpeg', quality: 0.95 },
-      html2canvas: {
-        scale: 2,
-        useCORS: true,
-        letterRendering: true,
-        backgroundColor: null,
-        logging: false,
-        windowWidth: 900
-      },
-      jsPDF: {
-        unit: 'mm',
-        format: 'a4',
-        orientation: 'portrait',
-        compress: true
-      },
-      pagebreak: {
-        mode: ['avoid-all', 'css', 'legacy'],
-        before: '.bible-section',
-        avoid: ['.rel-card', 'blockquote', '.outfit', '.quiz-grid > div']
-      }
-    };
-
-    // Generate the PDF
-    await html2pdf().set(options).from(element).save();
-
-    // Success!
-    button.innerHTML = 'Downloaded! 💜';
-    setTimeout(() => {
-      button.disabled = false;
-      button.innerHTML = originalText;
-    }, 2000);
-
-  } catch (error) {
-    console.error('PDF generation failed:', error);
-    button.innerHTML = 'Failed - try again';
-    setTimeout(() => {
-      button.disabled = false;
-      button.innerHTML = originalText;
-    }, 3000);
-  }
+  document.getElementById("open-print-dialog").addEventListener("click", () => {
+    overlay.remove();
+    setTimeout(() => window.print(), 100);
+  });
 });
