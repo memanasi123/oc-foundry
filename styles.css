@@ -1175,3 +1175,133 @@
 .world-postapoc .bible-section:nth-of-type(3n+4) {
   background-blend-mode: normal;
 }
+/* ============================================
+   PRINT / PDF STYLES
+   Preserves images, colors, and layout when printing
+   ============================================ */
+
+@media print {
+
+  /* Force browsers to print backgrounds and colors */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  /* Remove page margins around the actual PDF page */
+  @page {
+    size: A4;
+    margin: 10mm;
+  }
+
+  /* Hide everything except the bible content */
+  .bible-header,
+  .bible-brand,
+  .bible-actions,
+  .email-form,
+  .bible-empty {
+    display: none !important;
+  }
+
+  /* Remove page background — sections carry their own colors */
+  body,
+  .bible-page,
+  .world-fantasy,
+  .world-modern,
+  .world-scifi,
+  .world-horror,
+  .world-historical,
+  .world-postapoc {
+    background: white !important;
+    background-image: none !important;
+  }
+
+  /* Wrap width for print */
+  .bible-wrap {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Section styling for print */
+  .bible-section {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    box-shadow: none !important;
+    margin-bottom: 12px !important;
+    padding: 20px 130px 20px 50px !important;
+  }
+
+  /* Cover section gets its own page */
+  .bible-cover {
+    page-break-after: always;
+    break-after: page;
+    min-height: 250mm !important;
+    padding: 0 !important;
+  }
+
+  /* Make sure cover images print */
+  .bible-cover::before {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    opacity: 1 !important;
+  }
+
+  /* Cover text should still be visible */
+  .bible-cover h2,
+  .bible-cover .bible-label,
+  .bible-cover .cover-meta,
+  .bible-cover .cover-hook {
+    color: white !important;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.7) !important;
+  }
+
+  /* Preserve palette colors in the palette circles */
+  .cover-palette span,
+  .palette span {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Backstory should stay together where possible */
+  .section-body {
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* Avoid breaking these mid-block */
+  .rel-card,
+  .voice-lines blockquote,
+  .outfit,
+  .quiz-grid > div {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* Footer at the end */
+  .bible-footer {
+    page-break-before: avoid;
+    break-before: avoid;
+    margin-top: 20px;
+  }
+
+  /* Ensure sections keep their backgrounds and images */
+  .bible-content .bible-section {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Palette bar on left preserved */
+  .bible-content .bible-section::before {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Section number preserved */
+  .bible-content .bible-section:not(.bible-cover)::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
