@@ -177,11 +177,64 @@ document.getElementById("show-email").addEventListener("click", () => {
   form.hidden = !form.hidden;
 });
 
-document.getElementById("email-form").addEventListener("submit", (e) => {
+document.getElementById("email-form").addEventListener("submit", async (e) => {
   e.preventDefault();
   const status = document.getElementById("email-status");
-  status.textContent = "Email delivery is coming soon! ✨";
-  status.style.color = "var(--lavender)";
+  const input = document.getElementById("email-input");
+  const button = document.getElementById("send-email");
+  const email = input.value.trim();
+
+  if (!email) {
+    status.textContent = "Please enter your email address.";
+    status.style.color = "var(--coral)";
+    return;
+  }
+
+  if (!currentBible) {
+    status.textContent = "Please wait for your character bible to load.";
+    status.style.color = "var(--coral)";
+    return;
+  }
+
+  // Set loading state
+  button.disabled = true;
+  button.textContent = "Sending...";
+  status.textContent = "";
+
+  try {
+    const response = await fetch('https://oc-foundry-server.vercel.app/api/send-bible', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: email,
+        bible: currentBible
+      })
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      status.textContent = "✨ Sent! Check your inbox (and spam folder just in case).";
+      status.style.color = "var(--lavender)";
+      input.value = '';
+      button.textContent = "Sent!";
+      setTimeout(() => {
+        button.disabled = false;
+        button.textContent = "Send";
+      }, 3000);
+    } else {
+      throw new Error(data.error || 'Failed to send');
+    }
+
+  } catch (error) {
+    console.error('Email send error:', error);
+    status.textContent = "Sorry, something went wrong. Please try again.";
+    status.style.color = "var(--coral)";
+    button.disabled = false;
+    button.textContent = "Send";
+  }
 });
 
 // DOWNLOAD PDF BUTTON - uses browser's built-in print-to-PDF
