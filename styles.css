@@ -1417,3 +1417,35 @@
     display: none !important;
   }
 }
+/* ============================================
+   PRINT COVER CENTERING FIX
+   ============================================ */
+
+@media print {
+  .bible-cover {
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    padding-bottom: 60px !important;
+  }
+
+  .bible-cover .bible-label,
+  .bible-cover h2,
+  .bible-cover .cover-meta,
+  .bible-cover .cover-hook,
+  .bible-cover .cover-palette {
+    text-align: center !important;
+    width: 100% !important;
+    max-width: 500px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .bible-cover .cover-palette {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 12px !important;
+  }
+}
