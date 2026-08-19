@@ -52,7 +52,7 @@ button.addEventListener("click", async () => {
       body: JSON.stringify({
         items: [
           {
-            price: 'price_1U63XSBMLlQjaKDGM5aa3DWA',
+            price: 'price_1U64JqBMLlQjaKDGvOOs2JMz',
             quantity: 1
           }
         ]
