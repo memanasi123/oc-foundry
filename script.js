@@ -80,6 +80,8 @@ function makeCharacter() {
   const paletteEl = document.getElementById("palette"); paletteEl.innerHTML = palette.map(color => `<span style="background:${color}"></span>`).join("");
   document.getElementById("portrait-panel").style.background = `linear-gradient(145deg, ${palette[0]}, ${palette[3]})`;
   currentCharacter = { name: document.getElementById("character-name").textContent, archetype: document.getElementById("archetype").textContent, age: document.getElementById("age").textContent, hook: document.getElementById("hook").textContent, visual: document.getElementById("visual-vibe").textContent, personality: document.getElementById("personality").textContent, detail: document.getElementById("strength").textContent, tension: document.getElementById("fear").textContent, scene: document.getElementById("world-hook").textContent, palette };
+    localStorage.setItem("ocFoundryCharacter", JSON.stringify(currentCharacter));
+  localStorage.removeItem("ocFoundryBible");
   document.getElementById("empty-state").hidden = true; document.getElementById("result-content").hidden = false;
     document.getElementById("unlock-tease").hidden = false;
   document.getElementById("tease-name").textContent = currentCharacter.name.split(" ")[0];
@@ -91,5 +93,5 @@ document.querySelectorAll("#world-filters .filter").forEach(button => button.add
 document.querySelectorAll("#mood-filters .filter").forEach(button => button.addEventListener("click", () => { selectedMood = button.dataset.mood; document.querySelectorAll("#mood-filters .filter").forEach(b => b.classList.toggle("active", b === button)); }));
 document.getElementById("generate").addEventListener("click", makeCharacter);
 document.getElementById("regenerate").addEventListener("click", makeCharacter);
-document.getElementById("name-reroll").addEventListener("click", () => { if (currentSet) { const name = pick(currentSet.names); document.getElementById("character-name").textContent = name; if (currentCharacter) currentCharacter.name = name; } });
+document.getElementById("name-reroll").addEventListener("click", () => { if (currentSet) { const name = pick(currentSet.names); document.getElementById("character-name").textContent = name; if (currentCharacter) { currentCharacter.name = name; localStorage.setItem("ocFoundryCharacter", JSON.stringify(currentCharacter)); localStorage.removeItem("ocFoundryBible"); } } });
 document.getElementById("download").addEventListener("click", () => { if (currentCharacter) localStorage.setItem("ocFoundryCharacter", JSON.stringify(currentCharacter)); });
