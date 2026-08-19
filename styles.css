@@ -1459,3 +1459,85 @@
     height: 80% !important;
   }
 }
+/* ============================================
+   PRINT COVER FIX v2 — Force text centering
+   ============================================ */
+
+@media print {
+
+  /* Reset cover layout for print */
+  .bible-cover,
+  .bible-page .bible-cover,
+  .bible-content .bible-cover {
+    text-align: center !important;
+    display: block !important;
+    padding: 40mm 20mm !important;
+    position: relative !important;
+  }
+
+  /* Cover pseudo-element (background image) */
+  .bible-cover::before {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 0 !important;
+  }
+
+  /* Force ALL cover text elements to center */
+  .bible-cover .bible-label,
+  .bible-cover h2,
+  .bible-cover .cover-meta,
+  .bible-cover .cover-hook,
+  .bible-cover .cover-palette,
+  .bible-page .bible-cover .bible-label,
+  .bible-page .bible-cover h2,
+  .bible-page .bible-cover .cover-meta,
+  .bible-page .bible-cover .cover-hook,
+  .bible-page .bible-cover .cover-palette {
+    text-align: center !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    position: relative !important;
+    z-index: 2 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+  }
+
+  /* Palette circles in a row, centered */
+  .bible-cover .cover-palette {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    margin-top: 24px !important;
+  }
+
+  /* Space between cover elements */
+  .bible-cover .bible-label {
+    margin-bottom: 16px !important;
+  }
+
+  .bible-cover h2 {
+    margin-bottom: 12px !important;
+    font-size: 48px !important;
+  }
+
+  .bible-cover .cover-meta {
+    margin-bottom: 24px !important;
+  }
+
+  .bible-cover .cover-hook {
+    margin-bottom: 24px !important;
+    max-width: 460px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
