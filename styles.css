@@ -1449,3 +1449,13 @@
     gap: 12px !important;
   }
 }
+@media print {
+  .bible-cover::after {
+    background: linear-gradient(180deg,
+      transparent 0%,
+      rgba(0,0,0,0.5) 60%,
+      rgba(0,0,0,0.85) 100%
+    ) !important;
+    height: 80% !important;
+  }
+}
