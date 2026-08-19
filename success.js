@@ -190,13 +190,19 @@ document.getElementById("download-pdf").addEventListener("click", () => {
   const overlay = document.createElement("div");
   overlay.id = "print-instructions";
   overlay.innerHTML = `
-    <div class="print-modal">
+        <div class="print-modal">
       <button class="close-modal" id="close-print-modal">×</button>
       <h2>Save your character bible ✨</h2>
       <p>In the print dialog that opens, please:</p>
       <ol>
         <li>Set <strong>Destination</strong> to <strong>"Save as PDF"</strong></li>
-        <li>Under <strong>More settings</strong>, tick <strong>"Background graphics"</strong> ← very important!</li>
+        <li>Click <strong>More settings</strong> and:
+          <ul>
+            <li>Tick <strong>"Background graphics"</strong> (very important!)</li>
+            <li>Untick <strong>"Headers and footers"</strong> to remove the URL</li>
+            <li>Set <strong>Margins</strong> to <strong>"None"</strong> or <strong>"Minimum"</strong></li>
+          </ul>
+        </li>
         <li>Click <strong>Save</strong></li>
       </ol>
       <button class="print-cta" id="open-print-dialog">Open print dialog →</button>
