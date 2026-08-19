@@ -1122,3 +1122,56 @@
     background-size: 60px auto !important;
   }
 }
+/* ============================================
+   MOTIF & TEXT FIXES
+   Push text away from motifs and constrain heading underline
+   ============================================ */
+
+/* Make sure text never gets covered by decorative motifs */
+.bible-content .bible-section {
+  padding-right: 130px !important;
+}
+
+/* Constrain the heading underline so it doesn't run under motifs */
+.bible-content h3 {
+  display: inline-block !important;
+  padding-right: 20px;
+  max-width: calc(100% - 130px);
+}
+
+/* Cover section shouldn't get the padding — hero image fills it */
+.bible-cover {
+  padding-right: 0 !important;
+}
+
+/* On smaller screens, reduce the padding since motifs are smaller too */
+@media (max-width: 720px) {
+  .bible-content .bible-section {
+    padding-right: 80px !important;
+  }
+  .bible-content h3 {
+    max-width: calc(100% - 80px);
+  }
+}
+
+/* Motifs slightly more transparent so text is fully readable if they do overlap */
+.world-fantasy .bible-section:nth-of-type(3n+2),
+.world-fantasy .bible-section:nth-of-type(3n+3),
+.world-fantasy .bible-section:nth-of-type(3n+4),
+.world-modern .bible-section:nth-of-type(3n+2),
+.world-modern .bible-section:nth-of-type(3n+3),
+.world-modern .bible-section:nth-of-type(3n+4),
+.world-scifi .bible-section:nth-of-type(3n+2),
+.world-scifi .bible-section:nth-of-type(3n+3),
+.world-scifi .bible-section:nth-of-type(3n+4),
+.world-horror .bible-section:nth-of-type(3n+2),
+.world-horror .bible-section:nth-of-type(3n+3),
+.world-horror .bible-section:nth-of-type(3n+4),
+.world-historical .bible-section:nth-of-type(3n+2),
+.world-historical .bible-section:nth-of-type(3n+3),
+.world-historical .bible-section:nth-of-type(3n+4),
+.world-postapoc .bible-section:nth-of-type(3n+2),
+.world-postapoc .bible-section:nth-of-type(3n+3),
+.world-postapoc .bible-section:nth-of-type(3n+4) {
+  background-blend-mode: normal;
+}
