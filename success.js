@@ -48,6 +48,9 @@ function generateBible(character) {
 }
 
 function renderBible(bible) {
+  // Add world class to body for themed styling
+  document.body.className = `bible-page world-${bible.world}`;
+
   // Set the name in the header
   document.getElementById("bible-name").textContent = bible.name.split(" ")[0] + "'s";
 
@@ -120,10 +123,11 @@ function renderBible(bible) {
   document.getElementById("quiz-fear").textContent = bible.quiz.fear;
   document.getElementById("quiz-comfort").textContent = bible.quiz.comfort;
 
-  // Apply palette colors to section headings
-  document.querySelectorAll(".bible-section h3, .bible-section h4, .bible-section h5").forEach(el => {
-    el.style.color = bible.palette[3];
-  });
+  // Apply palette colors dynamically
+  document.documentElement.style.setProperty("--char-color-1", bible.palette[0]);
+  document.documentElement.style.setProperty("--char-color-2", bible.palette[1]);
+  document.documentElement.style.setProperty("--char-color-3", bible.palette[2]);
+  document.documentElement.style.setProperty("--char-color-4", bible.palette[3]);
 
   // Reveal the content
   document.getElementById("bible-content").hidden = false;
