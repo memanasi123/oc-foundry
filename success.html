@@ -3,27 +3,146 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Thank you — OC Foundry</title>
+    <title>Your character bible — OC Foundry</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body class="checkout-page">
-    <main class="checkout-wrap">
-      <a class="brand checkout-brand" href="index.html"><span class="brand-mark">✦</span> OC Foundry</a>
-      <div style="text-align:center; padding:80px 20px;">
-        <p class="eyebrow" style="justify-content:center;"><span></span> Payment successful</p>
-        <h1 style="font:700 clamp(48px,6vw,76px)/.95 Fraunces,serif; letter-spacing:-3px; margin:18px 0;">
-          Thank you!<br /><em style="color:var(--lavender);">Your sheet is ready.</em>
-        </h1>
-        <p style="color:var(--muted); max-width:480px; margin:20px auto; line-height:1.65;">
-          Your payment was received successfully. Your character sheet download will be available shortly.
-        </p>
-        <a href="index.html" class="pay-button" style="display:inline-block; margin-top:30px; text-decoration:none; width:auto; padding:14px 30px;">
-          ← Back to generator
-        </a>
+  <body class="bible-page">
+    <main class="bible-wrap">
+      <a class="brand bible-brand" href="index.html"><span class="brand-mark">✦</span> OC Foundry</a>
+
+      <header class="bible-header">
+        <p class="eyebrow"><span></span> Payment successful · Your character bible is ready</p>
+        <h1>The complete <em id="bible-name">character</em> bible.</h1>
+        <p class="bible-sub">Preview it below, download the PDF, or send a copy to your email.</p>
+
+        <div class="bible-actions">
+          <button class="pay-button" id="download-pdf" type="button">Download PDF <span>↓</span></button>
+          <button class="ghost-button" id="show-email" type="button">Email me a copy</button>
+        </div>
+
+        <form class="email-form" id="email-form" hidden>
+          <input type="email" id="email-input" placeholder="your@email.com" required />
+          <button type="submit" id="send-email">Send</button>
+          <p class="email-status" id="email-status"></p>
+        </form>
+      </header>
+
+      <!-- The generated bible content will appear here -->
+      <article class="bible-content" id="bible-content" hidden>
+
+        <!-- SECTION: COVER -->
+        <section class="bible-section bible-cover" id="bible-cover">
+          <p class="bible-label">CHARACTER BIBLE</p>
+          <h2 id="cover-name">—</h2>
+          <p class="cover-meta" id="cover-meta">—</p>
+          <p class="cover-hook" id="cover-hook">—</p>
+          <div class="cover-palette" id="cover-palette"></div>
+        </section>
+
+        <!-- SECTION: BACKSTORY -->
+        <section class="bible-section">
+          <h3>Backstory</h3>
+          <div class="section-body" id="section-backstory">—</div>
+        </section>
+
+        <!-- SECTION: PERSONALITY (from free version, kept) -->
+        <section class="bible-section bible-grid">
+          <div>
+            <h4>Personality</h4>
+            <p id="section-personality">—</p>
+          </div>
+          <div>
+            <h4>Signature detail</h4>
+            <p id="section-detail">—</p>
+          </div>
+          <div>
+            <h4>Inner tension</h4>
+            <p id="section-tension">—</p>
+          </div>
+          <div>
+            <h4>Visual vibe</h4>
+            <p id="section-visual">—</p>
+          </div>
+        </section>
+
+        <!-- SECTION: VOICE -->
+        <section class="bible-section">
+          <h3>Voice &amp; speech</h3>
+          <p class="voice-pattern" id="voice-pattern">—</p>
+          <div class="voice-lines" id="voice-lines"></div>
+        </section>
+
+        <!-- SECTION: SYMBOL & MOTIFS -->
+        <section class="bible-section symbol-section">
+          <h3>Symbol &amp; motifs</h3>
+          <p class="symbol-main"><strong>Personal symbol:</strong> <span id="symbol-main">—</span></p>
+          <div class="symbol-grid">
+            <div><h5>Motifs</h5><p id="symbol-motifs">—</p></div>
+            <div><h5>Scent</h5><p id="symbol-scent">—</p></div>
+            <div><h5>Sound</h5><p id="symbol-sound">—</p></div>
+            <div><h5>Texture</h5><p id="symbol-texture">—</p></div>
+          </div>
+        </section>
+
+        <!-- SECTION: WARDROBE -->
+        <section class="bible-section">
+          <h3>Wardrobe</h3>
+          <div class="wardrobe-grid">
+            <div class="outfit"><h5>Everyday</h5><p id="wardrobe-everyday">—</p></div>
+            <div class="outfit"><h5>Formal</h5><p id="wardrobe-formal">—</p></div>
+            <div class="outfit"><h5>Action</h5><p id="wardrobe-action">—</p></div>
+          </div>
+        </section>
+
+        <!-- SECTION: RELATIONSHIPS -->
+        <section class="bible-section">
+          <h3>Relationship web</h3>
+          <div class="relationships" id="relationships">—</div>
+        </section>
+
+        <!-- SECTION: DRAWING PROMPTS -->
+        <section class="bible-section">
+          <h3>Drawing prompts</h3>
+          <ol class="drawing-prompts" id="drawing-prompts"></ol>
+        </section>
+
+        <!-- SECTION: SCENE PROMPT (from free version, kept) -->
+        <section class="bible-section">
+          <h3>Signature scene</h3>
+          <p id="section-scene">—</p>
+        </section>
+
+        <!-- SECTION: QUICK QUESTIONS -->
+        <section class="bible-section quiz-section">
+          <h3>Quick questions</h3>
+          <div class="quiz-grid">
+            <div><h5>Café order</h5><p id="quiz-cafe">—</p></div>
+            <div><h5>In their bag</h5><p id="quiz-bag">—</p></div>
+            <div><h5>Handling criticism</h5><p id="quiz-criticism">—</p></div>
+            <div><h5>Deepest fear</h5><p id="quiz-fear">—</p></div>
+            <div><h5>True comfort</h5><p id="quiz-comfort">—</p></div>
+          </div>
+        </section>
+
+        <footer class="bible-footer">
+          <p>✦ Made with OC Foundry</p>
+          <p class="bible-footer-sub">Keep making weird little people.</p>
+        </footer>
+      </article>
+
+      <div class="bible-empty" id="bible-empty" hidden>
+        <p class="eyebrow" style="justify-content:center;"><span></span> Character not found</p>
+        <h2 style="font:700 32px/1 Fraunces,serif; margin:16px 0;">We couldn't find your character.</h2>
+        <p style="color:var(--muted); margin:16px 0;">Your browser may have cleared its storage. Please generate a new character to try again.</p>
+        <a href="index.html" class="pay-button" style="display:inline-block; margin-top:16px; text-decoration:none; padding:14px 30px;">← Generate a new character</a>
       </div>
+
     </main>
+
+    <script src="content-extended.js"></script>
+    <script src="success.js"></script>
   </body>
 </html>
