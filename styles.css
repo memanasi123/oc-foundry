@@ -221,3 +221,433 @@
     gap: 8px;
   }
 }
+/* ============================================
+   BIBLE / SUCCESS PAGE
+   ============================================ */
+
+.bible-page {
+  min-height: 100vh;
+  background: linear-gradient(120deg, #fffaf5 0%, #f3eefc 50%, #fce9e6 100%);
+}
+
+.bible-wrap {
+  width: min(880px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 32px 0 80px;
+}
+
+.bible-brand {
+  display: inline-block;
+  margin-bottom: 40px;
+}
+
+.bible-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.bible-header .eyebrow {
+  justify-content: center;
+}
+
+.bible-header h1 {
+  margin: 20px 0 12px;
+  font: 700 clamp(40px, 5.5vw, 62px)/0.95 Fraunces, serif;
+  letter-spacing: -2.5px;
+  color: var(--ink);
+}
+
+.bible-header h1 em {
+  color: var(--lavender);
+  font-style: italic;
+}
+
+.bible-sub {
+  margin: 0 auto 28px;
+  max-width: 460px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.bible-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.bible-actions .pay-button {
+  width: auto;
+  padding: 14px 28px;
+}
+
+.ghost-button {
+  padding: 14px 24px;
+  border: 1px solid var(--lavender);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--lavender);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ghost-button:hover {
+  background: var(--lavender);
+  color: #fff;
+}
+
+.email-form {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  max-width: 400px;
+  margin: 16px auto 0;
+  flex-wrap: wrap;
+}
+
+.email-form input {
+  flex: 1;
+  min-width: 200px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  font: 14px "DM Sans", sans-serif;
+}
+
+.email-form input:focus {
+  outline: none;
+  border-color: var(--lavender);
+}
+
+.email-form button {
+  padding: 12px 22px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--lavender);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.email-status {
+  width: 100%;
+  margin: 8px 0 0;
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* ============================================
+   BIBLE CONTENT
+   ============================================ */
+
+.bible-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.bible-section {
+  padding: 32px 30px;
+  border-radius: 14px;
+  background: #fffdf9;
+  border: 1px solid var(--line);
+  box-shadow: 0 6px 20px rgba(67, 45, 76, 0.04);
+}
+
+.bible-section h3 {
+  margin: 0 0 16px;
+  font: 700 22px Fraunces, serif;
+  letter-spacing: -0.8px;
+  color: var(--lavender);
+}
+
+.bible-section h4 {
+  margin: 0 0 6px;
+  font: 700 13px "DM Mono", monospace;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--lavender);
+}
+
+.bible-section h5 {
+  margin: 0 0 4px;
+  font: 500 10px "DM Mono", monospace;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--coral);
+}
+
+.bible-section p {
+  margin: 0;
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+/* COVER SECTION */
+.bible-cover {
+  text-align: center;
+  padding: 56px 30px;
+  border-width: 2px;
+}
+
+.bible-label {
+  margin: 0 0 12px;
+  font: 500 10px "DM Mono", monospace;
+  letter-spacing: 2px;
+  color: var(--coral);
+  text-transform: uppercase;
+}
+
+.bible-cover h2 {
+  margin: 0 0 8px;
+  font: 700 clamp(44px, 6vw, 68px)/0.95 Fraunces, serif;
+  letter-spacing: -3px;
+  color: var(--ink);
+}
+
+.cover-meta {
+  color: var(--muted);
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  margin-bottom: 24px !important;
+}
+
+.cover-hook {
+  max-width: 520px;
+  margin: 0 auto 28px !important;
+  font: 600 18px/1.4 Fraunces, serif !important;
+  color: #594f61;
+  font-style: italic;
+}
+
+.cover-palette {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.cover-palette span {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* PERSONALITY / DETAIL GRID */
+.bible-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px 32px;
+}
+
+.bible-grid > div {
+  padding: 0;
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+/* BACKSTORY */
+.section-body p {
+  margin-bottom: 16px;
+}
+
+.section-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* VOICE */
+.voice-pattern {
+  margin-bottom: 18px !important;
+  font-style: italic;
+  color: var(--muted) !important;
+}
+
+.voice-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.voice-lines blockquote {
+  margin: 0;
+  padding: 14px 18px;
+  border-left: 3px solid var(--lavender);
+  background: rgba(147, 128, 197, 0.06);
+  border-radius: 0 8px 8px 0;
+  font: 500 15px/1.5 Fraunces, serif;
+  color: var(--ink);
+  font-style: italic;
+}
+
+/* SYMBOL */
+.symbol-main {
+  margin-bottom: 20px !important;
+  font-size: 16px !important;
+}
+
+.symbol-main strong {
+  color: var(--coral);
+  text-transform: uppercase;
+  font: 500 11px "DM Mono", monospace;
+  letter-spacing: 1px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.symbol-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 32px;
+}
+
+/* WARDROBE */
+.wardrobe-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.outfit p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* RELATIONSHIPS */
+.relationships {
+  display: grid;
+  gap: 14px;
+}
+
+.rel-card {
+  padding: 18px 20px;
+  border-radius: 10px;
+  background: rgba(147, 128, 197, 0.04);
+  border: 1px solid rgba(147, 128, 197, 0.15);
+}
+
+.rel-role {
+  margin: 0 0 4px !important;
+  font: 500 10px "DM Mono", monospace !important;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--coral) !important;
+}
+
+.rel-name {
+  margin: 0 0 8px !important;
+  font: 700 18px Fraunces, serif !important;
+  color: var(--ink) !important;
+  letter-spacing: -0.5px;
+}
+
+.rel-note {
+  color: var(--muted) !important;
+  font-size: 14px !important;
+}
+
+/* DRAWING PROMPTS */
+.drawing-prompts {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+  counter-reset: prompt-counter;
+}
+
+.drawing-prompts li {
+  counter-increment: prompt-counter;
+  position: relative;
+  padding: 12px 0 12px 40px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.drawing-prompts li:last-child {
+  border-bottom: none;
+}
+
+.drawing-prompts li::before {
+  content: counter(prompt-counter, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 12px;
+  color: var(--coral);
+  font: 500 12px "DM Mono", monospace;
+  letter-spacing: 0.5px;
+}
+
+/* QUIZ */
+.quiz-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 32px;
+}
+
+.quiz-grid p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* FOOTER */
+.bible-footer {
+  text-align: center;
+  padding: 32px 20px 20px;
+  color: var(--muted);
+}
+
+.bible-footer p {
+  margin: 0 !important;
+  color: var(--coral) !important;
+  font: 700 14px Fraunces, serif !important;
+}
+
+.bible-footer-sub {
+  margin-top: 6px !important;
+  color: var(--muted) !important;
+  font: 400 12px "DM Mono", monospace !important;
+  letter-spacing: 0.5px;
+}
+
+/* EMPTY STATE */
+.bible-empty {
+  text-align: center;
+  padding: 80px 20px;
+  background: #fffdf9;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 720px) {
+  .bible-wrap {
+    width: min(100% - 32px, 880px);
+    padding: 24px 0 60px;
+  }
+  .bible-section {
+    padding: 24px 22px;
+  }
+  .bible-cover {
+    padding: 40px 22px;
+  }
+  .bible-grid,
+  .symbol-grid,
+  .quiz-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .bible-actions {
+    flex-direction: column;
+  }
+  .bible-actions .pay-button,
+  .ghost-button {
+    width: 100%;
+  }
+}
