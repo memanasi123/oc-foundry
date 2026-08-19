@@ -184,7 +184,73 @@ document.getElementById("email-form").addEventListener("submit", (e) => {
   status.style.color = "var(--lavender)";
 });
 
-// DOWNLOAD PDF BUTTON (placeholder for now)
-document.getElementById("download-pdf").addEventListener("click", () => {
-  alert("PDF download is being built in Phase 4! For now, enjoy the preview below.");
+// DOWNLOAD PDF BUTTON
+document.getElementById("download-pdf").addEventListener("click", async () => {
+  const button = document.getElementById("download-pdf");
+  const originalText = button.innerHTML;
+
+  // Show loading state
+  button.disabled = true;
+  button.innerHTML = 'Generating PDF... ✨';
+
+  try {
+    const bible = currentBible;
+    if (!bible) {
+      alert("No character bible loaded!");
+      button.disabled = false;
+      button.innerHTML = originalText;
+      return;
+    }
+
+    // Get the bible content element
+    const element = document.getElementById("bible-content");
+
+    // Clean filename from character name
+    const safeName = bible.name.replace(/[^a-z0-9]/gi, '-');
+    const filename = `${safeName}-Character-Bible.pdf`;
+
+    // PDF generation options
+    const options = {
+      margin: [10, 10, 10, 10],
+      filename: filename,
+      image: { type: 'jpeg', quality: 0.95 },
+      html2canvas: {
+        scale: 2,
+        useCORS: true,
+        letterRendering: true,
+        backgroundColor: null,
+        logging: false,
+        windowWidth: 900
+      },
+      jsPDF: {
+        unit: 'mm',
+        format: 'a4',
+        orientation: 'portrait',
+        compress: true
+      },
+      pagebreak: {
+        mode: ['avoid-all', 'css', 'legacy'],
+        before: '.bible-section',
+        avoid: ['.rel-card', 'blockquote', '.outfit', '.quiz-grid > div']
+      }
+    };
+
+    // Generate the PDF
+    await html2pdf().set(options).from(element).save();
+
+    // Success!
+    button.innerHTML = 'Downloaded! 💜';
+    setTimeout(() => {
+      button.disabled = false;
+      button.innerHTML = originalText;
+    }, 2000);
+
+  } catch (error) {
+    console.error('PDF generation failed:', error);
+    button.innerHTML = 'Failed - try again';
+    setTimeout(() => {
+      button.disabled = false;
+      button.innerHTML = originalText;
+    }, 3000);
+  }
 });
