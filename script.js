@@ -147,7 +147,19 @@ function makeCharacter() {
   document.getElementById("sheet-number").textContent = `NO. ${String(count).padStart(3, "0")}`;
   const paletteEl = document.getElementById("palette"); paletteEl.innerHTML = palette.map(color => `<span style="background:${color}"></span>`).join("");
   document.getElementById("portrait-panel").style.background = `linear-gradient(145deg, ${palette[0]}, ${palette[3]})`;
-  currentCharacter = { name: document.getElementById("character-name").textContent, archetype: document.getElementById("archetype").textContent, age: document.getElementById("age").textContent, hook: document.getElementById("hook").textContent, visual: document.getElementById("visual-vibe").textContent, personality: document.getElementById("personality").textContent, detail: document.getElementById("strength").textContent, tension: document.getElementById("fear").textContent, scene: document.getElementById("world-hook").textContent, palette };
+  currentCharacter = {
+  name: document.getElementById("character-name").textContent,
+  archetype: document.getElementById("archetype").textContent,
+  age: document.getElementById("age").textContent,
+  hook: document.getElementById("hook").textContent,
+  visual: document.getElementById("visual-vibe").textContent,
+  personality: document.getElementById("personality").textContent,
+  detail: document.getElementById("strength").textContent,
+  tension: document.getElementById("fear").textContent,
+  scene: document.getElementById("world-hook").textContent,
+  palette,
+  world: worldKey
+};
     localStorage.setItem("ocFoundryCharacter", JSON.stringify(currentCharacter));
   localStorage.removeItem("ocFoundryBible");
   document.getElementById("empty-state").hidden = true; document.getElementById("result-content").hidden = false;
