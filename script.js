@@ -162,4 +162,86 @@ document.querySelectorAll("#mood-filters .filter").forEach(button => button.addE
 document.getElementById("generate").addEventListener("click", makeCharacter);
 document.getElementById("regenerate").addEventListener("click", makeCharacter);
 document.getElementById("name-reroll").addEventListener("click", () => { if (currentSet) { const name = pick(currentSet.names); document.getElementById("character-name").textContent = name; if (currentCharacter) { currentCharacter.name = name; localStorage.setItem("ocFoundryCharacter", JSON.stringify(currentCharacter)); localStorage.removeItem("ocFoundryBible"); } } });
-document.getElementById("download").addEventListener("click", () => { if (currentCharacter) localStorage.setItem("ocFoundryCharacter", JSON.stringify(currentCharacter)); });
+// ============================================
+// CART / BUCKET HELPERS
+// ============================================
+function getCart() {
+  return JSON.parse(localStorage.getItem("ocFoundryCart") || "[]");
+}
+
+function saveCart(cart) {
+  localStorage.setItem("ocFoundryCart", JSON.stringify(cart));
+  updateCartBadge();
+}
+
+function updateCartBadge() {
+  const cart = getCart();
+  const badge = document.getElementById("cart-count");
+  if (!badge) return;
+  badge.textContent = cart.length;
+  badge.hidden = cart.length === 0;
+}
+
+function addToCart(character) {
+  if (!character) return { ok: false, reason: "No character" };
+
+  const cart = getCart();
+
+  // Prevent exact same character being added twice in a row
+  const alreadyInCart = cart.some(item =>
+    item.name === character.name &&
+    item.archetype === character.archetype &&
+    item.hook === character.hook
+  );
+
+  if (alreadyInCart) {
+    return { ok: false, reason: "Already in bucket" };
+  }
+
+  if (cart.length >= 10) {
+    return { ok: false, reason: "Bucket full (max 10)" };
+  }
+
+  cart.push({
+    ...character,
+    cartId: `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`
+  });
+
+  saveCart(cart);
+  return { ok: true, count: cart.length };
+}
+
+// Save current character for single checkout too
+document.getElementById("download").addEventListener("click", () => {
+  if (currentCharacter) {
+    localStorage.setItem("ocFoundryCharacter", JSON.stringify(currentCharacter));
+  }
+});
+
+// Add to bucket button
+const addBucketBtn = document.getElementById("add-to-bucket");
+if (addBucketBtn) {
+  addBucketBtn.addEventListener("click", () => {
+    if (!currentCharacter) return;
+
+    // Keep latest character saved
+    localStorage.setItem("ocFoundryCharacter", JSON.stringify(currentCharacter));
+
+    const result = addToCart(currentCharacter);
+
+    if (result.ok) {
+      addBucketBtn.textContent = `Added ✓ (${result.count})`;
+      setTimeout(() => {
+        addBucketBtn.textContent = "Add to bucket";
+      }, 1500);
+    } else {
+      addBucketBtn.textContent = result.reason;
+      setTimeout(() => {
+        addBucketBtn.textContent = "Add to bucket";
+      }, 1800);
+    }
+  });
+}
+
+// Init badge on page load
+updateCartBadge();
