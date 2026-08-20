@@ -44,10 +44,29 @@ const data = {
 };
 
 const shared = {
-  personality: ["Observant and warm with a stubborn streak: they notice when someone is uncomfortable before anyone else does, then make a joke to give them an exit. Their kindness is genuine, but they dislike being seen while they are hurting.", "Curious, loyal, and impulsive in exactly that order. They collect impossible questions, make decisions a beat too fast, and would cross a burning bridge for a person they chose as family.", "Gentle and private, but fiercely determined once a promise is made. They look easily distracted in a crowd; in truth, they are cataloguing every useful detail in the room.", "Clever and sentimental, with a guard up that drops at inconvenient moments. Their humour is dry, their memory is exact, and their compassion usually arrives disguised as practical help."],
-  strength: ["A hand-assembled compass with one empty setting. It spins toward whatever the owner most needs—not what they ask for. It should look precious, over-repaired, and always be visible somewhere on their person.", "A single tell that changes under pressure: their freckles flare, their glove’s circuitry hums, or a ribbon at their wrist lifts as if caught in a private wind. Use it as a visual meter for emotion.", "A battered messenger bag or tool belt full of highly specific objects: folded maps, a pressed flower, spare wire, a tiny knife, and a note they refuse to throw away. It makes the design feel ready for a story.", "One deliberately polished element amid otherwise worn clothing: a spotless boot, a perfect signet ring, or a carefully mended collar. It hints at the life they are trying to preserve."],
-  fear: ["Their instinct to protect people can become controlling when the stakes rise. The visual tension is between their open, inviting styling and the way they always keep one hand near the exit.", "They are terrified of becoming essential to someone, then failing them. Leave one piece of their kit incomplete—a snapped clasp, unfinished map, or uncharged device—to quietly echo that fear.", "They have a private suspicion that they helped cause the disaster they are trying to solve. Their posture should be capable and forward-moving, but their gaze never fully relaxes.", "Tenderness feels dangerous to them because it makes abandonment possible. Give the design one fragile object they handle with remarkable care, even in a fight."],
-  palettes: [["#E9A5A2", "#F6D7AC", "#8DB9AA", "#5B617C"], ["#C7B5E2", "#F2B8B5", "#F5E6B3", "#68765E"], ["#E3A0B8", "#B9D7D3", "#F5C89A", "#7E7099"]]
+  personality: [
+    "Observant and warm with a stubborn streak. They notice when someone is uncomfortable before anyone else does, then make a joke to give them an exit. Their kindness is genuine, but they dislike being seen while they are hurting.",
+    "Curious, loyal, and impulsive in exactly that order. They collect impossible questions, make decisions a beat too fast, and would cross a burning bridge for a person they chose as family.",
+    "Gentle and private, but fiercely determined once a promise is made. They look easily distracted in a crowd; in truth, they are cataloguing every useful detail in the room.",
+    "Clever and sentimental, with a guard that drops at inconvenient moments. Their humour is dry, their memory is exact, and their compassion usually arrives disguised as practical help."
+  ],
+  strength: [
+    "A hand-assembled compass with one empty setting. It spins toward whatever the owner most needs, not what they ask for. It looks precious, over-repaired, and is always visible somewhere on their person.",
+    "A small physical tell that gives them away under pressure: a ribbon at their wrist that lifts as if caught in a private wind.",
+    "A battered messenger bag packed with highly specific objects: folded maps, a pressed flower, spare wire, a tiny knife, and a note they refuse to throw away.",
+    "One deliberately polished detail amid otherwise worn clothing: a spotless boot, a perfect signet ring, or a carefully mended collar that hints at the life they are trying to preserve."
+  ],
+  fear: [
+    "Their instinct to protect people can become controlling when the stakes rise. They keep one hand near the exit even when smiling.",
+    "They are terrified of becoming essential to someone, then failing them. One piece of their kit is always left incomplete: a snapped clasp, an unfinished map, or an uncharged device.",
+    "They have a private suspicion that they helped cause the disaster they are trying to solve. Their posture stays capable and forward-moving, but their gaze never fully relaxes.",
+    "Tenderness feels dangerous to them because it makes abandonment possible. They carry one fragile object and handle it with remarkable care, even in a fight."
+  ],
+  palettes: [
+    ["#E9A5A2", "#F6D7AC", "#8DB9AA", "#5B617C"],
+    ["#C7B5E2", "#F2B8B5", "#F5E6B3", "#68765E"],
+    ["#E3A0B8", "#B9D7D3", "#F5C89A", "#7E7099"]
+  ]
 };
 
 const moods = {
