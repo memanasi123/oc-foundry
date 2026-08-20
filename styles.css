@@ -1930,3 +1930,24 @@
     grid-template-columns: 1fr;
   }
 }
+/* Multi bible purchase */
+.multi-bible-label {
+  margin: 0 0 10px;
+  color: var(--coral);
+  font: 700 12px "DM Mono", monospace;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.multi-bible-card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media print {
+  .multi-bible-card {
+    page-break-after: always;
+    break-after: page;
+  }
+}
