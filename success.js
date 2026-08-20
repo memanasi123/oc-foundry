@@ -66,7 +66,7 @@ function createBibleCard(bible, index, total) {
       <h3>Backstory</h3>
       <div class="section-body">
         ${(bible.backstory || "")
-          .split("\\n\\n")
+          .split("\n\n")
           .map(p => `<p>${escapeHtml(p)}</p>`)
           .join("")}
       </div>
@@ -188,7 +188,12 @@ function loadAllBibles() {
   const titleName = document.getElementById("bible-name");
 
   if (!characters.length) {
-    if (host) host.hidden = true;
+    // Fully remove the old single-bible template so it can't show empty
+if (host) {
+  host.hidden = true;
+  host.style.display = "none";
+  host.innerHTML = "";
+}
     if (empty) empty.hidden = false;
     if (titleName) titleName.textContent = "your";
     return [];
