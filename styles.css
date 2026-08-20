@@ -1778,3 +1778,155 @@
     text-align: center;
   }
 }
+/* ============================================
+   BUCKET / CART UI
+   ============================================ */
+
+.bucket-button {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 10px 12px;
+  background: #fff;
+  color: #5f5269;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.bucket-button:hover {
+  border-color: var(--lavender);
+  color: var(--lavender);
+}
+
+.cart-link {
+  position: relative;
+}
+
+.cart-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  margin-left: 6px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--coral);
+  color: #fff;
+  font: 700 10px "DM Mono", monospace;
+}
+
+.sheet-actions {
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Bucket page */
+.bucket-page {
+  min-height: 100vh;
+  background: linear-gradient(120deg, #fffaf5 0%, #f3eefc 100%);
+}
+
+.bucket-wrap {
+  width: min(880px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 32px 0 80px;
+}
+
+.bucket-header h1 {
+  margin: 10px 0 8px;
+  font: 700 clamp(40px, 6vw, 64px)/0.95 Fraunces, serif;
+  letter-spacing: -2px;
+}
+
+.bucket-sub {
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+
+.bucket-list {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.bucket-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: start;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fffdf9;
+}
+
+.bucket-item h3 {
+  margin: 0 0 4px;
+  font: 700 22px Fraunces, serif;
+}
+
+.bucket-item .meta {
+  margin: 0 0 8px;
+  color: var(--coral);
+  font: 500 11px "DM Mono", monospace;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.bucket-item .hook {
+  margin: 0;
+  color: var(--muted);
+  font: 600 15px/1.45 Fraunces, serif;
+}
+
+.bucket-item .price {
+  color: var(--ink);
+  font: 700 16px Fraunces, serif;
+  white-space: nowrap;
+}
+
+.remove-item {
+  border: 0;
+  background: none;
+  color: var(--coral);
+  cursor: pointer;
+  font-size: 12px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  padding: 0;
+  margin-top: 8px;
+}
+
+.bucket-summary {
+  padding: 20px 22px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.bucket-summary .total {
+  font: 700 28px Fraunces, serif;
+}
+
+.bucket-empty {
+  text-align: center;
+  padding: 60px 20px;
+  border: 1px dashed var(--line);
+  border-radius: 14px;
+  background: rgba(255,255,255,0.7);
+}
+
+@media (max-width: 720px) {
+  .bucket-wrap {
+    width: min(100% - 32px, 880px);
+  }
+  .bucket-item {
+    grid-template-columns: 1fr;
+  }
+}
