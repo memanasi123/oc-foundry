@@ -135,6 +135,12 @@ function renderBible(bible) {
 }
 
 function loadBible() {
+  // If user bought multiple sheets from bucket, use those
+  const purchasedCart = JSON.parse(localStorage.getItem("ocFoundryPurchasedCart") || "null");
+  if (purchasedCart && purchasedCart.length) {
+    localStorage.setItem("ocFoundryCharacter", JSON.stringify(purchasedCart[0]));
+  }
+
   const saved = localStorage.getItem("ocFoundryCharacter");
 
   if (!saved) {
