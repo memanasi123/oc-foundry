@@ -2,42 +2,78 @@ const data = {
   fantasy: {
     names: ["Elowen Voss", "Mira Ashvale", "Sable Thorne", "Nym Calder", "Iria Moonwell", "Aster Blackwood", "Vespera Vane", "Ronen Ashfield", "Ilya Corvin", "Bramble Wren", "Corvin Ashe", "Thistle Marchand", "Ophira Sain", "Rue Ellowen", "Solenne Vasari", "Kestrel Dawn", "Wren Hollowfell", "Isolde Marrow", "Rowena Blackthorn", "Silas Duskbourne", "Yseult Meridian", "Fen Elderwood", "Aveline Rook", "Peregrine Vale", "Callisto Ash"],
     archetypes: ["Moonlit Cartographer", "Runaway Court Healer", "Relic Keeper", "Garden Witch", "Storm Courier"],
-    worlds: ["a city built inside the ribs of a sleeping giant", "a floating archipelago where rain is collected like gold", "a kingdom slowly being swallowed by an enchanted forest"],
+    worlds: [
+  "a bridge of bone and moss inside the ribs of a sleeping giant",
+  "a rain-soaked floating dock where lanterns hang over black water",
+  "the overgrown gate of a kingdom half-swallowed by forest",
+  "a windy cliff path lit by a single storm lantern",
+  "a market stall of charms and maps under violet evening light"
+],
     visuals: ["A lean, practical silhouette: windswept silver braid tied with bits of sea glass, a moss-green waxed travelling coat with an oversized collar, and scuffed knee boots. Their storm lantern is the focal prop—a brass cage holding a miniature thundercloud that flickers across their face. Build the palette around lichen green, rain-grey, oxidized brass, and one sharp bolt of electric blue.", "Soft black curls spill from a weathered violet hood embroidered with protective runes. Their layered robes have a ceremonial shape but are repaired at the elbows and hem, hinting at a life on the road. A tiny ash-grey dragon sleeps in the hood’s fold; use it as a soft counterpoint to the character’s severe rings and ink-black satchel.", "A copper bob frames a face marked by one luminous rain-sensitive eye. Their patched star-chart cloak has a sweeping triangular silhouette, its fabric panels mismatched from years of travel. Add a belt of folding instruments, damp paper maps, and a pair of gloves stained blue at the fingertips."],
     hooks: ["They map places that only exist when no one is looking. Their latest chart has begun redrawing the route to their childhood home.", "They can heal anyone’s wound—except the shimmering cut that returns to their own wrist every dawn.", "They are returning a stolen crown to the person it was never meant for, while its former owner follows one town behind."]
   },
   modern: {
     names: ["June Bellamy", "Ari Sato", "Wren Park", "Milo Reyes", "Tessa Bloom", "Sasha Kim", "Theo Mercier", "Emi Nakamura", "Jules Okafor", "Nico Alvarez", "Willa Chen", "Rowan Delacroix", "Freya Solberg", "Auggie Winters", "Devi Rao", "Marlowe Rainer", "Priya Menon", "Kit Halloran", "Cass Whitehorn", "Ilana Frost", "Bo Larsson", "Tomás Rivera", "Ines Aoki", "Otis Bailey", "Zia Fontaine"],
     archetypes: ["After-hours Florist", "Vintage Film Restorer", "Rooftop Radio Host", "Night-shift Baker", "Museum Intern"],
-    worlds: ["a rain-slicked city balcony glowing with neon and apartment lights", "a small coastal pier decorated for a summer festival at dusk", "the back room of a quiet corner shop filled with antique oddities"],
+    worlds: [
+  "a rain-slick balcony above neon streetlights",
+  "a small coastal pier strung with festival bulbs at dusk",
+  "the cluttered back room of a corner shop after closing",
+  "an empty laundromat at 1 a.m., machines still humming",
+  "a bus stop under a flickering streetlamp, city lights smeared by rain"
+],
     visuals: ["Give them an energetic, slightly uneven silhouette: a choppy cherry-red bob, oversized denim jacket covered in enamel pins, striped knit peeking through, and paint-stained high-top sneakers. Their tote bag should look overfilled with sketchbooks and receipts. The key visual is a clean bright red against faded indigo, concrete grey, and milk-tea cream.", "Their soft curly hair is clipped back with a mismatched barrette; a butter-yellow cardigan hangs over a worn white tee and wide-leg trousers. Stack a charm bracelet with tiny old keys, each with a different patina. The design should feel gentle and lived-in, with a coffee cup or bundle of flowers as a natural hand prop.", "A lavender buzzcut creates a strong graphic profile above a tailored thrift-store suit in warm brown plaid. A compact camera covered in tiny stickers hangs at their chest, and mismatched socks show above polished loafers. Keep the styling precise but not pristine: a loose thread, a bent lapel pin, a roll of film in one pocket."],
     hooks: ["They leave anonymous notes in library books, then someone starts replying in handwriting they recognize from nowhere.", "They know every secret in the building, except why their own apartment door keeps appearing in photographs from 1987.", "They only take photographs of people on the day their life changes—and today their camera has started taking photos of them."]
   },
   scifi: {
     names: ["Sol Anther", "Iona Vale", "Kade-7", "Navi Orin", "Rumi Kest", "Vex Corvin", "Astra Nyne", "Zephyr Kade", "Lyra Ossen", "Corin Halo", "Sable Nyx", "Orin Voss-9", "Kestra Lune", "Ravi Solaris", "Vega Marrick", "Ash Corvax", "Nova Sain", "Rin Kessler", "Thane Ossix", "Elian Voth", "Fira Delphinus", "Bex Solene", "Kai Ashmoore", "Nova-3", "Wren Ossiah"],
     archetypes: ["Memory Salvager", "Orbital Botanist", "Rogue Synthesist", "Starship Archivist", "Signal Diver"],
-    worlds: ["a gentle colony orbiting a planet with two dawns", "a space station held together by community gardens and duct tape", "the last little city on a world of endless artificial ocean"],
+    worlds: [
+  "a glass observation deck overlooking a blue planet at sunrise",
+  "a cramped greenhouse corridor full of glowing plants and taped-up pipes",
+  "a narrow service catwalk above a dark artificial ocean",
+  "a quiet bunk room lit by a single porthole and a dying console light",
+  "the edge of a landing bay where warning lights stripe the floor"
+],
     visuals: ["Their cropped hair catches light in oil-slick iridescence above a cloud-white flight suit with a high asymmetric collar. One translucent mechanical hand reveals delicate gold circuitry beneath the shell; let it be elegant rather than weapon-like. Add worn mission patches and a small floating tool drone, balancing sterile future materials with personal wear.", "Long teal braids are threaded with data beads and gathered over one shoulder. A patched utility skirt layers over fitted thermal leggings, with chunky magnetic boots and a softly glowing projector companion always at heel. Use printed circuit motifs, faded orange repair tape, and plant-green accents to make the spacefaring look handmade.", "Shaved sides sharpen the outline of their peach-tinted visor and oversized headset. A constellation of freckles shifts faintly across their cheeks, mapping something only they can see. Their dark technical jacket should be cut with angular panels and reflective piping, then softened by a threadbare scarf from home."],
     hooks: ["They recover deleted memories for a living, but their own are encrypted behind a lock that uses their mother’s voice.", "They receive messages from a star that officially died a century ago; each transmission describes something they have not done yet.", "They built a companion robot that has started writing them love letters—and signing them with a name from a missing crew manifest."]
   },
   horror: {
     names: ["Evelyn Crow", "Nora Vane", "Cass Mercer", "Ivy Hollow", "Rowan Pike", "Ophelia Marrow", "Silas Ashcombe", "Mable Crane", "Wren Blackwood", "Isolde Ravencroft", "Bramwell Sain", "Vespera Thorn", "Corvin Grim", "Alistair Vayne", "Deirdre Hollow", "Percival Ashe", "Morrigan Crow", "Cassius Kell", "Rowena Mourne", "Thom Verlain", "Marcy Vellum", "Lark Halsworth", "Fen Corvidae", "Nell Ashcroft", "Wilder Crane"],
     archetypes: ["Night Archive Keeper", "Reluctant Medium", "Moth-Eaten Detective", "Candlemaker’s Heir", "Graveyard Groundskeeper"],
-    worlds: ["a dimly lit hallway before a heavy, padlocked cellar door", "a cliffside estate above a sea that never reflects the moon", "the narrow aisle of a late-night train with rain-streaked windows"],
+    worlds: [
+  "a dim hallway ending in a heavy padlocked cellar door",
+  "a cliffside estate window above a black, unreflective sea",
+  "the narrow aisle of a late-night train with rain-streaked glass",
+  "a candlelit archive room lined with labeled drawers",
+  "a foggy graveyard path where one lantern is still burning"
+],
     visuals: ["A long, shadowed silhouette in a high-collared wool coat, its cuffs embroidered with tiny protective symbols. Dark hair is pinned back with a tarnished silver comb; a weak lantern and a bundle of keys act as essential props. Keep the palette in smoke-grey, dried rose, candle-wax ivory, and blackened brass.", "Their cropped hair is stark against an oversized mourning veil and a practical shirt with rolled sleeves. A string of tiny bells hangs from one wrist, while their leather satchel holds labelled vials and a folded photograph. Give the costume real working wear: ash at the hem, rain-darkened fabric, a repaired seam."],
     hooks: ["They catalogue the names of ghosts who cannot remember dying, but last night they found their own name in the ledger.", "Every candle they make burns blue in the presence of a lie—and the whole town is beginning to glow."]
   },
   historical: {
     names: ["Ada Whitlock", "Felix Marlowe", "Mina Laurent", "Theo Bell", "Celia Hart", "Beatrice Wren", "Edmund Ashford", "Cordelia Hastings", "Percival Grey", "Lilian Marchmont", "Reginald Vayne", "Charlotte Sinclair", "Winston Ashe", "Millicent Rook", "Arthur Blackwell", "Rosalind Fairfax", "Cornelius Vane", "Josephine Aldridge", "Silas Marchant", "Harriet Whitfield", "Nathaniel Ashcroft", "Vivienne Delacroix", "Alden Rutherford", "Prudence Wescott", "Ambrose Lyle"],
     archetypes: ["Railway Sketch Artist", "Secret Society Courier", "Apothecary Apprentice", "Museum Restorer", "Ballroom Spy"],
-    worlds: ["a fog-choked, gaslit cobblestone street outside a grand museum", "a moonlit canal bridge lined with iron lanterns", "the grand conservatory of a remote manor at twilight"],
+    worlds: [
+  "a foggy gaslit street outside a grand museum entrance",
+  "a moonlit canal bridge lined with iron lanterns",
+  "the glass conservatory of a remote manor at twilight",
+  "a railway platform under steam and amber lamps",
+  "a cramped print shop glowing with one oil lamp after midnight"
+],
     visuals: ["A neat turn-of-the-century silhouette built from a fitted waistcoat, high-neck blouse, and wool skirt designed for movement. Their ink-stained gloves and cracked leather portfolio reveal a working artist rather than a perfect period doll. Use antique navy, parchment, oxblood, and weathered gold.", "A long tailored coat swings over practical boots, with a pocket watch and a folded codebook tucked into the inner lining. Their hair is styled beautifully but one strand is always loose, suggesting they have just escaped a formal room in a hurry."],
     hooks: ["They restore damaged portraits for a museum, until a newly cleaned canvas begins adding them to the family scene.", "They are delivering a letter that could stop a war, but it is addressed in their own handwriting and dated fifty years ahead."]
   },
   postapoc: {
     names: ["Rin Ash", "Juno Vale", "Kit Solace", "Mara Flint", "Dax Rowan", "Wren Ember", "Ash Corvin", "Sage Ironroot", "Ivo Verdant", "Nova Kestrel", "Reed Ashmore", "Lark Wildfell", "Fern Ashvale", "Cass Bramble", "Vex Wildwood", "Ori Grimfield", "Sasha Marrow", "Fen Verdant", "Wilder Ash", "Cato Ironvale", "Elm Rooksworth", "Kestrel Wren", "Bell Ashcroft", "Torin Wildmoor", "Sable Mossgrove"],
     archetypes: ["Rooftop Forager", "Radio Runner", "Seed Vault Guardian", "Wasteland Mechanic", "Floodline Scout"],
-    worlds: ["a drowned city connected by rooftop gardens and zip lines", "a sun-bleached highway settlement built from old train cars", "a reclaimed shopping mall where the survivors run a tiny republic"],
+    worlds: [
+  "a rooftop garden above a drowned street, zip lines in the distance",
+  "a highway camp built from rusted train cars at golden hour",
+  "the food court of a reclaimed mall turned into a tiny market",
+  "a broken overpass draped with laundry and solar panels",
+  "a seed vault doorway cut into concrete, dust hanging in the light"
+],
     visuals: ["A compact, layered silhouette made for climbing: cropped utility jacket, patched cargo trousers, climbing rope looped at the hip, and boots with hand-cut soles. Their respirator hangs loose at the neck, and a tiny green shoot grows from an unlikely pocket. Make the materials sun-faded, repaired, and tactile.", "Their oversized hood, scavenged shoulder pad, and reinforced gloves create an asymmetrical silhouette. A weathered radio is strapped across the chest with cloth tape, its antenna decorated with bright fabric knots—one defiant spot of color in a dust, rust, and faded-teal palette."],
     hooks: ["They can tune any radio to hear the last message a place ever broadcast, and their own shelter has started speaking back.", "They guard the final packet of viable seeds, but the map to the safe soil is tattooed on someone who has disappeared."]
   }
@@ -102,7 +138,12 @@ function makeCharacter() {
   document.getElementById("personality").textContent = pick(shared.personality);
   document.getElementById("strength").textContent = pick(shared.strength);
   document.getElementById("fear").textContent = pick(shared.fear);
-  document.getElementById("world-hook").textContent = `Key art moment: place them in ${pick(set.worlds)}, paused mid-action as their signature prop catches the light. Frame the environment with enough small story clues—weather, discarded objects, distant silhouettes—to suggest the conflict without explaining it.`;
+  document.getElementById("world-hook").textContent = pick([
+  `They stand in ${pick(set.worlds)}, one hand on their signature prop, lit from one side as something important happens just out of frame.`,
+  `Caught mid-step in ${pick(set.worlds)}, coat or hair moving, their signature prop catching a hard edge of light.`,
+  `Seated or crouched in ${pick(set.worlds)}, focused on their signature prop while the space around them shows signs of recent trouble.`,
+  `Turning back toward the viewer in ${pick(set.worlds)}, signature prop half-raised, the background quiet but tense.`
+]);
   document.getElementById("sheet-number").textContent = `NO. ${String(count).padStart(3, "0")}`;
   const paletteEl = document.getElementById("palette"); paletteEl.innerHTML = palette.map(color => `<span style="background:${color}"></span>`).join("");
   document.getElementById("portrait-panel").style.background = `linear-gradient(145deg, ${palette[0]}, ${palette[3]})`;
