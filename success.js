@@ -1,22 +1,24 @@
 // ============================================
-// OC FOUNDRY — SUCCESS PAGE LOGIC
-// Supports single purchase + multi bucket purchase
+// OC FOUNDRY — MULTI-SHEET SUCCESS PAGE
 // ============================================
 
-const pick = list => list[Math.floor(Math.random() * list.length)];
+const pick = (list) => list[Math.floor(Math.random() * list.length)];
 
 function detectWorld(character) {
+  if (character.world && extendedContent[character.world]) {
+    return character.world;
+  }
+
   const text = `${character.archetype || ""} ${character.hook || ""} ${character.visual || ""}`.toLowerCase();
 
-  if (/witch|wizard|magic|kingdom|court|healer|forest|dragon|elven|realm|scroll|cartographer|storm courier|relic|garden witch/i.test(text)) return "fantasy";
-  if (/florist|radio|photographer|apartment|café|cafe|coffee|museum|city|neighborhood|shop|baker|rooftop radio/i.test(text)) return "modern";
-  if (/orbit|colony|ship|space|synthesist|salvager|botanist|archivist|starship|signal|robot|memory|circuit/i.test(text)) return "scifi";
-  if (/ghost|medium|graveyard|candlemaker|séance|seance|archive keeper|detective|hollow|crow|mercer/i.test(text)) return "horror";
-  if (/railway|society|apothecary|ballroom|manor|gaslit|canal|victorian|edwardian|exhibition/i.test(text)) return "historical";
-  if (/wasteland|drowned|scavenger|survivor|highway|seed vault|forager|radio runner|floodline|post-apoc/i.test(text)) return "postapoc";
+  if (/witch|wizard|magic|kingdom|court|healer|forest|dragon|relic|storm courier|garden witch/i.test(text)) return "fantasy";
+  if (/florist|radio|photographer|apartment|cafe|café|coffee|museum|baker|intern/i.test(text)) return "modern";
+  if (/orbit|colony|ship|space|botanist|archivist|signal|robot|memory|circuit|synthesist/i.test(text)) return "scifi";
+  if (/ghost|medium|graveyard|candlemaker|archive keeper|hollow|crow|detective/i.test(text)) return "horror";
+  if (/railway|apothecary|ballroom|manor|gaslit|canal|society|exhibition/i.test(text)) return "historical";
+  if (/wasteland|drowned|scavenger|seed vault|forager|radio runner|floodline|post-apoc/i.test(text)) return "postapoc";
 
-  const worlds = Object.keys(extendedContent || {});
-  return worlds[Math.floor(Math.random() * worlds.length)] || "fantasy";
+  return "fantasy";
 }
 
 function generateBible(character) {
@@ -32,44 +34,59 @@ function generateBible(character) {
     relationships: pick(pools.relationships),
     drawingPrompts: pick(pools.drawingPrompts),
     symbol: pick(pools.symbols),
-    quiz: pick(pools.quiz)
+    quiz: pick(pools.quiz),
   };
+}
+
+function escapeHtml(str = "") {
+  return String(str)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
 }
 
 function getPurchasedCharacters() {
   const purchasedCart = JSON.parse(localStorage.getItem("ocFoundryPurchasedCart") || "null");
-  if (purchasedCart && purchasedCart.length) return purchasedCart;
+  if (Array.isArray(purchasedCart) && purchasedCart.length) return purchasedCart;
 
   const single = JSON.parse(localStorage.getItem("ocFoundryCharacter") || "null");
   return single ? [single] : [];
 }
 
 function createBibleCard(bible, index, total) {
-  const wrapper = document.createElement("article");
-  wrapper.className = "bible-content multi-bible-card";
-  wrapper.style.marginBottom = "34px";
+  const card = document.createElement("article");
+  card.className = `multi-bible-card world-${bible.world}`;
 
-  wrapper.innerHTML = `
-    <div class="multi-bible-label">Sheet ${index + 1} of ${total}</div>
+  // per-card palette vars
+  card.style.setProperty("--char-color-1", bible.palette?.[0] || "#E9A5A2");
+  card.style.setProperty("--char-color-2", bible.palette?.[1] || "#F6D7AC");
+  card.style.setProperty("--char-color-3", bible.palette?.[2] || "#8DB9AA");
+  card.style.setProperty("--char-color-4", bible.palette?.[3] || "#5B617C");
+
+  const backstoryHtml = String(bible.backstory || "")
+    .split(/\n\n+/)
+    .filter(Boolean)
+    .map((p) => `<p>${escapeHtml(p)}</p>`)
+    .join("");
+
+  card.innerHTML = `
+    <div class="multi-bible-label">Sheet ${index + 1} of ${total} · ${escapeHtml(bible.world)}</div>
 
     <section class="bible-section bible-cover">
       <p class="bible-label">CHARACTER BIBLE</p>
-      <h2>${escapeHtml(bible.name)}</h2>
-      <p class="cover-meta">${escapeHtml(bible.archetype)} · ${escapeHtml(bible.age)}</p>
-      <p class="cover-hook">"${escapeHtml(bible.hook)}"</p>
+      <h2>${escapeHtml(bible.name || "")}</h2>
+      <p class="cover-meta">${escapeHtml(bible.archetype || "")} · ${escapeHtml(bible.age || "")}</p>
+      <p class="cover-hook">"${escapeHtml(bible.hook || "")}"</p>
       <div class="cover-palette">
-        ${(bible.palette || []).map(c => `<span style="background:${c}"></span>`).join("")}
+        ${(bible.palette || []).map((c) => `<span style="background:${c}"></span>`).join("")}
       </div>
     </section>
 
     <section class="bible-section">
       <h3>Backstory</h3>
-      <div class="section-body">
-        ${(bible.backstory || "")
-          .split("\n\n")
-          .map(p => `<p>${escapeHtml(p)}</p>`)
-          .join("")}
-      </div>
+      <div class="section-body">${backstoryHtml}</div>
     </section>
 
     <section class="bible-section bible-grid">
@@ -95,11 +112,11 @@ function createBibleCard(bible, index, total) {
       <h3>Voice &amp; speech</h3>
       <p class="voice-pattern">${escapeHtml(bible.voice?.pattern || "")}</p>
       <div class="voice-lines">
-        ${(bible.voice?.lines || []).map(l => `<blockquote>"${escapeHtml(l)}"</blockquote>`).join("")}
+        ${(bible.voice?.lines || []).map((l) => `<blockquote>"${escapeHtml(l)}"</blockquote>`).join("")}
       </div>
     </section>
 
-    <section class="bible-section symbol-section">
+    <section class="bible-section">
       <h3>Symbol &amp; motifs</h3>
       <p class="symbol-main"><strong>Personal symbol:</strong> <span>${escapeHtml(bible.symbol?.symbol || "")}</span></p>
       <div class="symbol-grid">
@@ -122,7 +139,7 @@ function createBibleCard(bible, index, total) {
     <section class="bible-section">
       <h3>Relationship web</h3>
       <div class="relationships">
-        ${(bible.relationships || []).map(r => `
+        ${(bible.relationships || []).map((r) => `
           <div class="rel-card">
             <p class="rel-role">${escapeHtml(r.role)}</p>
             <p class="rel-name">${escapeHtml(r.name)}</p>
@@ -135,7 +152,7 @@ function createBibleCard(bible, index, total) {
     <section class="bible-section">
       <h3>Drawing prompts</h3>
       <ol class="drawing-prompts">
-        ${(bible.drawingPrompts || []).map(p => `<li>${escapeHtml(p)}</li>`).join("")}
+        ${(bible.drawingPrompts || []).map((p) => `<li>${escapeHtml(p)}</li>`).join("")}
       </ol>
     </section>
 
@@ -156,89 +173,42 @@ function createBibleCard(bible, index, total) {
     </section>
   `;
 
-  // Apply world class + palette vars on each card
-  wrapper.classList.add(`world-${bible.world}`);
-  wrapper.style.setProperty("--char-color-1", bible.palette?.[0] || "#E9A5A2");
-  wrapper.style.setProperty("--char-color-2", bible.palette?.[1] || "#F6D7AC");
-  wrapper.style.setProperty("--char-color-3", bible.palette?.[2] || "#8DB9AA");
-  wrapper.style.setProperty("--char-color-4", bible.palette?.[3] || "#5B617C");
-
-  // Cover gradient using palette
-  const cover = wrapper.querySelector(".bible-cover");
-  if (cover && bible.palette?.length) {
-    cover.style.background = `linear-gradient(135deg, ${bible.palette[0]}22 0%, ${bible.palette[1]}33 50%, ${bible.palette[3]}22 100%)`;
-  }
-
-  return wrapper;
-}
-
-function escapeHtml(str = "") {
-  return String(str)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#39;");
+  return card;
 }
 
 function loadAllBibles() {
   const characters = getPurchasedCharacters();
-  const host = document.getElementById("bible-content");
   const empty = document.getElementById("bible-empty");
   const titleName = document.getElementById("bible-name");
+  const listHost = document.getElementById("multi-bible-list");
+
+  if (!listHost) {
+    console.error("missing #multi-bible-list in success.html");
+    return [];
+  }
 
   if (!characters.length) {
-    // Fully remove the old single-bible template so it can't show empty
-if (host) {
-  host.hidden = true;
-  host.style.display = "none";
-  host.innerHTML = "";
-}
     if (empty) empty.hidden = false;
     if (titleName) titleName.textContent = "your";
+    listHost.innerHTML = "";
     return [];
   }
 
   if (empty) empty.hidden = true;
 
-  // Keep first character saved for old single-flow bits
-  localStorage.setItem("ocFoundryCharacter", JSON.stringify(characters[0]));
-
-  // Generate bibles
   const bibles = characters.map(generateBible);
-
-  // Save all generated bibles
+  localStorage.setItem("ocFoundryCharacter", JSON.stringify(characters[0]));
   localStorage.setItem("ocFoundryBibles", JSON.stringify(bibles));
-  localStorage.setItem("ocFoundryBible", JSON.stringify(bibles[0])); // backward compatible
+  localStorage.setItem("ocFoundryBible", JSON.stringify(bibles[0]));
 
-  // Update header text
   if (titleName) {
-    if (bibles.length === 1) {
-      titleName.textContent = `${bibles[0].name.split(" ")[0]}'s`;
-    } else {
-      titleName.textContent = `${bibles.length} character`;
-    }
+    titleName.textContent = bibles.length === 1
+      ? `${(bibles[0].name || "Character").split(" ")[0]}'s`
+      : `${bibles.length} character`;
   }
 
-  // Set body world class from first bible for page atmosphere
-  document.body.className = `bible-page world-${bibles[0].world}`;
-
-  // Render all cards
-  // Use a container after header
-  let listHost = document.getElementById("multi-bible-list");
-  if (!listHost) {
-    listHost = document.createElement("div");
-    listHost.id = "multi-bible-list";
-    // put it where old single bible content was
-    if (host && host.parentNode) {
-      host.parentNode.insertBefore(listHost, host);
-    } else {
-      document.querySelector(".bible-wrap")?.appendChild(listHost);
-    }
-  }
-
-  // Hide old single template block
-  if (host) host.hidden = true;
+  // Neutral page shell; each card carries its own world class
+  document.body.className = "bible-page";
 
   listHost.innerHTML = "";
   bibles.forEach((bible, index) => {
@@ -248,11 +218,10 @@ if (host) {
   return bibles;
 }
 
-// Load everything
 const allBibles = loadAllBibles();
 const currentBible = allBibles[0] || null;
 
-// EMAIL BUTTON
+// Email button
 const showEmailBtn = document.getElementById("show-email");
 if (showEmailBtn) {
   showEmailBtn.addEventListener("click", () => {
@@ -270,52 +239,43 @@ if (emailForm) {
     const button = document.getElementById("send-email");
     const email = input?.value?.trim();
 
-    if (!email) {
-      status.textContent = "Please enter your email address.";
-      status.style.color = "var(--coral)";
-      return;
-    }
-
-    if (!currentBible) {
-      status.textContent = "No character bible found.";
+    if (!email || !currentBible) {
+      status.textContent = "Email and character bible are required.";
       status.style.color = "var(--coral)";
       return;
     }
 
     button.disabled = true;
     button.textContent = "Sending...";
-    status.textContent = "";
 
     try {
-      // For now email first bible (multi-email can be next upgrade)
       const response = await fetch("https://oc-foundry-server.vercel.app/api/send-bible", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, bible: currentBible })
+        body: JSON.stringify({ email, bible: currentBible }),
       });
       const data = await response.json();
-
-      if (!response.ok) throw new Error(data.error || "Failed to send");
+      if (!response.ok) throw new Error(data.error || "Failed");
 
       status.textContent = "✨ Sent! Check your inbox (and spam).";
       status.style.color = "var(--lavender)";
-      input.value = "";
       button.textContent = "Sent!";
+      input.value = "";
+    } catch (err) {
+      console.error(err);
+      status.textContent = "Sorry, something went wrong. Try again.";
+      status.style.color = "var(--coral)";
+      button.textContent = "Send";
+    } finally {
       setTimeout(() => {
         button.disabled = false;
         button.textContent = "Send";
-      }, 3000);
-    } catch (err) {
-      console.error(err);
-      status.textContent = "Sorry, something went wrong. Please try again.";
-      status.style.color = "var(--coral)";
-      button.disabled = false;
-      button.textContent = "Send";
+      }, 2500);
     }
   });
 }
 
-// DOWNLOAD PDF BUTTON
+// PDF button
 const downloadBtn = document.getElementById("download-pdf");
 if (downloadBtn) {
   downloadBtn.addEventListener("click", () => {
@@ -325,28 +285,21 @@ if (downloadBtn) {
       <div class="print-modal">
         <button class="close-modal" id="close-print-modal">×</button>
         <h2>Save your character bible ✨</h2>
-        <p>In the print dialog that opens, please:</p>
+        <p>In the print dialog:</p>
         <ol>
-          <li>Set <strong>Destination</strong> to <strong>"Save as PDF"</strong></li>
-          <li>Click <strong>More settings</strong> and:
-            <ul>
-              <li>Tick <strong>"Background graphics"</strong></li>
-              <li>Untick <strong>"Headers and footers"</strong></li>
-              <li>Set <strong>Margins</strong> to <strong>"None"</strong> or <strong>"Minimum"</strong></li>
-            </ul>
-          </li>
+          <li>Set <strong>Destination</strong> to <strong>Save as PDF</strong></li>
+          <li>Enable <strong>Background graphics</strong></li>
+          <li>Disable <strong>Headers and footers</strong></li>
           <li>Click <strong>Save</strong></li>
         </ol>
         <button class="print-cta" id="open-print-dialog">Open print dialog →</button>
-        <p class="print-note">If you bought multiple sheets, all of them are on this page.</p>
       </div>
     `;
     document.body.appendChild(overlay);
-
-    document.getElementById("close-print-modal").addEventListener("click", () => overlay.remove());
-    document.getElementById("open-print-dialog").addEventListener("click", () => {
+    document.getElementById("close-print-modal").onclick = () => overlay.remove();
+    document.getElementById("open-print-dialog").onclick = () => {
       overlay.remove();
       setTimeout(() => window.print(), 100);
-    });
+    };
   });
 }
