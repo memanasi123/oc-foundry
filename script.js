@@ -50,17 +50,23 @@ const shared = {
     "Gentle and private, but fiercely determined once a promise is made. They look easily distracted in a crowd; in truth, they are cataloguing every useful detail in the room.",
     "Clever and sentimental, with a guard that drops at inconvenient moments. Their humour is dry, their memory is exact, and their compassion usually arrives disguised as practical help."
   ],
-  strength: [
-    "A hand-assembled compass with one empty setting. It spins toward whatever the owner most needs, not what they ask for. It looks precious, over-repaired, and is always visible somewhere on their person.",
-    "A small physical tell that gives them away under pressure: a ribbon at their wrist that lifts as if caught in a private wind.",
-    "A battered messenger bag packed with highly specific objects: folded maps, a pressed flower, spare wire, a tiny knife, and a note they refuse to throw away.",
-    "One deliberately polished detail amid otherwise worn clothing: a spotless boot, a perfect signet ring, or a carefully mended collar that hints at the life they are trying to preserve."
+    strength: [
+    "A hand-assembled brass compass with one empty setting. It is always clipped to their belt, polished from constant handling, and slightly dented on one side.",
+    "A thin scar through one eyebrow that catches the light when they frown. They touch it without noticing whenever they are thinking hard.",
+    "A battered messenger bag stuffed with highly specific objects: folded maps, a pressed flower, spare wire, a tiny knife, and a note they refuse to throw away.",
+    "One deliberately perfect detail in an otherwise worn outfit: a spotless signet ring, a carefully mended collar, or boots polished until they shine.",
+    "A chipped enamel pin they refuse to replace. It sits over their heart on every jacket they own.",
+    "A notebook bound in soft leather, edges blackened from use. Half the pages are maps; the other half are names written and crossed out.",
+    "A single mismatched glove they never take off. The fabric is finer than the rest of their clothes and embroidered with a tiny faded symbol.",
+    "A locket that no longer opens properly. They still wear it every day, tucked under their collar where only they can feel it."
   ],
-  fear: [
-    "Their instinct to protect people can become controlling when the stakes rise. They keep one hand near the exit even when smiling.",
-    "They are terrified of becoming essential to someone, then failing them. One piece of their kit is always left incomplete: a snapped clasp, an unfinished map, or an uncharged device.",
-    "They have a private suspicion that they helped cause the disaster they are trying to solve. Their posture stays capable and forward-moving, but their gaze never fully relaxes.",
-    "Tenderness feels dangerous to them because it makes abandonment possible. They carry one fragile object and handle it with remarkable care, even in a fight."
+    fear: [
+    "They become controlling when someone they love is in danger. Even in safe rooms, they keep one eye on the exit.",
+    "They are terrified of becoming essential to someone and then failing them. One piece of their kit is always left unfinished.",
+    "They secretly suspect they helped cause the disaster they are trying to fix. Their posture stays steady, but they never fully relax.",
+    "They treat tenderness like a risk. The closer someone gets, the more carefully they keep a little distance.",
+    "They hate being seen while they are unsure. If they do not have an answer yet, they go quiet rather than admit it.",
+    "They are afraid of staying in one place long enough to be known. Movement feels safer than belonging."
   ],
   palettes: [
     ["#E9A5A2", "#F6D7AC", "#8DB9AA", "#5B617C"],
