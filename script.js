@@ -145,7 +145,7 @@ function makeCharacter() {
   `Turning back toward the viewer in ${pick(set.worlds)}, signature prop half-raised, the background quiet but tense.`
 ]);
   document.getElementById("sheet-number").textContent = `NO. ${String(count).padStart(3, "0")}`;
-  const paletteEl = document.getElementById("palette"); paletteEl.innerHTML = palette.map(color => `<span style="background:${color}"></span>`).join("");
+  const paletteEl = document.getElementById("palette"); paletteEl.innerHTML = palette.map(color => `<span style="background:${color}" title="${color}" onclick="navigator.clipboard.writeText('${color}')"></span>`).join("");
   document.getElementById("portrait-panel").style.background = `linear-gradient(145deg, ${palette[0]}, ${palette[3]})`;
   currentCharacter = {
   name: document.getElementById("character-name").textContent,
