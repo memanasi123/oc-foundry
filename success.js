@@ -80,7 +80,7 @@ function createBibleCard(bible, index, total) {
       <p class="cover-meta">${escapeHtml(bible.archetype || "")} · ${escapeHtml(bible.age || "")}</p>
       <p class="cover-hook">"${escapeHtml(bible.hook || "")}"</p>
       <div class="cover-palette">
-        ${(bible.palette || []).map((c) => `<span style="background:${c}"></span>`).join("")}
+        ${(bible.palette || []).map((c) => `<span style="background:${c}" title="${c}"></span>`).join("")}
       </div>
     </section>
 
