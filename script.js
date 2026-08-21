@@ -263,11 +263,11 @@ function makeCharacter() {
   document.getElementById("sheet-number").textContent = `NO. ${String(count).padStart(3, "0")}`;
   const paletteEl = document.getElementById("palette");
 paletteEl.innerHTML = `
-  <div class="swatch-list">
+  <div class="palette-stack">
     ${palette.map(color => `
-      <div class="swatch-row" title="Click to copy ${color}" onclick="navigator.clipboard.writeText('${color}')">
-        <span class="swatch-rect" style="background:${color}"></span>
-        <span class="swatch-hex">${color}</span>
+      <div class="palette-row" title="Click to copy ${color}" onclick="navigator.clipboard.writeText('${color}')">
+        <span class="swatch-pill" style="background-color: ${color} !important;"></span>
+        <span class="swatch-code">${color}</span>
       </div>
     `).join("")}
   </div>
