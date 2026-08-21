@@ -2060,3 +2060,12 @@
     break-after: page;
   }
 }
+/* ============================================
+   CONTACT PAGE — larger "Get in touch" + more space below
+   ============================================ */
+
+.content-page .eyebrow {
+  font-size: 13px;        /* Makes "Get in touch" larger */
+  letter-spacing: 2px;    /* Keeps the nice spaced-out feel */
+  margin-bottom: 28px;    /* Adds MORE space between it and the big heading below */
+}
