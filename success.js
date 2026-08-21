@@ -80,8 +80,13 @@ function createBibleCard(bible, index, total) {
       <p class="cover-meta">${escapeHtml(bible.archetype || "")} · ${escapeHtml(bible.age || "")}</p>
       <p class="cover-hook">"${escapeHtml(bible.hook || "")}"</p>
       <div class="cover-palette">
-        ${(bible.palette || []).map((c) => `<span style="background:${c}" title="${c}"></span>`).join("")}
-      </div>
+  ${(bible.palette || []).map((c) => `
+    <div class="swatch-item" title="Click to copy ${c}" onclick="navigator.clipboard.writeText('${c}')">
+      <span style="background:${c}"></span>
+      <span class="hex-label">${c}</span>
+    </div>
+  `).join("")}
+</div>
     </section>
 
     <section class="bible-section">
