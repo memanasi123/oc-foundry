@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Pinterest Pin Templates — OC Foundry</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css?v=12" />
+    <style>
+      body {
+        background: #111;
+        padding: 40px 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        justify-content: center;
+      }
+
+      /* Pinterest 2:3 Aspect Ratio Pins (600px x 900px for easy screenshot) */
+      .pin-card {
+        width: 600px;
+        height: 900px;
+        border-radius: 24px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 36px;
+        box-sizing: border-box;
+      }
+
+      /* PIN 1: FANTASY */
+      .pin-fantasy {
+        background: linear-gradient(180deg, rgba(20, 10, 30, 0.4) 0%, rgba(20, 10, 30, 0.85) 100%),
+                    url('images/fantasy/hero.png') center/cover;
+        color: #fff;
+      }
+
+      /* PIN 2: HORROR DARK ACADEMIA */
+      .pin-horror {
+        background: linear-gradient(180deg, rgba(15, 12, 20, 0.3) 0%, rgba(15, 12, 20, 0.9) 100%),
+                    url('images/horror/hero.png') center/cover;
+        color: #fff;
+      }
+
+      /* PIN 3: MODERN COZY */
+      .pin-modern {
+        background: linear-gradient(180deg, rgba(255, 250, 245, 0.2) 0%, rgba(250, 240, 230, 0.95) 80%),
+                    url('images/modern/hero.png') center/cover;
+        color: #312b3d;
+      }
+
+      .pin-brand {
+        font-family: Fraunces, serif;
+        font-size: 22px;
+        font-weight: 700;
+      }
+
+      .pin-brand span {
+        color: var(--coral);
+      }
+
+      .pin-tag {
+        display: inline-block;
+        padding: 6px 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(8px);
+        font: 500 11px "DM Mono", monospace;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+
+      .pin-title {
+        font: 700 48px/1.05 Fraunces, serif;
+        letter-spacing: -2px;
+        margin: 0 0 16px;
+      }
+
+      .pin-title em {
+        color: var(--peach);
+        font-style: italic;
+      }
+
+      .pin-sheet-box {
+        background: rgba(255, 253, 249, 0.92);
+        color: #312b3d;
+        border-radius: 16px;
+        padding: 24px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      }
+
+      .pin-sheet-box h3 {
+        margin: 0 0 4px;
+        font: 700 32px Fraunces, serif;
+        letter-spacing: -1px;
+      }
+
+      .pin-sheet-box .kicker {
+        color: var(--coral);
+        font: 500 11px "DM Mono", monospace;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+
+      .pin-sheet-box p {
+        margin: 0;
+        font: 600 16px/1.4 Fraunces, serif;
+        color: #594f61;
+        font-style: italic;
+      }
+
+      .pin-footer-cta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 18px;
+        padding-top: 14px;
+        border-top: 1px solid rgba(0,0,0,0.1);
+        font: 700 13px "DM Sans", sans-serif;
+      }
+
+      .pin-cta-btn {
+        padding: 10px 18px;
+        background: var(--lavender);
+        color: #fff;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 13px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- PIN 1: FANTASY -->
+    <div class="pin-card pin-fantasy">
+      <div>
+        <div class="pin-brand"><span>✦</span> OC Foundry</div>
+      </div>
+      <div>
+        <span class="pin-tag">Free Character Spark Machine</span>
+        <h1 class="pin-title">Stuck on your next <em>original character?</em></h1>
+        
+        <div class="pin-sheet-box">
+          <div class="kicker">Moonlit Cartographer · 25 years old</div>
+          <h3>Elowen Voss</h3>
+          <p>“They map places that only exist when no one is looking. Their latest chart has begun redrawing the route to their childhood home.”</p>
+          <div class="pin-footer-cta">
+            <span>Free Generator + Character Bibles</span>
+            <span class="pin-cta-btn">Generate Now →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PIN 2: HORROR DARK ACADEMIA -->
+    <div class="pin-card pin-horror">
+      <div>
+        <div class="pin-brand"><span>✦</span> OC Foundry</div>
+      </div>
+      <div>
+        <span class="pin-tag" style="background: rgba(221, 128, 110, 0.3); color: #ffc2b8;">Dark Academia &amp; Horror OCs</span>
+        <h1 class="pin-title" style="color: #fffdf9;">Make someone <em>worth drawing.</em></h1>
+        
+        <div class="pin-sheet-box" style="background: rgba(244, 238, 241, 0.95);">
+          <div class="kicker" style="color: #9380c5;">Night Archive Keeper · 31 years old</div>
+          <h3>Cass Mercer</h3>
+          <p>“They catalogue the names of ghosts who cannot remember dying, but last night they found their own name in the ledger.”</p>
+          <div class="pin-footer-cta">
+            <span>Instant Character Prompts</span>
+            <span class="pin-cta-btn" style="background: #312b3d;">Try Generator →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PIN 3: MODERN COZY -->
+    <div class="pin-card pin-modern">
+      <div>
+        <div class="pin-brand" style="color: #312b3d;"><span>✦</span> OC Foundry</div>
+      </div>
+      <div>
+        <span class="pin-tag" style="background: rgba(147, 128, 197, 0.2); color: #51456e;">Writing &amp; Art Prompts</span>
+        <h1 class="pin-title" style="color: #312b3d;">Generate fresh <em>OC concepts</em> in seconds.</h1>
+        
+        <div class="pin-sheet-box" style="background: #fffdf9; border: 1px solid rgba(0,0,0,0.1);">
+          <div class="kicker">Rooftop Radio Host · 27 years old</div>
+          <h3>Tessa Bloom</h3>
+          <p>“They leave anonymous notes in library books, then someone starts replying in handwriting they recognize from nowhere.”</p>
+          <div class="pin-footer-cta">
+            <span>6 Worlds · 8 Moods · Free</span>
+            <span class="pin-cta-btn">Create An OC →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
