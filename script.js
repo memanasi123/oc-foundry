@@ -265,8 +265,8 @@ function makeCharacter() {
 paletteEl.innerHTML = `
   <div class="palette-stack">
     ${palette.map(color => `
-      <div class="palette-row" title="Click to copy ${color}" onclick="navigator.clipboard.writeText('${color}')">
-        <span class="swatch-pill" style="background-color: ${color} !important;"></span>
+      <div class="swatch-row" title="Click to copy ${color}" onclick="navigator.clipboard.writeText('${color}')">
+        <div class="swatch-pill" style="background-color: ${color} !important;"></div>
         <span class="swatch-code">${color}</span>
       </div>
     `).join("")}
