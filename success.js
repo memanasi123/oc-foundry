@@ -82,8 +82,8 @@ function createBibleCard(bible, index, total) {
       <div class="cover-palette">
   <div class="palette-stack">
     ${(bible.palette || []).map((c) => `
-      <div class="palette-row" title="Click to copy ${c}" onclick="navigator.clipboard.writeText('${c}')">
-        <span class="swatch-pill" style="background-color: ${c} !important;"></span>
+      <div class="swatch-row" title="Click to copy ${c}" onclick="navigator.clipboard.writeText('${c}')">
+        <div class="swatch-pill" style="background-color: ${c} !important;"></div>
         <span class="swatch-code">${c}</span>
       </div>
     `).join("")}
