@@ -2188,3 +2188,61 @@
   color: var(--ink) !important;
   text-shadow: none !important;
 }
+/* ============================================
+   TALL VERTICAL PILL PALETTE SWATCHES
+   Matches hand-drawn mockup (Pill on left, Hex on right)
+   ============================================ */
+
+/* Main Stack Container */
+.palette-stack {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  margin-top: 12px !important;
+  align-items: flex-start !important;
+}
+
+#palette, .palette, .cover-palette {
+  display: block !important;
+}
+
+/* Individual Row */
+.palette-row {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  cursor: pointer !important;
+  padding: 3px 8px 3px 4px !important;
+  border-radius: 12px !important;
+  transition: transform 0.15s ease !important;
+}
+
+.palette-row:hover {
+  transform: translateX(5px) !important;
+}
+
+/* Tall Vertical Rounded Rectangle / Pill */
+.swatch-pill {
+  display: inline-block !important;
+  width: 22px !important;
+  height: 48px !important;
+  border-radius: 12px !important;
+  border: 2px solid rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
+  flex-shrink: 0 !important;
+}
+
+/* Hex Code Text on the Right */
+.swatch-code {
+  font: 700 13px "DM Mono", monospace !important;
+  color: #ffffff !important;
+  letter-spacing: 1px !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7) !important;
+  text-transform: uppercase !important;
+}
+
+/* Inside light details panel on generator page */
+.details-panel .swatch-code {
+  color: var(--ink) !important;
+  text-shadow: none !important;
+}
