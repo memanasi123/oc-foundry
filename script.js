@@ -262,12 +262,16 @@ function makeCharacter() {
 ]);
   document.getElementById("sheet-number").textContent = `NO. ${String(count).padStart(3, "0")}`;
   const paletteEl = document.getElementById("palette");
-paletteEl.innerHTML = palette.map(color => `
-  <div class="swatch-item" title="Click to copy ${color}" onclick="navigator.clipboard.writeText('${color}')">
-    <span style="background:${color}"></span>
-    <span class="hex-label">${color}</span>
+paletteEl.innerHTML = `
+  <div class="swatch-list">
+    ${palette.map(color => `
+      <div class="swatch-row" title="Click to copy ${color}" onclick="navigator.clipboard.writeText('${color}')">
+        <span class="swatch-rect" style="background:${color}"></span>
+        <span class="swatch-hex">${color}</span>
+      </div>
+    `).join("")}
   </div>
-`).join("");
+`;
   document.getElementById("portrait-panel").style.background = `linear-gradient(145deg, ${palette[0]}, ${palette[3]})`;
   currentCharacter = {
   name: document.getElementById("character-name").textContent,
