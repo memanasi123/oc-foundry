@@ -2069,3 +2069,52 @@
   letter-spacing: 2px;    /* Keeps the nice spaced-out feel */
   margin-bottom: 28px;    /* Adds MORE space between it and the big heading below */
 }
+/* ============================================
+   PALETTE SWATCHES & HEX CODES
+   ============================================ */
+
+.palette,
+.cover-palette {
+  display: flex !important;
+  gap: 12px !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+}
+
+.cover-palette {
+  justify-content: center !important;
+}
+
+.swatch-item {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.swatch-item:hover {
+  transform: translateY(-2px);
+}
+
+.swatch-item span[style] {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.hex-label {
+  font: 500 10px "DM Mono", monospace;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* Light background adjustment */
+.details-panel .hex-label {
+  color: var(--muted);
+  text-shadow: none;
+}
