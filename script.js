@@ -105,10 +105,12 @@ const shared = {
     "They are afraid of staying in one place long enough to be known. Movement feels safer than belonging."
   ],
   palettes: [
-    ["#E9A5A2", "#F6D7AC", "#8DB9AA", "#5B617C"],
-    ["#C7B5E2", "#F2B8B5", "#F5E6B3", "#68765E"],
-    ["#E3A0B8", "#B9D7D3", "#F5C89A", "#7E7099"]
-  ]
+  ["#E9A5A2", "#F6D7AC", "#8DB9AA", "#5B617C"],
+  ["#C7B5E2", "#F2B8B5", "#F5E6B3", "#68765E"],
+  ["#E3A0B8", "#B9D7D3", "#F5C89A", "#7E7099"],
+  ["#D4A5A5", "#F0D5C0", "#A8C5B0", "#5C5470"],
+  ["#B8A9C9", "#E8C4C4", "#F5E6C8", "#4A6670"]
+],
 };
 
 const moods = {
@@ -128,8 +130,122 @@ let currentCharacter = null;
 const pick = list => list[Math.floor(Math.random() * list.length)];
 
 function chooseWorld() { return selectedWorld === "any" ? pick(Object.keys(data)) : selectedWorld; }
+// ============================================
+// WORLD + MOOD PALETTE POOLS
+// ============================================
+const worldPalettes = {
+  fantasy: [
+    ["#C7B5E2", "#F2B8B5", "#F5E6B3", "#5B617C"],
+    ["#A78BFA", "#F9A8D4", "#FDE68A", "#312E81"],
+    ["#86EFAC", "#FBCFE8", "#FDE68A", "#3F3A5A"],
+    ["#93C5FD", "#C4B5FD", "#FDE68A", "#1E293B"],
+    ["#F0ABFC", "#A7F3D0", "#FDE68A", "#4C1D95"],
+    ["#DDD6FE", "#FBCFE8", "#BBF7D0", "#4B5563"]
+  ],
+  modern: [
+    ["#FCA5A5", "#FDE68A", "#A7F3D0", "#475569"],
+    ["#FDA4AF", "#FDBA74", "#93C5FD", "#334155"],
+    ["#F9A8D4", "#FDE68A", "#C4B5FD", "#44403C"],
+    ["#FECACA", "#E7E5E4", "#A8A29E", "#292524"],
+    ["#BAE6FD", "#FDE68A", "#FBCFE8", "#0F172A"],
+    ["#E9D5FF", "#FECDD3", "#BBF7D0", "#3F3F46"]
+  ],
+  scifi: [
+    ["#67E8F9", "#A78BFA", "#F0ABFC", "#0F172A"],
+    ["#22D3EE", "#818CF8", "#E2E8F0", "#020617"],
+    ["#5EEAD4", "#38BDF8", "#C4B5FD", "#111827"],
+    ["#93C5FD", "#A7F3D0", "#FDE68A", "#1E293B"],
+    ["#7DD3FC", "#C4B5FD", "#F9A8D4", "#0B1020"],
+    ["#67E8F9", "#FDE68A", "#A5B4FC", "#111827"]
+  ],
+  horror: [
+    ["#FCA5A5", "#A8A29E", "#7F1D1D", "#1C1917"],
+    ["#F9A8D4", "#A1A1AA", "#4C0519", "#0C0A09"],
+    ["#FDBA74", "#D6D3D1", "#7C2D12", "#18181B"],
+    ["#E9D5FF", "#A8A29E", "#3B0764", "#09090B"],
+    ["#FDA4AF", "#CBD5E1", "#881337", "#0F172A"],
+    ["#C4B5FD", "#A1A1AA", "#4C1D95", "#09090B"]
+  ],
+  historical: [
+    ["#D6BF9E", "#E7D3B0", "#8B7355", "#3F2F2A"],
+    ["#C7B299", "#E8D5B7", "#7A6A53", "#2C2420"],
+    ["#BFA58A", "#F0E0C0", "#6B5843", "#2A211C"],
+    ["#C9B8A0", "#EAD9B8", "#7D6B52", "#352B25"],
+    ["#D2B48C", "#F5E6C8", "#8B7355", "#3B2F2F"],
+    ["#C4A484", "#E8D5B5", "#6F5B45", "#2E2520"]
+  ],
+  postapoc: [
+    ["#FDBA74", "#A3E635", "#78716C", "#1C1917"],
+    ["#FDE68A", "#86EFAC", "#A8A29E", "#292524"],
+    ["#FDBA74", "#67E8F9", "#A1A1AA", "#18181B"],
+    ["#FCA5A5", "#BEF264", "#78716C", "#0C0A09"],
+    ["#FDE68A", "#FDBA74", "#A8A29E", "#1C1917"],
+    ["#FDBA74", "#A7F3D0", "#D6D3D1", "#111827"]
+  ]
+};
+
+const moodPalettes = {
+  soft: [
+    ["#F9A8D4", "#FDE68A", "#BBF7D0", "#7E7099"],
+    ["#FBCFE8", "#FEF3C7", "#A7F3D0", "#6B7280"],
+    ["#FECACA", "#FDE68A", "#C7D2FE", "#6B5B7A"],
+    ["#E9D5FF", "#FBCFE8", "#BBF7D0", "#6B7280"]
+  ],
+  dark: [
+    ["#FCA5A5", "#A78BFA", "#64748B", "#0F172A"],
+    ["#FB7185", "#818CF8", "#475569", "#020617"],
+    ["#F9A8D4", "#6366F1", "#334155", "#020617"],
+    ["#FDBA74", "#A78BFA", "#475569", "#0B1020"]
+  ],
+  cute: [
+    ["#F9A8D4", "#FDE68A", "#A7F3D0", "#8B5CF6"],
+    ["#FBCFE8", "#FEF08A", "#99F6E4", "#A78BFA"],
+    ["#FECACA", "#FDE68A", "#C4B5FD", "#DB2777"],
+    ["#F9A8D4", "#FDBA74", "#BBF7D0", "#7C3AED"]
+  ],
+  heroic: [
+    ["#FDBA74", "#FDE68A", "#38BDF8", "#1E3A8A"],
+    ["#FB7185", "#FBBF24", "#60A5FA", "#1E293B"],
+    ["#F97316", "#FACC15", "#22D3EE", "#0F172A"],
+    ["#F43F5E", "#FBBF24", "#38BDF8", "#111827"]
+  ],
+  mysterious: [
+    ["#C4B5FD", "#94A3B8", "#F9A8D4", "#0F172A"],
+    ["#A78BFA", "#64748B", "#FBCFE8", "#020617"],
+    ["#818CF8", "#94A3B8", "#FDBA74", "#0B1020"],
+    ["#A5B4FC", "#64748B", "#E9D5FF", "#111827"]
+  ],
+  whimsical: [
+    ["#F9A8D4", "#FDE68A", "#A7F3D0", "#8B5CF6"],
+    ["#FBCFE8", "#FDE047", "#5EEAD4", "#7C3AED"],
+    ["#FDA4AF", "#FDE68A", "#93C5FD", "#6D28D9"],
+    ["#F0ABFC", "#FDE68A", "#86EFAC", "#6B21A8"]
+  ],
+  melancholy: [
+    ["#94A3B8", "#CBD5E1", "#D6D3D1", "#334155"],
+    ["#A8A29E", "#C4B5FD", "#E7E5E4", "#3F3F46"],
+    ["#90A4AE", "#B0BEC5", "#CFD8DC", "#37474F"],
+    ["#9CA3AF", "#C7B5E2", "#E5E7EB", "#4B5563"]
+  ],
+  chaotic: [
+    ["#FF6B6B", "#FFE66D", "#4ECDC4", "#5B4B8A"],
+    ["#FF8E72", "#FFD93D", "#6BCB77", "#4D96FF"],
+    ["#FF6B6B", "#FFD93D", "#6BCBFF", "#9B5DE5"],
+    ["#FF5D8F", "#FFC300", "#00F5D4", "#7B2CBF"]
+  ]
+};
+
+function pickPalette(worldKey, moodKey) {
+  if (moodKey && moodKey !== "any" && moodPalettes[moodKey]?.length) {
+    return pick(moodPalettes[moodKey]);
+  }
+  if (worldKey && worldPalettes[worldKey]?.length) {
+    return pick(worldPalettes[worldKey]);
+  }
+  return pick(shared.palettes);
+}
 function makeCharacter() {
-  const worldKey = chooseWorld(); const set = data[worldKey]; const mood = moods[selectedMood]; const palette = mood ? mood.palette : pick(shared.palettes); currentSet = set; count += 1;
+  const worldKey = chooseWorld(); const set = data[worldKey]; const mood = moods[selectedMood]; const palette = pickPalette(worldKey, selectedMood); currentSet = set; count += 1;
   document.getElementById("character-name").textContent = pick(set.names);
   document.getElementById("archetype").textContent = pick(set.archetypes);
   document.getElementById("age").textContent = `${pick(["19", "22", "25", "27", "31"])} years old`;
