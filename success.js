@@ -76,6 +76,82 @@ function getPurchasedCharacters() {
 }
 
 function createBibleCard(bible, index, total) {
+    // IF THIS IS A D&D CHARACTER, RENDER THE D&D DOSSIER & STAT BLOCK
+  if (bible.isDnd) {
+    const card = document.createElement("article");
+    card.className = `multi-bible-card world-${bible.world || 'fantasy'}`;
+    
+    card.style.setProperty("--char-color-1", bible.palette?.[0] || "#E9A5A2");
+    card.style.setProperty("--char-color-2", bible.palette?.[1] || "#F6D7AC");
+    card.style.setProperty("--char-color-3", bible.palette?.[2] || "#8DB9AA");
+    card.style.setProperty("--char-color-4", bible.palette?.[3] || "#5B617C");
+
+    const scores = bible.scores || { str: "16 (+3)", dex: "14 (+2)", con: "14 (+2)", int: "10 (+0)", wis: "12 (+1)", cha: "8 (-1)" };
+    const tactics = (typeof dndData !== "undefined" && dndData.tactics && dndData.tactics[bible.dndClass]) ? dndData.tactics[bible.dndClass] : "Adapts quickly in battle using class features and tactical positioning.";
+    const questHooks = (typeof dndData !== "undefined" && dndData.questHooks) ? dndData.questHooks : [bible.hook];
+
+    card.innerHTML = `
+      <div class="multi-bible-label">D&amp;D 5E ADVENTURER DOSSIER · Sheet ${index + 1} of ${total}</div>
+
+      <section class="bible-section bible-cover">
+        <p class="bible-label">D&amp;D 5E CHARACTER DOSSIER</p>
+        <h2>${escapeHtml(bible.name)}</h2>
+        <p class="cover-meta">${escapeHtml(bible.archetype)} · ${escapeHtml(bible.age)}</p>
+        <p class="cover-hook">"${escapeHtml(bible.hook)}"</p>
+        <div class="cover-palette">
+          <div class="palette-stack">
+            ${(bible.palette || []).map((c) => `
+              <div class="swatch-row" title="Click to copy ${c}" onclick="navigator.clipboard.writeText('${c}')">
+                <div class="swatch-pill" style="background-color: ${c} !important;"></div>
+                <span class="swatch-code">${c}</span>
+              </div>
+            `).join("")}
+          </div>
+        </div>
+      </section>
+
+      <!-- D&D STAT BLOCK -->
+      <section class="bible-section">
+        <h3>5e Ability Scores</h3>
+        <div class="dnd-stats-grid">
+          <div class="stat-box"><span class="stat-lbl">STR</span><strong>${escapeHtml(scores.str)}</strong></div>
+          <div class="stat-box"><span class="stat-lbl">DEX</span><strong>${escapeHtml(scores.dex)}</strong></div>
+          <div class="stat-box"><span class="stat-lbl">CON</span><strong>${escapeHtml(scores.con)}</strong></div>
+          <div class="stat-box"><span class="stat-lbl">INT</span><strong>${escapeHtml(scores.int)}</strong></div>
+          <div class="stat-box"><span class="stat-lbl">WIS</span><strong>${escapeHtml(scores.wis)}</strong></div>
+          <div class="stat-box"><span class="stat-lbl">CHA</span><strong>${escapeHtml(scores.cha)}</strong></div>
+        </div>
+      </section>
+
+      <section class="bible-section">
+        <h3>Origin Backstory</h3>
+        <div class="section-body">
+          <p>${escapeHtml(bible.backstory || "")}</p>
+        </div>
+      </section>
+
+      <section class="bible-section">
+        <h3>Combat Tactics &amp; Abilities</h3>
+        <p><strong>Primary Feature:</strong> ${escapeHtml(bible.feature || "")}</p>
+        <p style="margin-top:10px;"><strong>Battle Strategy:</strong> ${escapeHtml(tactics)}</p>
+        <p style="margin-top:10px;"><strong>Starting Gear:</strong> ${escapeHtml(bible.gear || "")}</p>
+      </section>
+
+      <section class="bible-section">
+        <h3>5e Quest Hooks for DMs</h3>
+        <ol class="drawing-prompts">
+          ${questHooks.map(h => `<li>${escapeHtml(h)}</li>`).join("")}
+        </ol>
+      </section>
+
+      <section class="bible-section">
+        <h3>Roleplay &amp; Personality</h3>
+        <p>${escapeHtml(bible.personality || "")}</p>
+      </section>
+    `;
+
+    return card;
+  }
   const card = document.createElement("article");
   card.className = `multi-bible-card world-${bible.world}`;
 
