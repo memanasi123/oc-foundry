@@ -50,13 +50,13 @@ const dndData = {
     dragonborn: ["Balasar Cinderwing", "Kava Frostfang", "Rudra Sparkscale", "Tiamat's Vow", "Ignis Pyreborn"],
     gnome: ["Fizzwick Sparkplug", "Bramble Copperpot", "Tinker Noodle", "Pip Widget", "Zook Glitterstone"],
     halforc: ["Grok Skullcleaver", "Thokk Ironhide", "Varka Bloodrage", "Karg Bloodfist", "Zula Warbringer"],
-    halfelf: ["Tristan Vane", "Aria Whisperwind", "Julian Cross", "Eliana Shadows', 'Corin Dawnlight"]
+    halfelf: ["Tristan Vane", "Aria Whisperwind", "Julian Cross", "Eliana Shadows", "Corin Dawnlight"]
   },
 
   hooks: [
     "Carries an ancient map drawn on dragon scale that shows a dungeon that moves every full moon.",
     "Pledged a vow of silence until they slay the warlord who burned their hometown.",
-    "Owes a soul-debt to a archfey who occasionally demands strange errands at midnight.",
+    "Owes a soul-debt to an archfey who occasionally demands strange errands at midnight.",
     "Possesses the broken hilt of a legendary blade that hums whenever undead are near.",
     "Exiled from their order for reading a forbidden tome of dark magic in the royal archives."
   ],
@@ -73,7 +73,7 @@ const dndData = {
     monk: "Unarmed Strike (1d4) & Unarmored Defense (DEX + WIS)",
     ranger: "Favored Enemy & Natural Explorer (Wilderness Specialist)",
     sorcerer: "Sorcerous Origin Feature & Font of Magic",
-    warlock: "Otherworldy Patron Feature & Pact Magic (1st-level slot)"
+    warlock: "Otherworldly Patron Feature & Pact Magic (1st-level slot)"
   },
 
   equipment: [
@@ -90,9 +90,8 @@ const dndData = {
     ["#86EFAC", "#FBCFE8", "#65a30d", "#1c1917"],
     ["#38BDF8", "#F1F5F9", "#0284C7", "#0F172A"],
     ["#F97316", "#FACC15", "#7C2D12", "#18181B"]
-  ]
-};
-  // EXTENDED DOSSIER POOLS FOR PAID PDF
+  ],
+
   tactics: {
     fighter: "Opens combat with Action Surge to strike the strongest threat. Uses positioning to protect squishier allies and holds the front line relentlessly.",
     wizard: "Stays 30ft back behind cover. Casts Crowd Control spells (Sleep/Web) first, saving shield/counter magic for enemy casters.",
