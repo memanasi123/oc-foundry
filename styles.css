@@ -417,8 +417,8 @@
 .bible-section p {
   margin: 0;
   color: var(--ink);
-  font-size: 15px;
-  line-height: 1.65;
+  font-size: 16.5px;
+  line-height: 1.7;
 }
 
 /* COVER SECTION */
@@ -2434,5 +2434,44 @@
     padding-left: 0 !important;
     margin-left: 0 !important;
     justify-content: flex-start !important;
+  }
+}
+/* ============================================
+   BIGGER BODY TEXT FOR BIBLE + PDF
+   ============================================ */
+
+.bible-section p,
+.section-body p,
+.multi-bible-card p,
+.rel-note,
+.voice-pattern,
+.outfit p,
+.quiz-grid p {
+  font-size: 16.5px !important;
+  line-height: 1.7 !important;
+}
+
+.bible-section h3 {
+  font-size: 24px !important;
+}
+
+.bible-section h4 {
+  font-size: 12px !important;
+}
+
+@media print {
+  .bible-section p,
+  .section-body p,
+  .multi-bible-card p,
+  .rel-note,
+  .voice-pattern,
+  .outfit p,
+  .quiz-grid p {
+    font-size: 15.5px !important;
+    line-height: 1.65 !important;
+  }
+
+  .bible-section h3 {
+    font-size: 22px !important;
   }
 }
