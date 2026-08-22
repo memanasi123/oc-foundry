@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Free D&D 5e Character Generator — generate instant 5e stat blocks, backstories, traits, and character bibles for players and DMs." />
+    <title>D&D 5e Character Generator — OC Foundry</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css?v=18" />
+  </head>
+  <body>
+    <div class="page-glow glow-one"></div><div class="page-glow glow-two"></div>
+    <main>
+      <nav class="nav wrap" aria-label="Main navigation">
+        <a class="brand" href="index.html" aria-label="OC Foundry home"><span class="brand-mark">✦</span> OC Foundry</a>
+        <div class="nav-links">
+          <a class="nav-link" href="index.html">OC Generator</a>
+          <a class="nav-link active" href="dnd.html">D&amp;D 5e Generator</a>
+          <a class="nav-link" href="about.html">About</a>
+          <a class="nav-link" href="contact.html">Contact</a>
+          <a class="nav-link cart-link" href="bucket.html">
+            Bucket <span class="cart-count" id="cart-count" hidden>0</span>
+          </a>
+        </div>
+      </nav>
+
+      <section class="hero wrap">
+        <p class="eyebrow"><span></span> D&amp;D 5e Adventurer Foundry</p>
+        <h1>Roll a hero<br /><em>worth playing.</em></h1>
+        <p class="intro">Instant 5e D&amp;D character concepts with complete stat blocks, background hooks, equipment, and personality traits for players &amp; DMs.</p>
+
+        <div class="controls">
+          <div class="filter-group">
+            <span class="filter-label">Class</span>
+            <div class="filter-pills" id="class-filters">
+              <button class="filter active" data-class="any" type="button">Any Class</button>
+              <button class="filter" data-class="fighter" type="button">Fighter</button>
+              <button class="filter" data-class="wizard" type="button">Wizard</button>
+              <button class="filter" data-class="rogue" type="button">Rogue</button>
+              <button class="filter" data-class="cleric" type="button">Cleric</button>
+              <button class="filter" data-class="bard" type="button">Bard</button>
+              <button class="filter" data-class="warlock" type="button">Warlock</button>
+            </div>
+          </div>
+          <div class="filter-group">
+            <span class="filter-label">Race</span>
+            <div class="filter-pills" id="race-filters">
+              <button class="filter active" data-race="any" type="button">Surprise Me</button>
+              <button class="filter" data-race="human" type="button">Human</button>
+              <button class="filter" data-race="elf" type="button">Elf</button>
+              <button class="filter" data-race="dwarf" type="button">Dwarf</button>
+              <button class="filter" data-race="tiefling" type="button">Tiefling</button>
+              <button class="filter" data-race="dragonborn" type="button">Dragonborn</button>
+            </div>
+          </div>
+          <button class="generate-button" id="dnd-generate" type="button"><span class="spark">🎲</span> Roll D&amp;D Character <span class="arrow">→</span></button>
+        </div>
+        <p class="tiny-note">Level 1 5e Ruleset · Instant Stat Block</p>
+      </section>
+
+      <section class="sheet-section wrap" id="generator">
+        <article class="character-sheet empty" id="character-sheet">
+          <div class="sheet-topline"><span class="sheet-tag">5E ADVENTURER FILE</span><span class="sheet-number" id="sheet-number">NO. 000</span></div>
+          <div class="empty-state" id="empty-state">
+            <span class="empty-star">🎲</span>
+            <p>Click "Roll D&amp;D Character" to build your adventurer.</p>
+          </div>
+
+          <div class="result-content" id="result-content" hidden>
+            <aside class="portrait-panel" id="portrait-panel">
+              <span class="portrait-label">COLOR PALETTE</span>
+              <div class="palette-stack" id="palette"></div>
+            </aside>
+
+            <div class="details-panel">
+              <div class="identity">
+                <span class="file-inline">Level 1 Adventurer</span>
+                <h2 id="dnd-name">Hero Name</h2>
+                <button class="name-reroll" id="dnd-reroll" type="button">↻ New name</button>
+                <p class="result-kicker" id="dnd-meta">Human Fighter · Folk Hero</p>
+                <p class="age" id="dnd-alignment">Lawful Good</p>
+              </div>
+
+              <p class="hook" id="dnd-hook">Character hook will appear here.</p>
+
+              <!-- D&D STAT BLOCK GRID -->
+              <div class="dnd-stats-grid" id="stats-grid">
+                <div class="stat-box"><span class="stat-lbl">STR</span><strong id="stat-str">16 (+3)</strong></div>
+                <div class="stat-box"><span class="stat-lbl">DEX</span><strong id="stat-dex">14 (+2)</strong></div>
+                <div class="stat-box"><span class="stat-lbl">CON</span><strong id="stat-con">14 (+2)</strong></div>
+                <div class="stat-box"><span class="stat-lbl">INT</span><strong id="stat-int">10 (+0)</strong></div>
+                <div class="stat-box"><span class="stat-lbl">WIS</span><strong id="stat-wis">12 (+1)</strong></div>
+                <div class="stat-box"><span class="stat-lbl">CHA</span><strong id="stat-cha">8 (-1)</strong></div>
+              </div>
+
+              <div class="detail-grid">
+                <section><h3>Key Feature</h3><p id="dnd-feature"></p></section>
+                <section><h3>Starting Gear</h3><p id="dnd-gear"></p></section>
+                <section><h3>Personality</h3><p id="dnd-personality"></p></section>
+                <section><h3>Miniature / Art Prompt</h3><p id="dnd-prompt"></p></section>
+              </div>
+
+              <div class="sheet-actions">
+                <a class="download-button" id="download" href="checkout.html">Buy this sheet <span>₹60</span></a>
+                <button class="bucket-button" id="add-to-bucket" type="button">Add to bucket</button>
+                <button class="small-generate" id="dnd-regenerate" type="button">Roll another <span>→</span></button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- TEASE SECTION -->
+        <section class="unlock-tease" id="unlock-tease" hidden>
+          <div class="tease-header">
+            <p class="eyebrow"><span></span> Unlock the Complete D&amp;D Character Dossier</p>
+            <span class="tease-price">₹60</span>
+          </div>
+          <h3 class="tease-title">More of <em id="tease-name">them</em>, ready for the tabletop.</h3>
+          <p class="tease-sub">A 3-page Adventurer Dossier PDF · downloaded instantly or emailed to you</p>
+
+          <div class="tease-grid">
+            <div class="tease-card"><span class="tease-icon">📜</span><h4>Origin Backstory</h4><p>Childhood, defining trial, and why they took up adventuring.</p></div>
+            <div class="tease-card"><span class="tease-icon">⚔️</span><h4>Combat Tactics</h4><p>Preferred moves, spellbook choices, and battle behavior.</p></div>
+            <div class="tease-card"><span class="tease-icon">👥</span><h4>Allies &amp; Rivals</h4><p>Three key NPCs: mentor, rival adventurer, and contact.</p></div>
+            <div class="tease-card"><span class="tease-icon">🗺️</span><h4>5 Quest Hooks</h4><p>Custom DM hooks to integrate them into any 5e campaign.</p></div>
+            <div class="tease-card"><span class="tease-icon">🎭</span><h4>Roleplay Guide</h4><p>Voice style, quote lines, ideals, bonds, and flaws.</p></div>
+            <div class="tease-card"><span class="tease-icon">📄</span><h4>Printable PDF</h4><p>Full 3-page dossier formatted for character binders.</p></div>
+          </div>
+
+          <a class="tease-cta" href="checkout.html">Get the complete dossier <span>₹60 →</span></a>
+        </section>
+      </section>
+    </main>
+
+    <footer class="footer wrap">
+      <div class="footer-links">
+        <a href="index.html">OC Generator</a>
+        <a href="dnd.html">D&amp;D Generator</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+      <span>© 2026 OC Foundry · May your d20 rolls be natural 20s ✦</span>
+    </footer>
+
+    <script src="dnd-data.js"></script>
+    <script src="script-dnd.js"></script>
+  </body>
+</html>
