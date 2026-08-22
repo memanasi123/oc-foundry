@@ -2358,3 +2358,49 @@
     margin-left: 0 !important;
   }
 }
+/* ============================================
+   PUSH PALETTE ALL THE WAY TO VERY LEFT EDGE
+   ============================================ */
+
+/* Reduce card container padding on the left */
+.bible-cover,
+.bible-content .bible-cover,
+.bible-page .bible-cover {
+  padding-left: 20px !important;
+}
+
+/* Remove all inner margins & padding on palette containers */
+.bible-cover .cover-palette,
+.cover-palette,
+.palette {
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100% !important;
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+}
+
+.palette-stack {
+  padding: 0 !important;
+  margin: 16px 0 0 0 !important;
+  align-items: flex-start !important;
+}
+
+.swatch-row {
+  margin: 0 !important;
+}
+
+/* Print mode alignment */
+@media print {
+  .bible-cover,
+  .bible-page .bible-cover,
+  .bible-content .bible-cover {
+    padding-left: 15mm !important;
+  }
+  .bible-cover .cover-palette {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+    justify-content: flex-start !important;
+  }
+}
