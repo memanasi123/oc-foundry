@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=20" />
+    <link rel="stylesheet" href="styles.css?v=21" />
   </head>
   <body>
     <div class="page-glow glow-one"></div><div class="page-glow glow-two"></div>
@@ -55,13 +55,15 @@
               <button class="filter" data-race="dragonborn" type="button">Dragonborn</button>
             </div>
           </div>
-          <button class="generate-button" id="dnd-generate" type="button">...</button>
-<p class="tiny-note">Level 1 5e Ruleset · Instant Stat Block</p>
+          <button class="generate-button" id="dnd-generate" type="button"><span class="spark">🎲</span> Roll D&amp;D Character <span class="arrow">→</span></button>
 
-<div class="inline-dice" id="inline-dice" hidden>
-  <div class="inline-dice-face" id="inline-dice-face">🎲</div>
-  <div class="inline-dice-result" id="inline-dice-result"></div>
-</div>
+          <!-- SMALL INLINE DICE ANIMATION UNDER BUTTON -->
+          <div class="inline-dice-box" id="inline-dice" hidden>
+            <div class="dice-icon" id="dice-icon">🎲</div>
+            <p class="dice-label" id="dice-label">Rolling d20...</p>
+          </div>
+
+        </div>
         <p class="tiny-note">Level 1 5e Ruleset · Instant Stat Block</p>
       </section>
 
@@ -84,8 +86,10 @@
                 <span class="file-inline">Level 1 Adventurer</span>
                 <h2 id="dnd-name">Hero Name</h2>
                 <button class="name-reroll" id="dnd-reroll" type="button">↻ New name</button>
-                <p class="result-kicker" id="dnd-meta">Human Fighter · Folk Hero</p>
-                <p class="age" id="dnd-alignment">Lawful Good</p>
+                <div class="dnd-identity-sub">
+                  <span class="result-kicker" id="dnd-meta">Human Fighter · Folk Hero</span>
+                  <span class="age" id="dnd-alignment">Lawful Good</span>
+                </div>
               </div>
 
               <p class="hook" id="dnd-hook">Character hook will appear here.</p>
@@ -137,7 +141,6 @@
           <a class="tease-cta" href="checkout.html">Get the complete dossier <span>₹60 →</span></a>
         </section>
       </section>
-      </div>
     </main>
 
     <footer class="footer wrap">
