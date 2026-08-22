@@ -2475,3 +2475,36 @@
     font-size: 22px !important;
   }
 }
+/* ============================================
+   PALETTE TEXT & COVER HEIGHT FIXES
+   ============================================ */
+
+/* 1. Prevent ANY circle or border rules from applying to the text label */
+.cover-palette span.swatch-code,
+.palette span.swatch-code,
+span.swatch-code {
+  border: none !important;
+  border-radius: 0 !important;
+  width: auto !important;
+  height: auto !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+/* 2. Print mode override to stop circle outlines on text */
+@media print {
+  .cover-palette span.swatch-code,
+  .palette span.swatch-code {
+    border: none !important;
+    border-radius: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+}
+
+/* 3. Make web cover taller and more spacious like the PDF */
+.bible-cover {
+  min-height: 600px !important;
+}
