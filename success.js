@@ -77,6 +77,7 @@ function getPurchasedCharacters() {
 
 function createBibleCard(bible, index, total) {
     // IF THIS IS A D&D CHARACTER, RENDER THE D&D DOSSIER & STAT BLOCK
+    // IF THIS IS A D&D CHARACTER, RENDER THE FULL 3-PAGE D&D DOSSIER
   if (bible.isDnd) {
     const card = document.createElement("article");
     card.className = `multi-bible-card world-${bible.world || 'fantasy'}`;
@@ -89,10 +90,12 @@ function createBibleCard(bible, index, total) {
     const scores = bible.scores || { str: "16 (+3)", dex: "14 (+2)", con: "14 (+2)", int: "10 (+0)", wis: "12 (+1)", cha: "8 (-1)" };
     const tactics = (typeof dndData !== "undefined" && dndData.tactics && dndData.tactics[bible.dndClass]) ? dndData.tactics[bible.dndClass] : "Adapts quickly in battle using class features and tactical positioning.";
     const questHooks = (typeof dndData !== "undefined" && dndData.questHooks) ? dndData.questHooks : [bible.hook];
+    const rels = (typeof dndData !== "undefined" && dndData.relationships) ? pick(dndData.relationships) : [];
 
     card.innerHTML = `
       <div class="multi-bible-label">D&amp;D 5E ADVENTURER DOSSIER · Sheet ${index + 1} of ${total}</div>
 
+      <!-- PAGE 1: COVER -->
       <section class="bible-section bible-cover">
         <p class="bible-label">D&amp;D 5E CHARACTER DOSSIER</p>
         <h2>${escapeHtml(bible.name)}</h2>
@@ -110,7 +113,7 @@ function createBibleCard(bible, index, total) {
         </div>
       </section>
 
-      <!-- D&D STAT BLOCK -->
+      <!-- PAGE 2: STAT BLOCK & 5E TRAITS -->
       <section class="bible-section">
         <h3>5e Ability Scores</h3>
         <div class="dnd-stats-grid">
@@ -123,6 +126,25 @@ function createBibleCard(bible, index, total) {
         </div>
       </section>
 
+      <section class="bible-section bible-grid">
+        <div>
+          <h4>Ideal</h4>
+          <p>${escapeHtml(bible.ideal || "Greater Good: Protect the innocent.")}</p>
+        </div>
+        <div>
+          <h4>Bond</h4>
+          <p>${escapeHtml(bible.bond || "Bound by oath to an old party.")}</p>
+        </div>
+        <div>
+          <h4>Flaw</h4>
+          <p>${escapeHtml(bible.flaw || "Overly trusting of strangers.")}</p>
+        </div>
+        <div>
+          <h4>Starting Trinket</h4>
+          <p>${escapeHtml(bible.trinket || "A brass orb that hums quietly.")}</p>
+        </div>
+      </section>
+
       <section class="bible-section">
         <h3>Origin Backstory</h3>
         <div class="section-body">
@@ -130,11 +152,26 @@ function createBibleCard(bible, index, total) {
         </div>
       </section>
 
+      <!-- PAGE 3: COMBAT, SPELLS, RELATIONS & HOOKS -->
       <section class="bible-section">
-        <h3>Combat Tactics &amp; Abilities</h3>
-        <p><strong>Primary Feature:</strong> ${escapeHtml(bible.feature || "")}</p>
-        <p style="margin-top:10px;"><strong>Battle Strategy:</strong> ${escapeHtml(tactics)}</p>
-        <p style="margin-top:10px;"><strong>Starting Gear:</strong> ${escapeHtml(bible.gear || "")}</p>
+        <h3>Spells, Features &amp; Combat Tactics</h3>
+        <p style="margin-bottom:8px;"><strong>Class Feature:</strong> ${escapeHtml(bible.feature || "")}</p>
+        <p style="margin-bottom:8px;"><strong>Spells / Maneuvers Known:</strong> ${escapeHtml(bible.spellList || "")}</p>
+        <p style="margin-bottom:8px;"><strong>Tactical Strategy:</strong> ${escapeHtml(tactics)}</p>
+        <p><strong>Starting Equipment:</strong> ${escapeHtml(bible.gear || "")}</p>
+      </section>
+
+      <section class="bible-section">
+        <h3>Party Connections &amp; Allies</h3>
+        <div class="relationships">
+          ${rels.map((r) => `
+            <div class="rel-card">
+              <p class="rel-role">${escapeHtml(r.role)}</p>
+              <p class="rel-name">${escapeHtml(r.name)}</p>
+              <p class="rel-note">${escapeHtml(r.note)}</p>
+            </div>
+          `).join("")}
+        </div>
       </section>
 
       <section class="bible-section">
@@ -145,7 +182,7 @@ function createBibleCard(bible, index, total) {
       </section>
 
       <section class="bible-section">
-        <h3>Roleplay &amp; Personality</h3>
+        <h3>Roleplay &amp; Personality Overview</h3>
         <p>${escapeHtml(bible.personality || "")}</p>
       </section>
     `;
