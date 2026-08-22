@@ -2733,11 +2733,16 @@ span.swatch-code {
    LEFT SIDEBAR VERTICAL GENERATOR TABS
    ============================================ */
 
+/* ============================================
+   LEFT SIDEBAR VERTICAL GENERATOR TABS
+   Top-left position
+   ============================================ */
+
 .generator-tabs-dock {
   position: fixed;
-  left: 24px;
-  top: 35%;
-  transform: translateY(-50%);
+  left: 20px;
+  top: 96px;              /* near top, under the header area */
+  transform: none;        /* remove middle-of-page centering */
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -2750,7 +2755,7 @@ span.swatch-code {
   gap: 10px;
   padding: 12px 18px;
   border-radius: 12px;
-  background: rgba(255, 253, 249, 0.92);
+  background: rgba(255, 253, 249, 0.95);
   border: 1.5px solid var(--line);
   color: var(--ink);
   text-decoration: none;
@@ -2774,6 +2779,40 @@ span.swatch-code {
   color: var(--lavender);
 }
 
+/* Selected Active Tab */
+.gen-tab.active {
+  background: var(--lavender) !important;
+  color: #ffffff !important;
+  border-color: var(--lavender) !important;
+  box-shadow: 0 6px 20px rgba(147, 128, 197, 0.35) !important;
+}
+
+.gen-tab.active .gen-tab-icon {
+  color: #ffe5af !important;
+}
+
+/* Mobile: keep as neat horizontal row under header */
+@media (max-width: 1024px) {
+  .generator-tabs-dock {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    flex-direction: row;
+    justify-content: center;
+    margin: 16px auto 8px;
+    width: min(100% - 32px, 520px);
+  }
+
+  .gen-tab {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .gen-tab:hover {
+    transform: translateY(-2px);
+  }
+}
 /* Selected Active Tab Styling */
 .gen-tab.active {
   background: var(--lavender) !important;
