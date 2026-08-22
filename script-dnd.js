@@ -109,15 +109,21 @@ function buildCharacter() {
     `;
   }
 
-      currentDndCharacter = {
+          const ideal = pick(dndData.ideals) || "Greater Good: Protecting the innocent.";
+    const bond = pick(dndData.bonds) || "Bound by oath to an old mentor.";
+    const flaw = pick(dndData.flaws) || "Overly trusting of dangerous strangers.";
+    const trinket = pick(dndData.trinkets) || "A brass orb that hums quietly.";
+    const spellList = dndData.spells[classKey] || "Class Abilities & Martial Mastery";
+
+    currentDndCharacter = {
       name,
       archetype: `${raceObj.name} ${classObj.name} (${background})`,
       age: alignment,
       hook,
       visual: `5e ${raceObj.name} ${classObj.name} with ${background} background. Primary gear: ${gear}`,
-      personality: `Driven by ${alignment} alignment. ${raceObj.traits}`,
+      personality: `Driven by a code of ${alignment}. ${raceObj.traits}`,
       detail: `Feature: ${feature}`,
-      tension: `Flaw: Bound by their history as a ${background}.`,
+      tension: `Flaw: ${flaw}`,
       scene: `D&D 5e Key Moment: ${name} using ${feature} in a critical encounter.`,
       palette,
       world: "fantasy",
@@ -128,9 +134,14 @@ function buildCharacter() {
       dndAlignment: alignment,
       scores,
       feature,
-      gear
+      gear,
+      ideal,
+      bond,
+      flaw,
+      trinket,
+      spellList
     };
-
+  
   localStorage.setItem("ocFoundryCharacter", JSON.stringify(currentDndCharacter));
 
   const emptyState = document.getElementById("empty-state");
