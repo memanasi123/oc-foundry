@@ -127,7 +127,29 @@ const moods = {
 let selectedWorld = "any"; let selectedMood = "any"; let count = 0;
 let currentSet = null;
 let currentCharacter = null;
-const pick = list => list[Math.floor(Math.random() * list.length)];
+const lastPicked = new Map();
+
+const pick = (list) => {
+  if (!list || !list.length) return "";
+  if (list.length === 1) return list[0];
+
+  // Make a stable key for this list
+  const key = typeof list[0] === "string"
+    ? `str:${list[0].slice(0, 24)}:${list.length}`
+    : `obj:${list.length}:${Object.keys(list[0] || {}).join(",")}`;
+
+  let chosen = list[Math.floor(Math.random() * list.length)];
+  let tries = 0;
+
+  // Avoid immediately repeating the same item when possible
+  while (chosen === lastPicked.get(key) && tries < 8) {
+    chosen = list[Math.floor(Math.random() * list.length)];
+    tries += 1;
+  }
+
+  lastPicked.set(key, chosen);
+  return chosen;
+};
 
 function chooseWorld() { return selectedWorld === "any" ? pick(Object.keys(data)) : selectedWorld; }
 // ============================================
