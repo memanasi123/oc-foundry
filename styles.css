@@ -2662,3 +2662,22 @@ span.swatch-code {
   margin-top: 6px;
   align-items: center;
 }
+/* ============================================
+   D&D 20-SIDED DIE (d20) SVG ICON
+   ============================================ */
+
+.d20-svg {
+  width: 1.1em;
+  height: 1.1em;
+  display: inline-block;
+  vertical-align: -0.15em;
+  fill: currentColor;
+}
+
+/* Spinner styling for d20 in animation */
+.dice-icon .d20-svg {
+  width: 68px;
+  height: 68px;
+  color: var(--peach);
+  filter: drop-shadow(0 0 16px rgba(244, 201, 181, 0.6));
+}
