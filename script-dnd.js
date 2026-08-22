@@ -46,85 +46,110 @@ function generateAbilityScores(primaryStat) {
 }
 
 function rollDndCharacter() {
-  rollCount += 1;
+  const overlay = document.getElementById("dice-overlay");
+  const diceText = document.getElementById("dice-text");
   
-  const raceKey = selectedRace === "any" ? pick(Object.keys(dndData.races)) : selectedRace;
-  const classKey = selectedClass === "any" ? pick(Object.keys(dndData.classes)) : selectedClass;
+  // Array of fun D&D rolling messages
+  const rollMessages = [
+    "Rolling d20... 🎲",
+    "Checking Initiative... ⚔️",
+    "Consulting the Spellbook... 📜",
+    "Natural 20! ✨",
+    "Gathering Party... 🛡️"
+  ];
 
-  const raceObj = dndData.races[raceKey];
-  const classObj = dndData.classes[classKey];
-  
-  const nameList = dndData.names[raceKey] || dndData.names.human;
-  const name = pick(nameList);
-  const background = pick(dndData.backgrounds);
-  const alignment = pick(dndData.alignments);
-  const hook = pick(dndData.hooks);
-  const gear = pick(dndData.equipment);
-  const feature = dndData.features[classKey] || "Class Feature";
-  const palette = pick(dndData.palettes);
-  const scores = generateAbilityScores(classObj.primary);
+  // 1. Show spinning dice overlay
+  if (overlay) {
+    diceText.innerHTML = pick(rollMessages);
+    overlay.hidden = false;
+  }
 
-  // Update UI Elements
-  document.getElementById("dnd-name").textContent = name;
-  document.getElementById("dnd-meta").textContent = `${raceObj.name} ${classObj.name} · ${background}`;
-  document.getElementById("dnd-alignment").textContent = alignment;
-  document.getElementById("dnd-hook").textContent = `"${hook}"`;
+  // 2. Wait 750ms for the dice tumble animation, then reveal hero
+  setTimeout(() => {
+    rollCount += 1;
+    
+    const raceKey = selectedRace === "any" ? pick(Object.keys(dndData.races)) : selectedRace;
+    const classKey = selectedClass === "any" ? pick(Object.keys(dndData.classes)) : selectedClass;
 
-  // Update Stats
-  document.getElementById("stat-str").textContent = scores.str;
-  document.getElementById("stat-dex").textContent = scores.dex;
-  document.getElementById("stat-con").textContent = scores.con;
-  document.getElementById("stat-int").textContent = scores.int;
-  document.getElementById("stat-wis").textContent = scores.wis;
-  document.getElementById("stat-cha").textContent = scores.cha;
+    const raceObj = dndData.races[raceKey];
+    const classObj = dndData.classes[classKey];
+    
+    const nameList = dndData.names[raceKey] || dndData.names.human;
+    const name = pick(nameList);
+    const background = pick(dndData.backgrounds);
+    const alignment = pick(dndData.alignments);
+    const hook = pick(dndData.hooks);
+    const gear = pick(dndData.equipment);
+    const feature = dndData.features[classKey] || "Class Feature";
+    const palette = pick(dndData.palettes);
+    const scores = generateAbilityScores(classObj.primary);
 
-  // Details
-  document.getElementById("dnd-feature").textContent = feature;
-  document.getElementById("dnd-gear").textContent = gear;
-  document.getElementById("dnd-personality").textContent = `Driven by a strict code of ${alignment}. ${raceObj.traits}`;
-  document.getElementById("dnd-prompt").textContent = `Miniature / Art Concept: Frame ${name} in action using ${feature.split("&")[0]} while wearing gear matching their ${background} background.`;
+    // Update UI Elements
+    document.getElementById("dnd-name").textContent = name;
+    document.getElementById("dnd-meta").textContent = `${raceObj.name} ${classObj.name} · ${background}`;
+    document.getElementById("dnd-alignment").textContent = alignment;
+    document.getElementById("dnd-hook").textContent = `"${hook}"`;
 
-  document.getElementById("sheet-number").textContent = `NO. ${String(rollCount).padStart(3, "0")}`;
+    // Update Stats
+    document.getElementById("stat-str").textContent = scores.str;
+    document.getElementById("stat-dex").textContent = scores.dex;
+    document.getElementById("stat-con").textContent = scores.con;
+    document.getElementById("stat-int").textContent = scores.int;
+    document.getElementById("stat-wis").textContent = scores.wis;
+    document.getElementById("stat-cha").textContent = scores.cha;
 
-  // Swatch rendering with click to copy
-  const paletteEl = document.getElementById("palette");
-  paletteEl.innerHTML = `
-    <div class="palette-stack">
-      ${palette.map(color => `
-        <div class="swatch-row" title="Click to copy ${color}" onclick="navigator.clipboard.writeText('${color}')">
-          <div class="swatch-pill" style="background-color: ${color} !important;"></div>
-          <span class="swatch-code">${color}</span>
-        </div>
-      `).join("")}
-    </div>
-  `;
+    // Details
+    document.getElementById("dnd-feature").textContent = feature;
+    document.getElementById("dnd-gear").textContent = gear;
+    document.getElementById("dnd-personality").textContent = `Driven by a strict code of ${alignment}. ${raceObj.traits}`;
+    document.getElementById("dnd-prompt").textContent = `Miniature / Art Concept: Frame ${name} in action using ${feature.split("&")[0]} while wearing gear matching their ${background} background.`;
 
-  // Build character object for storage
-  currentDndCharacter = {
-    name,
-    archetype: `${raceObj.name} ${classObj.name} (${background})`,
-    age: alignment,
-    hook,
-    visual: `5e ${raceObj.name} ${classObj.name} with ${background} background. Primary gear: ${gear}`,
-    personality: `Driven by ${alignment} alignment. ${raceObj.traits}`,
-    detail: `Feature: ${feature}`,
-    tension: `Flaw: Bound by their background history as a ${background}.`,
-    scene: `D&D 5e Key Moment: ${name} using ${feature} in a critical encounter.`,
-    palette,
-    world: "fantasy" // Maps to fantasy theme rendering for PDF/Bible
-  };
+    document.getElementById("sheet-number").textContent = `NO. ${String(rollCount).padStart(3, "0")}`;
 
-  // Save to localStorage for checkout/bucket compatibility
-  localStorage.setItem("ocFoundryCharacter", JSON.stringify(currentDndCharacter));
+    // Swatch rendering
+    const paletteEl = document.getElementById("palette");
+    paletteEl.innerHTML = `
+      <div class="palette-stack">
+        ${palette.map(color => `
+          <div class="swatch-row" title="Click to copy ${color}" onclick="navigator.clipboard.writeText('${color}')">
+            <div class="swatch-pill" style="background-color: ${color} !important;"></div>
+            <span class="swatch-code">${color}</span>
+          </div>
+        `).join("")}
+      </div>
+    `;
 
-  // Reveal UI
-  document.getElementById("empty-state").hidden = true;
-  document.getElementById("result-content").hidden = false;
-  document.getElementById("unlock-tease").hidden = false;
-  document.getElementById("tease-name").textContent = name.split(" ")[0];
-  document.getElementById("character-sheet").classList.remove("empty");
+    // Build character object for storage
+    currentDndCharacter = {
+      name,
+      archetype: `${raceObj.name} ${classObj.name} (${background})`,
+      age: alignment,
+      hook,
+      visual: `5e ${raceObj.name} ${classObj.name} with ${background} background. Primary gear: ${gear}`,
+      personality: `Driven by ${alignment} alignment. ${raceObj.traits}`,
+      detail: `Feature: ${feature}`,
+      tension: `Flaw: Bound by their background history as a ${background}.`,
+      scene: `D&D 5e Key Moment: ${name} using ${feature} in a critical encounter.`,
+      palette,
+      world: "fantasy"
+    };
 
-  document.getElementById("generator").scrollIntoView({ behavior: "smooth", block: "center" });
+    localStorage.setItem("ocFoundryCharacter", JSON.stringify(currentDndCharacter));
+
+    // Reveal UI
+    document.getElementById("empty-state").hidden = true;
+    document.getElementById("result-content").hidden = false;
+    document.getElementById("unlock-tease").hidden = false;
+    document.getElementById("tease-name").textContent = name.split(" ")[0];
+    document.getElementById("character-sheet").classList.remove("empty");
+
+    // Hide dice overlay
+    if (overlay) overlay.hidden = true;
+
+    // Smooth scroll to character
+    document.getElementById("generator").scrollIntoView({ behavior: "smooth", block: "center" });
+
+  }, 750);
 }
 
 // Filter listeners
