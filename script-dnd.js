@@ -109,19 +109,27 @@ function buildCharacter() {
     `;
   }
 
-  currentDndCharacter = {
-    name,
-    archetype: `${raceObj.name} ${classObj.name} (${background})`,
-    age: alignment,
-    hook,
-    visual: `5e ${raceObj.name} ${classObj.name} with ${background} background. Primary gear: ${gear}`,
-    personality: `Driven by ${alignment} alignment. ${raceObj.traits}`,
-    detail: `Feature: ${feature}`,
-    tension: `Flaw: Bound by their history as a ${background}.`,
-    scene: `D&D 5e Key Moment: ${name} using ${feature} in a critical encounter.`,
-    palette,
-    world: "fantasy",
-  };
+      currentDndCharacter = {
+      name,
+      archetype: `${raceObj.name} ${classObj.name} (${background})`,
+      age: alignment,
+      hook,
+      visual: `5e ${raceObj.name} ${classObj.name} with ${background} background. Primary gear: ${gear}`,
+      personality: `Driven by ${alignment} alignment. ${raceObj.traits}`,
+      detail: `Feature: ${feature}`,
+      tension: `Flaw: Bound by their history as a ${background}.`,
+      scene: `D&D 5e Key Moment: ${name} using ${feature} in a critical encounter.`,
+      palette,
+      world: "fantasy",
+      isDnd: true,
+      dndClass: classKey,
+      dndRace: raceKey,
+      dndBackground: background,
+      dndAlignment: alignment,
+      scores,
+      feature,
+      gear
+    };
 
   localStorage.setItem("ocFoundryCharacter", JSON.stringify(currentDndCharacter));
 
