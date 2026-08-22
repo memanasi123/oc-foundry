@@ -214,23 +214,34 @@ function loadAllBibles() {
     return [];
   }
 
-    if (!characters.length) {
+      const header = document.querySelector(".bible-header");
+
+  if (!characters.length) {
+    if (header) header.style.display = "none"; // Hide top header & buttons for unpaid users
     if (empty) {
       empty.hidden = false;
       empty.innerHTML = `
         <p class="eyebrow" style="justify-content:center;"><span></span> Payment Required 🔒</p>
-        <h2 style="font:700 32px Fraunces,serif; margin:16px 0;">Unlock required for character bible.</h2>
-        <p style="color:var(--muted); max-width:440px; margin:0 auto 24px; line-height:1.6;">
-          Full Character Bibles are available after purchasing a character sheet for ₹60. Generate a character first, then continue to secure payment to unlock!
+
+        <h1 style="font:700 clamp(36px, 5vw, 56px)/0.95 Fraunces, serif; letter-spacing:-2px; margin:20px 0 12px; color:var(--ink);">
+          Character Bible Locked
+        </h1>
+
+        <p style="color:var(--muted); max-width:460px; margin:0 auto 28px; line-height:1.6; font-size:15px;">
+          Full 3-page Character Bibles (backstory, wardrobe, dialogue, relationships, drawing prompts) unlock automatically after purchasing a character sheet for ₹60.
         </p>
-        <a href="index.html" class="pay-button" style="display:inline-block; width:auto; padding:14px 28px; text-decoration:none;">← Go to generator</a>
+
+        <a href="index.html" class="pay-button" style="display:inline-block; width:auto; padding:14px 28px; text-decoration:none;">
+          ← Go to generator
+        </a>
       `;
     }
-    if (titleName) titleName.textContent = "your";
     listHost.innerHTML = "";
     return [];
   }
 
+  // If paid: ensure header is visible
+  if (header) header.style.display = "block";
   if (empty) empty.hidden = true;
 
   const bibles = characters.map(generateBible);
