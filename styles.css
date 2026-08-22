@@ -2681,3 +2681,51 @@ span.swatch-code {
   color: var(--peach);
   filter: drop-shadow(0 0 16px rgba(244, 201, 181, 0.6));
 }
+/* ============================================
+   FIX: INLINE DICE HIDING & CRISP d20 COLOR
+   ============================================ */
+
+/* Hide dice box by default when hidden attribute is present */
+.inline-dice-box[hidden],
+#inline-dice[hidden] {
+  display: none !important;
+}
+
+/* Style for the dice box under button */
+.inline-dice-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 16px auto 0;
+  padding: 12px 24px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  box-shadow: 0 6px 18px rgba(104, 87, 142, 0.12);
+  width: fit-content;
+}
+
+.dice-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+}
+
+/* Make the d20 SVG crisp & vibrant lavender */
+.dice-icon .d20-svg {
+  width: 48px !important;
+  height: 48px !important;
+  color: var(--lavender) !important;
+  filter: drop-shadow(0 4px 10px rgba(147, 128, 197, 0.35)) !important;
+}
+
+.dice-label {
+  margin: 0;
+  font: 700 15px "DM Mono", monospace;
+  color: var(--ink);
+  letter-spacing: 0.5px;
+}
