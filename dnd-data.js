@@ -1,5 +1,5 @@
 // ============================================
-// OC FOUNDRY — D&D 5E DATA POOLS
+// OC FOUNDRY — D&D 5E DATA POOLS (EXPANDED)
 // ============================================
 
 const dndData = {
@@ -76,12 +76,59 @@ const dndData = {
     warlock: "Otherworldly Patron Feature & Pact Magic (1st-level slot)"
   },
 
+  spells: {
+    fighter: "Battle Maneuvers: Precision Strike, Riposte, Trip Attack",
+    wizard: "Cantrips: Fire Bolt, Mage Hand, Prestidigitation. Spells: Shield, Magic Missile, Sleep",
+    rogue: "Cunning Action: Dash, Disengage, Hide. Tool Expertise: Thieves' Tools",
+    cleric: "Cantrips: Sacred Flame, Thaumaturgy, Guidance. Spells: Cure Wounds, Bless, Guiding Bolt",
+    bard: "Cantrips: Vicious Mockery, Minor Illusion. Spells: Dissonant Whispers, Healing Word, Healing",
+    paladin: "Divine Smite (2d8 radiant), Divine Sense, Lay on Hands",
+    barbarian: "Primal Rage: Advantage on Strength checks, Resistance to Bludgeoning/Piercing/Slashing",
+    druid: "Cantrips: Thorn Whip, Druidcraft. Spells: Entangle, Thunderwave, Cure Wounds",
+    monk: "Martial Arts (1d4), Ki Points (Flurry of Blows, Patient Defense)",
+    ranger: "Spells: Hunter's Mark, Goodberry, Absorb Elements",
+    sorcerer: "Cantrips: Ray of Frost, Minor Illusion. Spells: Chromatic Orb, Burning Hands",
+    warlock: "Cantrips: Eldritch Blast, Minor Illusion. Spells: Hellish Rebuke, Armor of Agathys"
+  },
+
   equipment: [
     "Longsword, chain mail, wooden shield, explorer's pack, 15 gp",
     "Spellbook, quarterstaff, scholar's pack, component pouch, 10 gp",
     "Two daggers, shortbow with 20 arrows, leather armor, burglar's pack, thieves' tools, 15 gp",
     "Mace, scale mail, holy symbol, priest's pack, shield, 10 gp",
     "Rapier, leather armor, lute, diplomat's pack, 15 gp"
+  ],
+
+  trinkets: [
+    "A brass orb etched with moving constellations that spin when held.",
+    "A small leather pouch containing 4 carved wooden dice that never land on 1.",
+    "A heavy iron key that hums faintly when brought near cold iron.",
+    "A silver locket containing a lock of hair from a person who died 200 years ago.",
+    "A glass vial filled with glowing blue liquid that never boils or freezes."
+  ],
+
+  ideals: [
+    "Greater Good: My gifts are meant to protect those who cannot protect themselves.",
+    "Independence: I am free to choose my own destiny, regardless of tradition.",
+    "Knowledge: The secret to power lies in uncovering forgotten truths.",
+    "Honor: My word is my bond, and I will die before breaking a promise.",
+    "Freedom: Tyranny in any form must be brought down, no matter the cost."
+  ],
+
+  bonds: [
+    "I carry a debt to the mentor who trained me, and I will one day repay them.",
+    "My hometown was destroyed, and I wander to find the survivors.",
+    "An ancient temple artifact was stolen on my watch; I will return it or die trying.",
+    "My older sibling vanished in the Underdark, and I seek clues to their whereabouts.",
+    "I am bound to a fellowship of heroes who swore a secret pact long ago."
+  ],
+
+  flaws: [
+    "I am overly trusting of those who claim to share my ideals.",
+    "My pride causes me to refuse help, even when I am severely wounded.",
+    "I am prone to reckless action whenever my past is mentioned.",
+    "I struggle to hide my contempt for nobles and corrupt authority.",
+    "I carry a dark secret that could destroy my reputation if revealed."
   ],
 
   palettes: [
@@ -106,6 +153,19 @@ const dndData = {
     sorcerer: "Uses Metamagic (Twinned / Quickened Spell) to burst down high-priority targets in the first two rounds.",
     warlock: "Fires Eldritch Blast with Repelling Blast from high ground, knocking enemies into hazards or away from allies."
   },
+
+  relationships: [
+    [
+      { role: "Mentor / Patron", name: "Archmage Vaelen", note: "Taught them the basics of their craft. Demands occasional progress reports via magic message." },
+      { role: "Rival Adventurer", name: "Kaelen the Swift", note: "A competitive mercenary who always seems to take the bounty one hour before our hero arrives." },
+      { role: "Guild Contact", name: "Old Bram at the Yawning Portal", note: "An informant who trades tavern rumors for silver coins and good ale." }
+    ],
+    [
+      { role: "Fallen Companion", name: "Soren Ironhand", note: "A former party member who fell during their first dungeon run. Our hero carries his signet ring." },
+      { role: "Reluctant Ally", name: "Captain Vane", note: "A city guard captain who turns a blind eye to our hero's methods in exchange for results." },
+      { role: "Fey / Divine Contact", name: "Whisper", note: "A strange sprite or celestial voice that offers guidance during long rests." }
+    ]
+  ],
 
   questHooks: [
     "A local noble hired them to retrieve a stolen family heirloom currently sitting in a kobold-infested ruin.",
