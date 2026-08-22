@@ -1,5 +1,5 @@
 // ============================================
-// OC FOUNDRY — D&D 5E GENERATOR LOGIC
+// OC FOUNDRY — D&D 5E GENERATOR LOGIC (FAIL-SAFE)
 // ============================================
 
 let selectedClass = "any";
@@ -7,29 +7,26 @@ let selectedRace = "any";
 let currentDndCharacter = null;
 let rollCount = 0;
 
-const pick = list => list[Math.floor(Math.random() * list.length)];
+const pick = list => (list && list.length) ? list[Math.floor(Math.random() * list.length)] : "";
 
 // Generate realistic D&D 5e ability scores with modifiers
 function generateAbilityScores(primaryStat) {
   const standardArray = [15, 14, 13, 12, 10, 8];
-  
-  // Shuffle array
   const shuffled = [...standardArray].sort(() => Math.random() - 0.5);
   
-  // Ensure primary stat gets the highest score (15)
   const stats = { str: 10, dex: 10, con: 12, int: 10, wis: 10, cha: 10 };
   const keys = ["str", "dex", "con", "int", "wis", "cha"];
   
-  // Give 15 to primary
-  stats[primaryStat] = 15;
-  const remainingKeys = keys.filter(k => k !== primaryStat);
+  const primary = primaryStat || "str";
+  stats[primary] = 15;
+  
+  const remainingKeys = keys.filter(k => k !== primary);
   const remainingScores = shuffled.filter(s => s !== 15);
 
   remainingKeys.forEach((key, i) => {
     stats[key] = remainingScores[i] || 10;
   });
 
-  // Calculate +mod helper: Math.floor((score - 10) / 2)
   const formatMod = (score) => {
     const mod = Math.floor((score - 10) / 2);
     return `${score} (${mod >= 0 ? "+" + mod : mod})`;
@@ -49,7 +46,6 @@ function rollDndCharacter() {
   const overlay = document.getElementById("dice-overlay");
   const diceText = document.getElementById("dice-text");
   
-  // Array of fun D&D rolling messages
   const rollMessages = [
     "Rolling d20... 🎲",
     "Checking Initiative... ⚔️",
@@ -58,98 +54,115 @@ function rollDndCharacter() {
     "Gathering Party... 🛡️"
   ];
 
-  // 1. Show spinning dice overlay
-  if (overlay) {
+  if (overlay && diceText) {
     diceText.innerHTML = pick(rollMessages);
     overlay.hidden = false;
   }
 
-  // 2. Wait 750ms for the dice tumble animation, then reveal hero
+  // Fail-safe execution block
   setTimeout(() => {
-    rollCount += 1;
-    
-    const raceKey = selectedRace === "any" ? pick(Object.keys(dndData.races)) : selectedRace;
-    const classKey = selectedClass === "any" ? pick(Object.keys(dndData.classes)) : selectedClass;
+    try {
+      rollCount += 1;
+      
+      const raceKeys = Object.keys(dndData?.races || { human: {} });
+      const classKeys = Object.keys(dndData?.classes || { fighter: {} });
 
-    const raceObj = dndData.races[raceKey];
-    const classObj = dndData.classes[classKey];
-    
-    const nameList = dndData.names[raceKey] || dndData.names.human;
-    const name = pick(nameList);
-    const background = pick(dndData.backgrounds);
-    const alignment = pick(dndData.alignments);
-    const hook = pick(dndData.hooks);
-    const gear = pick(dndData.equipment);
-    const feature = dndData.features[classKey] || "Class Feature";
-    const palette = pick(dndData.palettes);
-    const scores = generateAbilityScores(classObj.primary);
+      const raceKey = selectedRace === "any" ? pick(raceKeys) : selectedRace;
+      const classKey = selectedClass === "any" ? pick(classKeys) : selectedClass;
 
-    // Update UI Elements
-    document.getElementById("dnd-name").textContent = name;
-    document.getElementById("dnd-meta").textContent = `${raceObj.name} ${classObj.name} · ${background}`;
-    document.getElementById("dnd-alignment").textContent = alignment;
-    document.getElementById("dnd-hook").textContent = `"${hook}"`;
+      const raceObj = dndData.races[raceKey] || dndData.races.human;
+      const classObj = dndData.classes[classKey] || dndData.classes.fighter;
+      
+      const nameList = dndData.names[raceKey] || dndData.names.human;
+      const name = pick(nameList) || "Adventurer";
+      const background = pick(dndData.backgrounds) || "Outlander";
+      const alignment = pick(dndData.alignments) || "Neutral Good";
+      const hook = pick(dndData.hooks) || "A mysterious hero with a past.";
+      const gear = pick(dndData.equipment) || "Traveler's clothes and a dagger.";
+      const feature = dndData.features[classKey] || "Class Feature";
+      const palette = pick(dndData.palettes) || ["#E9A5A2", "#F6D7AC", "#8DB9AA", "#5B617C"];
+      const scores = generateAbilityScores(classObj.primary);
 
-    // Update Stats
-    document.getElementById("stat-str").textContent = scores.str;
-    document.getElementById("stat-dex").textContent = scores.dex;
-    document.getElementById("stat-con").textContent = scores.con;
-    document.getElementById("stat-int").textContent = scores.int;
-    document.getElementById("stat-wis").textContent = scores.wis;
-    document.getElementById("stat-cha").textContent = scores.cha;
+      // Update Text Elements
+      const setText = (id, txt) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = txt;
+      };
 
-    // Details
-    document.getElementById("dnd-feature").textContent = feature;
-    document.getElementById("dnd-gear").textContent = gear;
-    document.getElementById("dnd-personality").textContent = `Driven by a strict code of ${alignment}. ${raceObj.traits}`;
-    document.getElementById("dnd-prompt").textContent = `Miniature / Art Concept: Frame ${name} in action using ${feature.split("&")[0]} while wearing gear matching their ${background} background.`;
+      setText("dnd-name", name);
+      setText("dnd-meta", `${raceObj.name} ${classObj.name} · ${background}`);
+      setText("dnd-alignment", alignment);
+      setText("dnd-hook", `"${hook}"`);
 
-    document.getElementById("sheet-number").textContent = `NO. ${String(rollCount).padStart(3, "0")}`;
+      // Update Stats
+      setText("stat-str", scores.str);
+      setText("stat-dex", scores.dex);
+      setText("stat-con", scores.con);
+      setText("stat-int", scores.int);
+      setText("stat-wis", scores.wis);
+      setText("stat-cha", scores.cha);
 
-    // Swatch rendering
-    const paletteEl = document.getElementById("palette");
-    paletteEl.innerHTML = `
-      <div class="palette-stack">
-        ${palette.map(color => `
-          <div class="swatch-row" title="Click to copy ${color}" onclick="navigator.clipboard.writeText('${color}')">
-            <div class="swatch-pill" style="background-color: ${color} !important;"></div>
-            <span class="swatch-code">${color}</span>
+      // Details
+      setText("dnd-feature", feature);
+      setText("dnd-gear", gear);
+      setText("dnd-personality", `Driven by a strict code of ${alignment}. ${raceObj.traits}`);
+      setText("dnd-prompt", `Miniature / Art Concept: Frame ${name} in action using ${feature.split("&")[0]} while wearing gear matching their ${background} background.`);
+      setText("sheet-number", `NO. ${String(rollCount).padStart(3, "0")}`);
+
+      // Swatch rendering
+      const paletteEl = document.getElementById("palette");
+      if (paletteEl) {
+        paletteEl.innerHTML = `
+          <div class="palette-stack">
+            ${palette.map(color => `
+              <div class="swatch-row" title="Click to copy ${color}" onclick="navigator.clipboard.writeText('${color}')">
+                <div class="swatch-pill" style="background-color: ${color} !important;"></div>
+                <span class="swatch-code">${color}</span>
+              </div>
+            `).join("")}
           </div>
-        `).join("")}
-      </div>
-    `;
+        `;
+      }
 
-    // Build character object for storage
-    currentDndCharacter = {
-      name,
-      archetype: `${raceObj.name} ${classObj.name} (${background})`,
-      age: alignment,
-      hook,
-      visual: `5e ${raceObj.name} ${classObj.name} with ${background} background. Primary gear: ${gear}`,
-      personality: `Driven by ${alignment} alignment. ${raceObj.traits}`,
-      detail: `Feature: ${feature}`,
-      tension: `Flaw: Bound by their background history as a ${background}.`,
-      scene: `D&D 5e Key Moment: ${name} using ${feature} in a critical encounter.`,
-      palette,
-      world: "fantasy"
-    };
+      // Storage
+      currentDndCharacter = {
+        name,
+        archetype: `${raceObj.name} ${classObj.name} (${background})`,
+        age: alignment,
+        hook,
+        visual: `5e ${raceObj.name} ${classObj.name} with ${background} background. Primary gear: ${gear}`,
+        personality: `Driven by ${alignment} alignment. ${raceObj.traits}`,
+        detail: `Feature: ${feature}`,
+        tension: `Flaw: Bound by their background history as a ${background}.`,
+        scene: `D&D 5e Key Moment: ${name} using ${feature} in a critical encounter.`,
+        palette,
+        world: "fantasy"
+      };
 
-    localStorage.setItem("ocFoundryCharacter", JSON.stringify(currentDndCharacter));
+      localStorage.setItem("ocFoundryCharacter", JSON.stringify(currentDndCharacter));
 
-    // Reveal UI
-    document.getElementById("empty-state").hidden = true;
-    document.getElementById("result-content").hidden = false;
-    document.getElementById("unlock-tease").hidden = false;
-    document.getElementById("tease-name").textContent = name.split(" ")[0];
-    document.getElementById("character-sheet").classList.remove("empty");
+      // Reveal UI
+      const emptyState = document.getElementById("empty-state");
+      const resultContent = document.getElementById("result-content");
+      const unlockTease = document.getElementById("unlock-tease");
+      const charSheet = document.getElementById("character-sheet");
 
-    // Hide dice overlay
-    if (overlay) overlay.hidden = true;
+      if (emptyState) emptyState.hidden = true;
+      if (resultContent) resultContent.hidden = false;
+      if (unlockTease) unlockTease.hidden = false;
+      setText("tease-name", name.split(" ")[0]);
+      if (charSheet) charSheet.classList.remove("empty");
 
-    // Smooth scroll to character
-    document.getElementById("generator").scrollIntoView({ behavior: "smooth", block: "center" });
+      const genSec = document.getElementById("generator");
+      if (genSec) genSec.scrollIntoView({ behavior: "smooth", block: "center" });
 
-  }, 750);
+    } catch (err) {
+      console.error("D&D Roll Error:", err);
+    } finally {
+      // ALWAYS hide overlay, even if an error occurred
+      if (overlay) overlay.hidden = true;
+    }
+  }, 600);
 }
 
 // Filter listeners
@@ -167,18 +180,26 @@ document.querySelectorAll("#race-filters .filter").forEach(btn => {
   });
 });
 
-document.getElementById("dnd-generate").addEventListener("click", rollDndCharacter);
-document.getElementById("dnd-regenerate").addEventListener("click", rollDndCharacter);
-document.getElementById("dnd-reroll").addEventListener("click", () => {
-  if (currentDndCharacter) {
-    const raceKey = selectedRace === "any" ? "human" : selectedRace;
-    const nameList = dndData.names[raceKey] || dndData.names.human;
-    const newName = pick(nameList);
-    document.getElementById("dnd-name").textContent = newName;
-    currentDndCharacter.name = newName;
-    localStorage.setItem("ocFoundryCharacter", JSON.stringify(currentDndCharacter));
-  }
-});
+const genBtn = document.getElementById("dnd-generate");
+if (genBtn) genBtn.addEventListener("click", rollDndCharacter);
+
+const regenBtn = document.getElementById("dnd-regenerate");
+if (regenBtn) regenBtn.addEventListener("click", rollDndCharacter);
+
+const rerollBtn = document.getElementById("dnd-reroll");
+if (rerollBtn) {
+  rerollBtn.addEventListener("click", () => {
+    if (currentDndCharacter) {
+      const raceKey = selectedRace === "any" ? "human" : selectedRace;
+      const nameList = dndData?.names[raceKey] || dndData?.names?.human || ["Adventurer"];
+      const newName = pick(nameList);
+      const nameEl = document.getElementById("dnd-name");
+      if (nameEl) nameEl.textContent = newName;
+      currentDndCharacter.name = newName;
+      localStorage.setItem("ocFoundryCharacter", JSON.stringify(currentDndCharacter));
+    }
+  });
+}
 
 // Bucket Integration
 const addBucketBtn = document.getElementById("add-to-bucket");
