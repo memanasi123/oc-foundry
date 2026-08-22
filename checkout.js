@@ -85,9 +85,13 @@ button.addEventListener("click", async () => {
           const verifyData = await verifyRes.json();
 
           if (verifyData.verified) {
-            // Redirect to success page with payment id
-            window.location.href = `success.html?payment_id=${response.razorpay_payment_id}`;
-          } else {
+  // Mark character as legitimately paid
+  localStorage.setItem("ocFoundryPaidToken", response.razorpay_payment_id);
+  localStorage.setItem("ocFoundryPurchasedCharacter", JSON.stringify(savedCharacter));
+  
+  // Redirect to success page
+  window.location.href = `success.html?payment_id=${response.razorpay_payment_id}`;
+} else {
             throw new Error("Payment verification failed");
           }
 
