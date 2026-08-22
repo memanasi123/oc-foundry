@@ -2611,3 +2611,54 @@ span.swatch-code {
     transform: scale(1) rotate(360deg);
   }
 }
+/* ============================================
+   SMALL INLINE DICE & D&D CARD OVERFLOW FIX
+   ============================================ */
+
+.inline-dice-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin: 16px auto 0;
+  text-align: center;
+}
+
+.dice-icon {
+  font-size: 42px;
+  line-height: 1;
+  display: inline-block;
+  filter: drop-shadow(0 4px 10px rgba(147, 128, 197, 0.4));
+  transition: transform 0.2s ease;
+}
+
+.dice-icon.spinning {
+  animation: diceSpin 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+}
+
+@keyframes diceSpin {
+  0% { transform: scale(0.9) rotate(0deg); }
+  50% { transform: scale(1.2) rotate(180deg); }
+  100% { transform: scale(0.9) rotate(360deg); }
+}
+
+.dice-label {
+  margin: 0;
+  font: 700 14px "DM Mono", monospace;
+  color: var(--lavender);
+  letter-spacing: 0.5px;
+}
+
+/* Fix D&D Card Header Text Overflow */
+.identity {
+  flex-wrap: wrap !important;
+}
+
+.dnd-identity-sub {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
+  margin-top: 6px;
+  align-items: center;
+}
