@@ -2329,3 +2329,32 @@
   margin-right: auto !important;
   padding-left: 0 !important;
 }
+/* ============================================
+   FLUSH PALETTE TO THE VERY LEFT EDGE OF BOX
+   ============================================ */
+
+.bible-cover .cover-palette,
+.cover-palette,
+.palette {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 16px !important; /* Tiny margin from left box edge */
+  justify-content: flex-start !important;
+  text-align: left !important;
+}
+
+.palette-stack {
+  align-items: flex-start !important;
+  margin-left: 0 !important;
+}
+
+/* Ensure print mode also aligns flush left */
+@media print {
+  .bible-cover .cover-palette {
+    padding-left: 10mm !important;
+    justify-content: flex-start !important;
+    margin-left: 0 !important;
+  }
+}
