@@ -48,8 +48,28 @@ function escapeHtml(str = "") {
 }
 
 function getPurchasedCharacters() {
+  // Check for proof of payment
+  const urlParams = new URLSearchParams(window.location.search);
+  const paymentId = urlParams.get("payment_id");
+  const paidToken = localStorage.getItem("ocFoundryPaidToken");
   const purchasedCart = JSON.parse(localStorage.getItem("ocFoundryPurchasedCart") || "null");
-  if (Array.isArray(purchasedCart) && purchasedCart.length) return purchasedCart;
+  const purchasedChar = JSON.parse(localStorage.getItem("ocFoundryPurchasedCharacter") || "null");
+
+  // GATE: Must have a payment ID or paid token/items
+  const hasProofOfPayment = Boolean(paymentId || paidToken || (purchasedCart && purchasedCart.length) || purchasedChar);
+
+  if (!hasProofOfPayment) {
+    // Payment required — return empty list to trigger locked screen
+    return [];
+  }
+
+  if (Array.isArray(purchasedCart) && purchasedCart.length) {
+    return purchasedCart;
+  }
+
+  if (purchasedChar) {
+    return [purchasedChar];
+  }
 
   const single = JSON.parse(localStorage.getItem("ocFoundryCharacter") || "null");
   return single ? [single] : [];
@@ -194,8 +214,18 @@ function loadAllBibles() {
     return [];
   }
 
-  if (!characters.length) {
-    if (empty) empty.hidden = false;
+    if (!characters.length) {
+    if (empty) {
+      empty.hidden = false;
+      empty.innerHTML = `
+        <p class="eyebrow" style="justify-content:center;"><span></span> Payment Required 🔒</p>
+        <h2 style="font:700 32px Fraunces,serif; margin:16px 0;">Unlock required for character bible.</h2>
+        <p style="color:var(--muted); max-width:440px; margin:0 auto 24px; line-height:1.6;">
+          Full Character Bibles are available after purchasing a character sheet for ₹60. Generate a character first, then continue to secure payment to unlock!
+        </p>
+        <a href="index.html" class="pay-button" style="display:inline-block; width:auto; padding:14px 28px; text-decoration:none;">← Go to generator</a>
+      `;
+    }
     if (titleName) titleName.textContent = "your";
     listHost.innerHTML = "";
     return [];
