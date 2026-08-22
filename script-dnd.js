@@ -1,6 +1,6 @@
 // ============================================
 // OC FOUNDRY — D&D 5E GENERATOR
-// Inline dice under generate button
+// Inline Spinning Dice Logic
 // ============================================
 
 let selectedClass = "any";
@@ -9,10 +9,7 @@ let currentDndCharacter = null;
 let rollCount = 0;
 let isRolling = false;
 
-const pick = (list) => {
-  if (!list || !list.length) return "";
-  return list[Math.floor(Math.random() * list.length)];
-};
+const pick = (list) => (list && list.length) ? list[Math.floor(Math.random() * list.length)] : "";
 
 function generateAbilityScores(primaryStat = "str") {
   const standardArray = [15, 14, 13, 12, 10, 8];
@@ -48,47 +45,6 @@ function generateAbilityScores(primaryStat = "str") {
 function setText(id, value) {
   const el = document.getElementById(id);
   if (el) el.textContent = value;
-}
-
-function showInlineDice() {
-  const dice = document.getElementById("inline-dice");
-  const face = document.getElementById("inline-dice-face");
-  const result = document.getElementById("inline-dice-result");
-
-  if (!dice || !face) return;
-
-  dice.hidden = false;
-  if (result) result.textContent = "Rolling...";
-
-  // restart animation
-  face.classList.remove("is-rolling");
-  void face.offsetWidth;
-  face.classList.add("is-rolling");
-  face.textContent = "🎲";
-}
-
-function finishInlineDice() {
-  const face = document.getElementById("inline-dice-face");
-  const result = document.getElementById("inline-dice-result");
-  const roll = Math.floor(Math.random() * 20) + 1;
-
-  if (face) {
-    face.classList.remove("is-rolling");
-    face.textContent = "🎲";
-  }
-
-  if (result) {
-    result.textContent = roll === 20 ? `Natural 20!` : `You rolled a ${roll}`;
-  }
-}
-
-function hideInlineDiceLater() {
-  const dice = document.getElementById("inline-dice");
-  if (!dice) return;
-  setTimeout(() => {
-    // keep it visible briefly after stop, then hide
-    dice.hidden = true;
-  }, 700);
 }
 
 function buildCharacter() {
@@ -190,38 +146,45 @@ function rollDndCharacter() {
 
   isRolling = true;
 
+  const diceBox = document.getElementById("inline-dice");
+  const diceIcon = document.getElementById("dice-icon");
+  const diceLabel = document.getElementById("dice-label");
   const button = document.getElementById("dnd-generate");
+
+  // 1. Reveal small inline dice below button and start spin
+  if (diceBox) diceBox.hidden = false;
+  if (diceIcon) diceIcon.classList.add("spinning");
+  if (diceLabel) diceLabel.textContent = "Rolling d20...";
+
   if (button) {
     button.disabled = true;
     button.style.opacity = "0.7";
   }
 
-  // 1) show small dice under button
-  showInlineDice();
-
-  // 2) after spin, stop dice and build character
+  // 2. Spin for 600ms
   setTimeout(() => {
-    try {
-      finishInlineDice();
-      buildCharacter();
-
-      // scroll to sheet
-      const generator = document.getElementById("generator");
-      if (generator) {
-        generator.scrollIntoView({ behavior: "smooth", block: "center" });
-      }
-    } catch (err) {
-      console.error("D&D roll failed:", err);
-      alert("Something went wrong while rolling. Please refresh and try again.");
-    } finally {
-      hideInlineDiceLater();
-      isRolling = false;
-      if (button) {
-        button.disabled = false;
-        button.style.opacity = "1";
-      }
+    // 3. Stop spinning & reveal roll result
+    if (diceIcon) diceIcon.classList.remove("spinning");
+    const d20 = Math.floor(Math.random() * 20) + 1;
+    if (diceLabel) {
+      diceLabel.textContent = d20 === 20 ? "Natural 20! ✨" : `Rolled a ${d20}!`;
     }
-  }, 750);
+
+    // 4. Generate & display character sheet
+    buildCharacter();
+
+    if (button) {
+      button.disabled = false;
+      button.style.opacity = "1";
+    }
+
+    // 5. Hide dice after 1.2s
+    setTimeout(() => {
+      if (diceBox) diceBox.hidden = true;
+      isRolling = false;
+    }, 1200);
+
+  }, 600);
 }
 
 // Filters
