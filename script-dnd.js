@@ -156,9 +156,12 @@ function rollDndCharacter() {
   if (diceIcon) diceIcon.classList.add("spinning");
   if (diceLabel) diceLabel.textContent = "Rolling d20...";
 
+    const d20Svg = `<svg class="d20-svg" viewBox="0 0 24 24"><path d="M12 2L2.5 7.5v9L12 22l9.5-5.5v-9L12 2zm0 2.3l6.8 3.7-2.9 5.1L12 10.4V4.3zm-6.8 3.7L12 4.3v6.1L7.7 12.8 5.2 8zm-0.2 1.8l2.5 5.1-2.5 1.1V9.8zm6.8 9.9l-5.7-3.3 2.5-2 3.2 1.9v3.4zm0-5.1L8 12.4 12 5.8l4 6.6-4 2.2zm0 5.1v-3.4l3.2-1.9 2.5 2-5.7 3.3zm6.8-5.3l-2.5-1.1 2.5-5.1v6.2z"/></svg>`;
+
   if (button) {
     button.disabled = true;
     button.style.opacity = "0.7";
+    button.innerHTML = `<span class="spark">${d20Svg}</span> Rolling... <span class="arrow">→</span>`;
   }
 
   // 2. Spin for 600ms
@@ -173,9 +176,10 @@ function rollDndCharacter() {
     // 4. Generate & display character sheet
     buildCharacter();
 
-    if (button) {
+        if (button) {
       button.disabled = false;
       button.style.opacity = "1";
+      button.innerHTML = `<span class="spark">${d20Svg}</span> Roll D&amp;D Character <span class="arrow">→</span>`;
     }
 
     // 5. Hide dice after 1.2s
