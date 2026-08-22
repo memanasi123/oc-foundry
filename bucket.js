@@ -105,15 +105,15 @@ document.getElementById("bucket-checkout").addEventListener("click", async () =>
         });
 
         const verifyData = await verifyRes.json();
-        if (!verifyData.verified) throw new Error("Verification failed");
+        if (verifyData.verified) {
+  // Mark cart as legitimately paid
+  localStorage.setItem("ocFoundryPaidToken", response.razorpay_payment_id);
+  localStorage.setItem("ocFoundryPurchasedCart", JSON.stringify(cart));
+  localStorage.removeItem("ocFoundryCart");
+  localStorage.removeItem("ocFoundryPendingCart");
 
-        // Move pending cart into purchased list for success page
-        localStorage.setItem("ocFoundryPurchasedCart", JSON.stringify(cart));
-        localStorage.removeItem("ocFoundryCart");
-        localStorage.removeItem("ocFoundryPendingCart");
-
-        window.location.href = `success.html?payment_id=${response.razorpay_payment_id}&qty=${cart.length}`;
-      },
+  window.location.href = `success.html?payment_id=${response.razorpay_payment_id}&qty=${cart.length}`;
+}
       modal: {
         ondismiss: function () {
           button.disabled = false;
