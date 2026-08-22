@@ -92,3 +92,27 @@ const dndData = {
     ["#F97316", "#FACC15", "#7C2D12", "#18181B"]
   ]
 };
+  // EXTENDED DOSSIER POOLS FOR PAID PDF
+  tactics: {
+    fighter: "Opens combat with Action Surge to strike the strongest threat. Uses positioning to protect squishier allies and holds the front line relentlessly.",
+    wizard: "Stays 30ft back behind cover. Casts Crowd Control spells (Sleep/Web) first, saving shield/counter magic for enemy casters.",
+    rogue: "Uses Cunning Action (Bonus Action Hide/Disengage) every turn to gain Advantage and trigger Sneak Attack from the shadows.",
+    cleric: "Casts Bless or Shield of Faith on martial allies first. Stays near the center of the party to deliver Healing Word when allies drop.",
+    bard: "Hands out Bardic Inspiration before combat starts. Uses Vicious Mockery to impose disadvantage on enemy powerhouse attackers.",
+    paladin: "Saves spell slots exclusively for Divine Smite on critical hits. Stays within 10ft of allies to share aura buffs.",
+    barbarian: "Rages immediately on turn 1. Charges straight for the largest enemy target using Reckless Attack for maximum damage.",
+    druid: "Casts Entangle or Moonbeam to control the battlefield, then shifts into Wild Shape to tank damage.",
+    monk: "Uses Step of the Wind to dart past frontliners and stun enemy spellcasters in the backline.",
+    ranger: "Marks targets with Hunter's Mark from 120ft away, picking off flying or ranged threats first.",
+    sorcerer: "Uses Metamagic (Twinned / Quickened Spell) to burst down high-priority targets in the first two rounds.",
+    warlock: "Fires Eldritch Blast with Repelling Blast from high ground, knocking enemies into hazards or away from allies."
+  },
+
+  questHooks: [
+    "A local noble hired them to retrieve a stolen family heirloom currently sitting in a kobold-infested ruin.",
+    "They hold half of a ciphered journal leading to an ancient sunken temple; someone is hunting them for the other half.",
+    "A mysterious bounty has been placed on their head by a cult they didn't even know they crossed.",
+    "Their childhood home was swallowed by a sudden rift into the Shadowfell, and they are seeking the ritual to reverse it.",
+    "An old party member vanished inside a cursed dungeon, leaving behind a letter addressed specifically to them."
+  ]
+};
