@@ -2305,3 +2305,27 @@
   color: var(--ink) !important;
   text-shadow: none !important;
 }
+/* ============================================
+   ALIGN PALETTE STACK TO THE LEFT
+   ============================================ */
+
+.palette-stack {
+  align-items: flex-start !important;
+  margin-left: 0 !important;
+}
+
+.cover-palette,
+.palette {
+  display: flex !important;
+  justify-content: flex-start !important;
+  width: 100% !important;
+  padding-left: 10px !important;
+}
+
+/* Align with cover text */
+.bible-cover .cover-palette {
+  max-width: 520px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 0 !important;
+}
